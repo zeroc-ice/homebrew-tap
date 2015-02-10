@@ -1,6 +1,6 @@
 require 'formula'
 
-class Ice < Formula
+class Ice36b < Formula
   homepage 'http://www.zeroc.com'
   url 'https://www.zeroc.com/download/Ice/3.6/Ice-3.6b.tar.gz'
   sha1 'dcab7e14b3e42fa95af58f7e804f6fd9a17cb6b2'
