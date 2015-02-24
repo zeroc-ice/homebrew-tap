@@ -8,11 +8,10 @@ class BerkeleyDb53 < Formula
   keg_only 'Conflicts with berkeley-db in main repository.'
 
   bottle do
+    root_url "https://www.zeroc.com/download/homebrew/bottles"
     cellar :any
-    revision 1
-    sha1 "a134b5effaa73fd296b2601180520292c0a6d095" => :yosemite
-    sha1 "910660e253bf32a1ce730d4ba27e3090f645f5f6" => :mavericks
-    sha1 "aaafa41026335a6b7e6c0792d1511325c79409fa" => :mountain_lion
+    revision 2
+    sha1 "2706c05b65c45e14e903b3473bacbefa4059e44f" => :yosemite
   end
 
   option 'with-java', 'Compile with Java support.'
