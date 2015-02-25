@@ -6,6 +6,12 @@ class Ice36b < Formula
   sha1 'dcab7e14b3e42fa95af58f7e804f6fd9a17cb6b2'
   revision 2
 
+  bottle do
+    root_url "https://www.zeroc.com/download/homebrew/bottles"
+    cellar :any
+    sha1 "294aba239bcb73b1aef63910ccc46c6caa9f1326" => :yosemite
+  end
+
   option 'with-java', 'Compile with Java support.'
   option 'with-java7', 'Compile with Java 7 support.'
 
