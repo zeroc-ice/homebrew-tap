@@ -1,6 +1,6 @@
 diff -r -c -N ../Ice-3.6b.orig/config/Make.common.rules ./config/Make.common.rules
 *** ../Ice-3.6b.orig/config/Make.common.rules	2014-12-15 04:34:51.000000000 -0330
---- ./config/Make.common.rules	2015-02-25 09:56:18.000000000 -0330
+--- ./config/Make.common.rules	2015-02-25 13:55:25.000000000 -0330
 ***************
 *** 1,6 ****
   # **********************************************************************
@@ -289,9 +289,31 @@ diff -r -c -N ../Ice-3.6b.orig/config/Make.common.rules ./config/Make.common.rul
   	then \
 ! 		$(call installdata,$(top_srcdir)/../CHANGES$(TEXT_EXTENSION),$(DESTDIR)$(install_docdir)) ; \
   	fi
+diff -r -c -N ../Ice-3.6b.orig/cpp/Makefile ./cpp/Makefile
+*** ../Ice-3.6b.orig/cpp/Makefile	2014-12-15 04:34:51.000000000 -0330
+--- ./cpp/Makefile	2015-02-25 13:55:25.000000000 -0330
+***************
+*** 33,38 ****
+--- 33,48 ----
+  		chmod a+rx $(DESTDIR)$$subdir ; \
+  	    fi ; \
+  	done
++ 	@if test -d $(DESTDIR)$$prefix/libexec/bin ; \
++ 	then \
++ 	    for file in $(DESTDIR)$$prefix/libexec/bin/db_*; \
++ 	    do \
++ 		base=`basename $$file` ; \
++ 		rm -f $(DESTDIR)$(install_bindir)/db53_$${base:3} ; \
++ 		ln -s ../libexec/bin/$$base $(DESTDIR)$(install_bindir)/db53_$${base:3} ; \
++ 		chmod a+rx $(DESTDIR)$(install_bindir)/db53_$${base:3} ; \
++ 	    done ; \
++ 	fi
+  ifeq ($(create_runpath_symlink),yes)
+  	@if test -h $(embedded_runpath_prefix) ; \
+  	then \
 diff -r -c -N ../Ice-3.6b.orig/cpp/config/Make.rules ./cpp/config/Make.rules
 *** ../Ice-3.6b.orig/cpp/config/Make.rules	2014-12-15 04:34:53.000000000 -0330
---- ./cpp/config/Make.rules	2015-02-25 09:56:31.000000000 -0330
+--- ./cpp/config/Make.rules	2015-02-25 13:55:38.000000000 -0330
 ***************
 *** 199,212 ****
   include	 $(top_srcdir)/config/Make.rules.$(UNAME)
@@ -342,7 +364,7 @@ diff -r -c -N ../Ice-3.6b.orig/cpp/config/Make.rules ./cpp/config/Make.rules
               LDFLAGS = $(LDPLATFORMFLAGS) $(CXXFLAGS) -L$(ice_dir)/$(libsubdir)$(cpp11libdirsuffix)
 diff -r -c -N ../Ice-3.6b.orig/cpp/config/Make.rules.Darwin ./cpp/config/Make.rules.Darwin
 *** ../Ice-3.6b.orig/cpp/config/Make.rules.Darwin	2014-12-15 04:34:51.000000000 -0330
---- ./cpp/config/Make.rules.Darwin	2015-02-25 09:56:18.000000000 -0330
+--- ./cpp/config/Make.rules.Darwin	2015-02-25 13:55:25.000000000 -0330
 ***************
 *** 69,75 ****
       #
@@ -362,7 +384,7 @@ diff -r -c -N ../Ice-3.6b.orig/cpp/config/Make.rules.Darwin ./cpp/config/Make.ru
   
 diff -r -c -N ../Ice-3.6b.orig/cpp/config/Make.rules.Linux ./cpp/config/Make.rules.Linux
 *** ../Ice-3.6b.orig/cpp/config/Make.rules.Linux	2014-12-15 04:34:51.000000000 -0330
---- ./cpp/config/Make.rules.Linux	2015-02-25 09:56:18.000000000 -0330
+--- ./cpp/config/Make.rules.Linux	2015-02-25 13:55:25.000000000 -0330
 ***************
 *** 112,118 ****
           #
@@ -382,7 +404,7 @@ diff -r -c -N ../Ice-3.6b.orig/cpp/config/Make.rules.Linux ./cpp/config/Make.rul
   
 diff -r -c -N ../Ice-3.6b.orig/cpp/include/Slice/Util.h ./cpp/include/Slice/Util.h
 *** ../Ice-3.6b.orig/cpp/include/Slice/Util.h	2014-12-15 04:34:52.000000000 -0330
---- ./cpp/include/Slice/Util.h	2015-02-25 09:56:20.000000000 -0330
+--- ./cpp/include/Slice/Util.h	2015-02-25 13:55:26.000000000 -0330
 ***************
 *** 27,33 ****
   SLICE_API void emitRaw(const char*);
@@ -402,7 +424,7 @@ diff -r -c -N ../Ice-3.6b.orig/cpp/include/Slice/Util.h ./cpp/include/Slice/Util
   #endif
 diff -r -c -N ../Ice-3.6b.orig/cpp/src/Glacier2/Makefile ./cpp/src/Glacier2/Makefile
 *** ../Ice-3.6b.orig/cpp/src/Glacier2/Makefile	2014-12-15 04:34:52.000000000 -0330
---- ./cpp/src/Glacier2/Makefile	2015-02-25 09:56:20.000000000 -0330
+--- ./cpp/src/Glacier2/Makefile	2015-02-25 13:55:26.000000000 -0330
 ***************
 *** 33,44 ****
   
@@ -432,7 +454,7 @@ diff -r -c -N ../Ice-3.6b.orig/cpp/src/Glacier2/Makefile ./cpp/src/Glacier2/Make
   	$(call installprogram,$(ROUTER),$(DESTDIR)$(install_bindir))
 diff -r -c -N ../Ice-3.6b.orig/cpp/src/IceGrid/Makefile ./cpp/src/IceGrid/Makefile
 *** ../Ice-3.6b.orig/cpp/src/IceGrid/Makefile	2014-12-15 04:34:53.000000000 -0330
---- ./cpp/src/IceGrid/Makefile	2015-02-25 09:56:32.000000000 -0330
+--- ./cpp/src/IceGrid/Makefile	2015-02-25 13:55:38.000000000 -0330
 ***************
 *** 100,106 ****
   
@@ -479,7 +501,7 @@ diff -r -c -N ../Ice-3.6b.orig/cpp/src/IceGrid/Makefile ./cpp/src/IceGrid/Makefi
   # parallel make.
 diff -r -c -N ../Ice-3.6b.orig/cpp/src/IcePatch2/Makefile ./cpp/src/IcePatch2/Makefile
 *** ../Ice-3.6b.orig/cpp/src/IcePatch2/Makefile	2014-12-15 04:34:52.000000000 -0330
---- ./cpp/src/IcePatch2/Makefile	2015-02-25 09:56:22.000000000 -0330
+--- ./cpp/src/IcePatch2/Makefile	2015-02-25 13:55:27.000000000 -0330
 ***************
 *** 30,36 ****
   
@@ -499,7 +521,7 @@ diff -r -c -N ../Ice-3.6b.orig/cpp/src/IcePatch2/Makefile ./cpp/src/IcePatch2/Ma
   	rm -f $@
 diff -r -c -N ../Ice-3.6b.orig/cpp/src/IcePatch2Lib/Makefile ./cpp/src/IcePatch2Lib/Makefile
 *** ../Ice-3.6b.orig/cpp/src/IcePatch2Lib/Makefile	2014-12-15 04:34:52.000000000 -0330
---- ./cpp/src/IcePatch2Lib/Makefile	2015-02-25 09:56:22.000000000 -0330
+--- ./cpp/src/IcePatch2Lib/Makefile	2015-02-25 13:55:27.000000000 -0330
 ***************
 *** 27,35 ****
   
@@ -523,7 +545,7 @@ diff -r -c -N ../Ice-3.6b.orig/cpp/src/IcePatch2Lib/Makefile ./cpp/src/IcePatch2
   	@mkdir -p $(dir $@)
 diff -r -c -N ../Ice-3.6b.orig/cpp/src/Slice/Parser.cpp ./cpp/src/Slice/Parser.cpp
 *** ../Ice-3.6b.orig/cpp/src/Slice/Parser.cpp	2014-12-15 04:34:52.000000000 -0330
---- ./cpp/src/Slice/Parser.cpp	2015-02-25 09:56:22.000000000 -0330
+--- ./cpp/src/Slice/Parser.cpp	2015-02-25 13:55:28.000000000 -0330
 ***************
 *** 9,15 ****
   
@@ -636,7 +658,7 @@ diff -r -c -N ../Ice-3.6b.orig/cpp/src/Slice/Parser.cpp ./cpp/src/Slice/Parser.c
               type = Push;
 diff -r -c -N ../Ice-3.6b.orig/cpp/src/Slice/Util.cpp ./cpp/src/Slice/Util.cpp
 *** ../Ice-3.6b.orig/cpp/src/Slice/Util.cpp	2014-12-15 04:34:52.000000000 -0330
---- ./cpp/src/Slice/Util.cpp	2015-02-25 09:56:22.000000000 -0330
+--- ./cpp/src/Slice/Util.cpp	2015-02-25 13:55:28.000000000 -0330
 ***************
 *** 10,21 ****
   #include <Slice/Util.h>
@@ -853,7 +875,7 @@ diff -r -c -N ../Ice-3.6b.orig/cpp/src/Slice/Util.cpp ./cpp/src/Slice/Util.cpp
           result.erase(pos);
 diff -r -c -N ../Ice-3.6b.orig/cs/config/Make.rules.cs ./cs/config/Make.rules.cs
 *** ../Ice-3.6b.orig/cs/config/Make.rules.cs	2014-12-15 04:34:52.000000000 -0330
---- ./cs/config/Make.rules.cs	2015-02-25 09:56:24.000000000 -0330
+--- ./cs/config/Make.rules.cs	2015-02-25 13:55:32.000000000 -0330
 ***************
 *** 89,95 ****
   
@@ -890,7 +912,7 @@ diff -r -c -N ../Ice-3.6b.orig/cs/config/Make.rules.cs ./cs/config/Make.rules.cs
       ifdef ice_src_dist
 diff -r -c -N ../Ice-3.6b.orig/php/config/Make.rules.php ./php/config/Make.rules.php
 *** ../Ice-3.6b.orig/php/config/Make.rules.php	2014-12-15 04:34:52.000000000 -0330
---- ./php/config/Make.rules.php	2015-02-25 09:56:31.000000000 -0330
+--- ./php/config/Make.rules.php	2015-02-25 13:55:36.000000000 -0330
 ***************
 *** 107,113 ****
   endif
@@ -911,7 +933,7 @@ diff -r -c -N ../Ice-3.6b.orig/php/config/Make.rules.php ./php/config/Make.rules
   else
 diff -r -c -N ../Ice-3.6b.orig/py/config/Make.rules ./py/config/Make.rules
 *** ../Ice-3.6b.orig/py/config/Make.rules	2014-12-15 04:34:52.000000000 -0330
---- ./py/config/Make.rules	2015-02-25 09:56:31.000000000 -0330
+--- ./py/config/Make.rules	2015-02-25 13:55:37.000000000 -0330
 ***************
 *** 47,65 ****
   
@@ -1022,7 +1044,7 @@ diff -r -c -N ../Ice-3.6b.orig/py/config/Make.rules ./py/config/Make.rules
   ifeq ($(UNAME),SunOS)
 diff -r -c -N ../Ice-3.6b.orig/rb/config/Make.rules ./rb/config/Make.rules
 *** ../Ice-3.6b.orig/rb/config/Make.rules	2014-12-15 04:34:53.000000000 -0330
---- ./rb/config/Make.rules	2015-02-25 09:56:31.000000000 -0330
+--- ./rb/config/Make.rules	2015-02-25 13:55:37.000000000 -0330
 ***************
 *** 144,150 ****
   install_libdir		= $(prefix)/ruby

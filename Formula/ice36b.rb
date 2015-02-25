@@ -4,6 +4,7 @@ class Ice36b < Formula
   homepage 'http://www.zeroc.com'
   url 'https://www.zeroc.com/download/Ice/3.6/Ice-3.6b.tar.gz'
   sha1 'dcab7e14b3e42fa95af58f7e804f6fd9a17cb6b2'
+  revision 2
 
   option 'with-java', 'Compile with Java support.'
   option 'with-java7', 'Compile with Java 7 support.'
@@ -22,7 +23,7 @@ class Ice36b < Formula
 
   patch do
     url "https://raw.githubusercontent.com/ZeroC-Inc/homebrew-ice/master/Patches/ice-3.6b.brew.patch"
-    sha1 "ed9edb61583ae8b9d72070b086147bbb8a557ade"
+    sha1 "c4b75db8cd209b0c796d76b242ba7671237107ca"
   end
 
   def install
