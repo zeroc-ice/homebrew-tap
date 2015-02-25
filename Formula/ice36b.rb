@@ -22,7 +22,7 @@ class Ice36b < Formula
 
   patch do
     url "https://raw.githubusercontent.com/ZeroC-Inc/homebrew-ice/master/Patches/ice-3.6b.brew.patch"
-    sha1 "b7095ae1d192754908d0b6c0b7edb2a7511abea5"
+    sha1 "ed9edb61583ae8b9d72070b086147bbb8a557ade"
   end
 
   def install
