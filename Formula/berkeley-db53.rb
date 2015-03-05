@@ -4,6 +4,7 @@ class BerkeleyDb53 < Formula
   homepage 'http://www.oracle.com/technology/products/berkeley-db/index.html'
   url 'http://download.oracle.com/berkeley-db/db-5.3.28.tar.gz'
   sha1 'fa3f8a41ad5101f43d08bc0efb6241c9b6fc1ae9'
+  revision 2
 
   keg_only 'Conflicts with berkeley-db in main repository.'
 
@@ -15,7 +16,7 @@ class BerkeleyDb53 < Formula
   end
 
   option 'with-java', 'Compile with Java support.'
-  option 'with-java7', 'Compile with Java support.'
+  option 'without-java7', 'Compile without Java 7 support.'
   option 'enable-sql', 'Compile with SQL support.'
 
   # Fix build under Xcode 4.6
