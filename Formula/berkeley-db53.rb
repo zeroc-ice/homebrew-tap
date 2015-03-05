@@ -15,9 +15,15 @@ class BerkeleyDb53 < Formula
     sha1 "2706c05b65c45e14e903b3473bacbefa4059e44f" => :yosemite
   end
 
-  option 'with-java', 'Compile with Java support.'
-  option 'without-java7', 'Compile without Java 7 support.'
+  option 'with-java-8', 'Compile with Java 8 support.'
+  option 'without-java', 'Compile without Java support.'
   option 'enable-sql', 'Compile with SQL support.'
+
+  if build.with? "java-8"
+    depends_on :java => "1.8"
+  elsif build.with? "java"
+    depends_on :java => "1.7"
+  end
 
   # Fix build under Xcode 4.6
   # Double-underscore names are reserved, and __atomic_compare_exchange is now
@@ -40,11 +46,11 @@ class BerkeleyDb53 < Formula
       --enable-compat185
     ]
 
-    if build.with? "java" or build.with? "java7"
-      if build.with? "java7"
-        java_home = ENV["JAVA_HOME"] = `/usr/libexec/java_home -v 1.7`.chomp
+    if build.with? "java" or build.with? "java-8"
+      if build.with? "java-8"
+        java_home = ENV["JAVA_HOME"] = `/usr/libexec/java_home -v 1.8`.chomp
       else
-        java_home = ENV["JAVA_HOME"] = `/usr/libexec/java_home`.chomp
+        java_home = ENV["JAVA_HOME"] = `/usr/libexec/java_home -v 1.7`.chomp
       end
 
       # The Oracle JDK puts jni.h into #{java_home}/include and jni_md.h into
@@ -64,7 +70,7 @@ class BerkeleyDb53 < Formula
       #ENV.append_to_cflags("-I/System/Library/Frameworks/JavaVM.framework/Versions/Current/Headers/")
     end
 
-    args << "--enable-java" if build.with? "java" or build.with? "java7"
+    args << "--enable-java" if build.with? "java" or build.with? "java-8"
     args << "--enable-sql" if build.include? "enable-sql"
 
     # BerkeleyDB requires you to build everything from the build_unix subdirectory

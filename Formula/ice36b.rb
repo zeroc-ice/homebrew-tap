@@ -4,7 +4,7 @@ class Ice36b < Formula
   homepage 'http://www.zeroc.com'
   url 'https://www.zeroc.com/download/Ice/3.6/Ice-3.6b.tar.gz'
   sha1 'dcab7e14b3e42fa95af58f7e804f6fd9a17cb6b2'
-  revision 2
+  revision 3
 
   bottle do
     root_url "https://www.zeroc.com/download/homebrew/bottles"
@@ -12,20 +12,10 @@ class Ice36b < Formula
     sha1 "294aba239bcb73b1aef63910ccc46c6caa9f1326" => :yosemite
   end
 
-  option 'with-java', 'Compile with Java support.'
-  option 'with-java7', 'Compile with Java 7 support.'
+  option 'without-java', 'Compile without Java support.'
 
   depends_on 'mcpp'
-
-  resource "berkeley-db" do
-    url "http://download.oracle.com/berkeley-db/db-5.3.28.tar.gz"
-    sha1 "fa3f8a41ad5101f43d08bc0efb6241c9b6fc1ae9"
-  end
-
-  resource "berkeley-db-patch" do
-    url "https://raw.githubusercontent.com/ZeroC-Inc/homebrew-ice/master/Patches/berkeley-db.5.3.28.patch"
-    sha1 "49b8c3321e881fed18533db22918f7b5f5d571aa"
-  end
+  depends_on 'berkeley-db53'
 
   patch do
     url "https://raw.githubusercontent.com/ZeroC-Inc/homebrew-ice/master/Patches/ice-3.6b.brew.patch"
@@ -33,58 +23,6 @@ class Ice36b < Formula
   end
 
   def install
-    resource("berkeley-db").stage do
-      (Pathname.pwd).install resource("berkeley-db-patch")
-      system "/usr/bin/patch", "-p0", "-i", "berkeley-db.5.3.28.patch"
-
-      # BerkeleyDB dislikes parallel builds
-      ENV.deparallelize
-
-      ENV.O3
-
-      # --enable-compat185 is necessary because our build shadows
-      # the system berkeley db 1.x
-      args = %W[
-        --disable-debug
-        --prefix=#{libexec}
-        --mandir=#{libexec}/man
-        --enable-cxx
-        --enable-compat185
-      ]
-
-      if build.with? "java" or build.with? "java7"
-        if build.with? "java7"
-          java_home = ENV["JAVA_HOME"] = `/usr/libexec/java_home -v 1.7`.chomp
-        else
-          java_home = ENV["JAVA_HOME"] = `/usr/libexec/java_home`.chomp
-        end
-
-        # The Oracle JDK puts jni.h into #{java_home}/include and jni_md.h into
-        # #{java_home}/include/darwin.  The original Apple/SUN JDK placed jni.h
-        # and jni_md.h into
-        # /System/Library/Frameworks/JavaVM.framework/Versions/Current/Headers/
-        #
-        # Setup the include path with the Oracle JDK location first and the Apple JDK location second.
-        ENV.append('CPPFLAGS', "-I#{java_home}/include")
-        ENV.append('CPPFLAGS', "-I#{java_home}/include/darwin")
-        ENV.append('CPPFLAGS', "-I/System/Library/Frameworks/JavaVM.framework/Versions/Current/Headers/")
-
-        # This doesn't work at present.
-        #ENV.O3
-        #ENV.append_to_cflags("-I#{java_home}/include")
-        #ENV.append_to_cflags("-I#{java_home}/include/darwin")
-        #ENV.append_to_cflags("-I/System/Library/Frameworks/JavaVM.framework/Versions/Current/Headers/")
-      end
-
-      args << "--enable-java" if build.with? "java" or build.with? "java7"
-
-      # BerkeleyDB requires you to build everything from the build_unix subdirectory
-      cd 'build_unix' do
-        system "../dist/configure", *args
-        system "make", "install"
-      end
-    end
-
     inreplace "cpp/src/slice2py/Makefile" do |s|
         s.sub! /install:/, "dontinstall:"
     end
@@ -95,7 +33,7 @@ class Ice36b < Formula
         s.sub! /install:/, "dontinstall:"
     end
 
-    if not (build.with? "java" or build.with? "java7")
+    if build.without? "java"
       inreplace "cpp/src/slice2java/Makefile" do |s|
           s.sub! /install:/, "dontinstall:"
       end
@@ -106,6 +44,7 @@ class Ice36b < Formula
 
     # Unset ICE_HOME as it interferes with the build
     ENV.delete('ICE_HOME')
+    ENV.delete('USE_BIN_DIST')
     ENV.delete('CPPFLAGS')
     ENV.O2
 
@@ -114,7 +53,7 @@ class Ice36b < Formula
       embedded_runpath_prefix=#{prefix}
       USR_DIR_INSTALL=yes
       OPTIMIZE=yes
-      DB_HOME=#{libexec}
+      DB_HOME=#{HOMEBREW_PREFIX}/opt/berkeley-db53
     ]
     #
     # Setting this gets rid of the optimization level and the arch flags.
@@ -142,14 +81,14 @@ class Ice36b < Formula
       to load the IcePHP extension. You can do this by adding
       IcePHP.dy to your list of extensions:
 
-          extension=#{prefix}/php/IcePHP.dy
+          extension=#{prefix}/lib/php/extensions/IcePHP.dy
 
       Typical Ice PHP scripts will also expect to be able to 'require Ice.php'.
 
       You can ensure this is possible by appending the path to
       Ice's PHP includes to your global include_path in php.ini:
 
-          include_path=<your-original-include-path>:#{prefix}/php
+          include_path=<your-original-include-path>:#{prefix}/lib/share/php
 
       However, you can also accomplish this on a script-by-script basis
       or via .htaccess if you so desire...
