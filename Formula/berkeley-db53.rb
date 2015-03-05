@@ -11,8 +11,8 @@ class BerkeleyDb53 < Formula
   bottle do
     root_url "https://www.zeroc.com/download/homebrew/bottles"
     cellar :any
-    revision 2
-    sha1 "2706c05b65c45e14e903b3473bacbefa4059e44f" => :yosemite
+    revision 3
+    sha256 "6d342b7aa24213389453f6b34e117ec6966f96441b72e4ec78b5c5ab31c6aec2" => :yosemite
   end
 
   option 'with-java-8', 'Compile with Java 8 support.'

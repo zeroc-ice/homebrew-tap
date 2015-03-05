@@ -9,7 +9,8 @@ class Ice36b < Formula
   bottle do
     root_url "https://www.zeroc.com/download/homebrew/bottles"
     cellar :any
-    sha1 "294aba239bcb73b1aef63910ccc46c6caa9f1326" => :yosemite
+    revision 1
+    sha256 "317e025a334f7db3f43733c3e441d1f63f00735eb43b68f370b99eceaf4172aa" => :yosemite
   end
 
   option 'without-java', 'Compile without Java support.'
