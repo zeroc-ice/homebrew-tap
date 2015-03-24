@@ -8,8 +8,12 @@ taps](https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/brew-t
 
 First, add this tap:
 
-    % brew tap zeroc-inc/ice
+    % brew tap zeroc-inc/tap
 
-Then install the Ice formula:
+To install the Ice formula:
 
     % brew install ice36b
+
+To install the IceTouch formula:
+
+    % brew install icetouch --HEAD
