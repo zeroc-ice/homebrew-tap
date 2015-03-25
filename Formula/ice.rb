@@ -51,6 +51,10 @@ class Ice < Formula
       system "make", "install", *args
     end
 
+    cd "objective-c" do
+      system "make", "install", *args
+    end
+
     cd "php" do
         args << "install_phpdir=#{lib}/share/php"
         args << "install_libdir=#{lib}/php/extensions"
