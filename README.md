@@ -10,7 +10,7 @@ To add this tap to Homebrew:
 
     % brew tap zeroc-ice/tap
 
-# Usage
+## Usage
 
 To install a formula:
 
