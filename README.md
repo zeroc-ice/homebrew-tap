@@ -8,7 +8,7 @@ tap](https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/brew-ta
 
 To add this tap to Homebrew:
 
-    % brew tap zeroc-inc/tap
+    % brew tap zeroc-ice/tap
 
 # Usage
 
