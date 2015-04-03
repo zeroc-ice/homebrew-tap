@@ -1,19 +1,27 @@
-#Ice Homebrew Tap
+# Ice Homebrew Tap
 
-This repository lists [homebrew
-taps](https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/brew-tap.md) for
-[ZeroC](https://www.zeroc.com/) Ice beta packages.  
+This repository is a [Homebrew
+tap](https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/brew-tap.md) for
+[ZeroC](https://www.zeroc.com/) Ice and IceTouch packages.
 
-##Usage
+## Install
 
-First, add this tap:
+To add this tap to Homebrew:
 
     % brew tap zeroc-inc/tap
 
-To install the Ice formula:
+# Usage
 
-    % brew install ice36b
+To install a formula:
 
-To install the IceTouch formula:
+    % brew install <formula>
 
-    % brew install icetouch --HEAD
+    Avaiable formulae are:
+     - zeroc-ice/tap/ice (HEAD only)
+     - icetouch (HEAD ONLY)
+     - ice36b
+     - berkeley-db53
+
+To install the latest development version (or HEAD only) of `Ice` or `IceTouch`
+
+    % brew install <formula> --HEAD
