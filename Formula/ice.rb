@@ -2,7 +2,7 @@ require 'formula'
 
 class Ice < Formula
   homepage 'https://zeroc.com'
-  head 'https://github.com/ZeroC-Inc/ice-dev.git'
+  head 'https://github.com/zeroc-ice/ice-dev.git'
 
   option 'without-java', 'Compile without Java support.'
 
