@@ -1,13 +1,13 @@
 require 'formula'
 
 class Ice36b < Formula
-  homepage 'http://www.zeroc.com'
-  url 'https://www.zeroc.com/download/Ice/3.6/Ice-3.6b.tar.gz'
+  homepage 'http://zeroc.com'
+  url 'https://zeroc.com/download/Ice/3.6/Ice-3.6b.tar.gz'
   sha1 'dcab7e14b3e42fa95af58f7e804f6fd9a17cb6b2'
   revision 3
 
   bottle do
-    root_url "https://www.zeroc.com/download/homebrew/bottles"
+    root_url "https://zeroc.com/download/homebrew/bottles"
     cellar :any
     revision 1
     sha256 "317e025a334f7db3f43733c3e441d1f63f00735eb43b68f370b99eceaf4172aa" => :yosemite
@@ -19,7 +19,7 @@ class Ice36b < Formula
   depends_on 'berkeley-db53'
 
   patch do
-    url "https://raw.githubusercontent.com/ZeroC-Inc/homebrew-ice/master/Patches/ice-3.6b.brew.patch"
+    url "https://raw.githubusercontent.com/zeroc-ice/homebrew-ice/master/Patches/ice-3.6b.brew.patch"
     sha1 "c4b75db8cd209b0c796d76b242ba7671237107ca"
   end
 

@@ -2,7 +2,7 @@
 
 This repository is a [Homebrew
 tap](https://github.com/Homebrew/homebrew/blob/master/share/doc/homebrew/brew-tap.md) for
-[ZeroC](https://www.zeroc.com/) Ice and IceTouch packages.
+[ZeroC](https://zeroc.com/) Ice and IceTouch packages.
 
 ## Install
 

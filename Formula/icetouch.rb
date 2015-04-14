@@ -2,7 +2,7 @@ require 'formula'
 
 class Icetouch < Formula
   homepage 'https://zeroc.com'
-  head 'https://github.com/ZeroC-Inc/icetouch.git'
+  head 'https://github.com/zeroc-ice/icetouch.git'
 
   depends_on 'mcpp'
 

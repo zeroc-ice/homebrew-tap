@@ -9,7 +9,7 @@ class BerkeleyDb53 < Formula
   keg_only 'Conflicts with berkeley-db in main repository.'
 
   bottle do
-    root_url "https://www.zeroc.com/download/homebrew/bottles"
+    root_url "https://zeroc.com/download/homebrew/bottles"
     cellar :any
     revision 3
     sha256 "6d342b7aa24213389453f6b34e117ec6966f96441b72e4ec78b5c5ab31c6aec2" => :yosemite
@@ -29,7 +29,7 @@ class BerkeleyDb53 < Formula
   # Double-underscore names are reserved, and __atomic_compare_exchange is now
   # a built-in, so rename this to something non-conflicting.
   patch :p0 do
-    url "https://raw.githubusercontent.com/ZeroC-Inc/homebrew-ice/master/Patches/berkeley-db.5.3.28.patch"
+    url "https://raw.githubusercontent.com/zeroc-ice/homebrew-ice/master/Patches/berkeley-db.5.3.28.patch"
     sha1 "49b8c3321e881fed18533db22918f7b5f5d571aa"
   end
 
