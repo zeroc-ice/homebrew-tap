@@ -26,8 +26,8 @@ class BerkeleyDb53 < Formula
   # Double-underscore names are reserved, and __atomic_compare_exchange is now
   # a built-in, so rename this to something non-conflicting.
   patch :p0 do
-    url "https://raw.githubusercontent.com/zeroc-ice/homebrew-tap/master/Patches/berkeley-db.5.3.28.patch"
-    sha1 "49b8c3321e881fed18533db22918f7b5f5d571aa"
+    url 'https://zeroc.com/download/berkeley-db/berkeley-db.5.3.28.patch'
+    sha1 '49b8c3321e881fed18533db22918f7b5f5d571aa'
   end
 
   def install
