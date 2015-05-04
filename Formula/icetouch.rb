@@ -7,7 +7,6 @@ class Icetouch < Formula
   depends_on 'mcpp'
 
   def install
-
     # Unset ICE_HOME as it interferes with the build
     ENV.delete('ICE_HOME')
     ENV.delete('USE_BIN_DIST')
@@ -20,10 +19,5 @@ class Icetouch < Formula
     ]
 
     system "make", "install", *args
-
-  end
-
-  test do
-    system "#{bin}/slice2objc", "--version"
   end
 end
