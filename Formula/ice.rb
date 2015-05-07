@@ -2,7 +2,7 @@ require 'formula'
 
 class Ice < Formula
   homepage 'https://zeroc.com'
-  head 'https://github.com/zeroc-ice/ice-dev.git'
+  head 'https://github.com/zeroc-ice/ice.git'
   # url 'https://github.com/zeroc-ice/ice/archive/v3.6.0.tar.gz'
   # sha1 ''
 
