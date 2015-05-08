@@ -1,8 +1,14 @@
 require 'formula'
 
-class Icetouch < Formula
+class Icetouch36 < Formula
   homepage 'https://zeroc.com'
-  head 'https://github.com/zeroc-ice/icetouch.git'
+
+  url 'https://github.com/zeroc-ice/icetouch/archive/v3.6.0.tar.gz'
+  sha1 ''
+
+  devel do
+    url 'https://github.com/zeroc-ice/icetouch.git', :branch => '3.6'
+  end
 
   depends_on 'mcpp'
 

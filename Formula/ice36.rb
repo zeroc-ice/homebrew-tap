@@ -1,10 +1,14 @@
 require 'formula'
 
-class Ice < Formula
+class Ice36 < Formula
   homepage 'https://zeroc.com'
-  head 'https://github.com/zeroc-ice/ice.git'
-  # url 'https://github.com/zeroc-ice/ice/archive/v3.6.0.tar.gz'
-  # sha1 ''
+
+  url 'https://github.com/zeroc-ice/ice/archive/v3.6.0.tar.gz'
+  sha1 ''
+
+  devel do
+    url 'https://github.com/zeroc-ice/ice.git', :branch => '3.6'
+  end
 
   option 'with-java-8', 'Compile with Java 8 support.'
   option 'without-java', 'Compile without Java support.'
