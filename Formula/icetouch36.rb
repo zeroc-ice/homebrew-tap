@@ -6,10 +6,6 @@ class Icetouch36 < Formula
   url 'https://github.com/zeroc-ice/icetouch/archive/v3.6.0.tar.gz'
   sha1 ''
 
-  devel do
-    url 'https://github.com/zeroc-ice/icetouch.git', :branch => '3.6'
-  end
-
   depends_on 'mcpp'
 
   def install

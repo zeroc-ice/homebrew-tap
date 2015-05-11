@@ -6,10 +6,6 @@ class Ice36 < Formula
   url 'https://github.com/zeroc-ice/ice/archive/v3.6.0.tar.gz'
   sha1 ''
 
-  devel do
-    url 'https://github.com/zeroc-ice/ice.git', :branch => '3.6'
-  end
-
   option 'with-java-8', 'Compile with Java 8 support.'
   option 'without-java', 'Compile without Java support.'
 

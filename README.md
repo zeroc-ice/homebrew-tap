@@ -15,8 +15,8 @@ To install a formula:
     % brew install <formula>
 
 Avaiable formulae are:
-  - `ice`
-  - `icetouch`
-  - `berkeley-db53`
-
-Note: `ice` bust be installed as `zeroc-ice/tap/ice` since it shares a name with `ice` from the main brew repository.
+  - `ice36` - Ice v3.6.0
+  - `ice-head` - Head-only formula for [ice](https://github.com/zeroc-ice/ice) `master` branch
+  - `icetouch36` - Ice Touch v3.6.0
+  - `icetouch-head` - Head-only formula for [icetouch](https://github.com/zeroc-ice/icetouch) `master` branch
+  - `berkeley-db53` - Berkeley DB 5.3
