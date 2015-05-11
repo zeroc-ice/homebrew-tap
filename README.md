@@ -14,7 +14,7 @@ To install a formula:
 
     % brew install <formula>
 
-Avaiable formulae are:
+Available formulae are:
   - `ice36` - Ice v3.6.0
   - `ice-head` - Head-only formula for [ice](https://github.com/zeroc-ice/ice) `master` branch
   - `icetouch36` - Ice Touch v3.6.0
