@@ -1,11 +1,9 @@
-require 'formula'
-
 class BerkeleyDb53 < Formula
-  homepage 'http://www.oracle.com/technology/products/berkeley-db/index.html'
-  url 'http://download.oracle.com/berkeley-db/db-5.3.28.NC.tar.gz'
-  sha1 '8e8971fb49fff9366cf34db2f04ffbb7ec295cc2'
+  homepage "http://www.oracle.com/technology/products/berkeley-db/index.html"
+  url "http://download.oracle.com/berkeley-db/db-5.3.28.NC.tar.gz"
+  sha1 "8e8971fb49fff9366cf34db2f04ffbb7ec295cc2"
 
-  keg_only 'Conflicts with berkeley-db in main repository.'
+  keg_only "Conflicts with berkeley-db in main repository."
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
@@ -13,8 +11,8 @@ class BerkeleyDb53 < Formula
     sha256 "12d644ecddfec4c982bb9ba59dad9a6747a0f1dcb216d5803eb60669e474bb41" => :yosemite
   end
 
-  option 'with-java-8', 'Compile with Java 8 support.'
-  option 'without-java', 'Compile without Java support.'
+  option "with-java-8", "Compile with Java 8 support."
+  option "without-java", "Compile without Java support."
 
   if build.with? "java-8"
     depends_on :java => "1.8"
@@ -26,8 +24,8 @@ class BerkeleyDb53 < Formula
   # Double-underscore names are reserved, and __atomic_compare_exchange is now
   # a built-in, so rename this to something non-conflicting.
   patch :p0 do
-    url 'https://zeroc.com/download/berkeley-db/berkeley-db.5.3.28.patch'
-    sha1 '49b8c3321e881fed18533db22918f7b5f5d571aa'
+    url "https://zeroc.com/download/berkeley-db/berkeley-db.5.3.28.patch"
+    sha1 "49b8c3321e881fed18533db22918f7b5f5d571aa"
   end
 
   def install
@@ -53,9 +51,9 @@ class BerkeleyDb53 < Formula
       # /System/Library/Frameworks/JavaVM.framework/Versions/Current/Headers/
       #
       # Setup the include path with the Oracle JDK location first and the Apple JDK location second.
-      ENV.append('CPPFLAGS', "-I#{java_home}/include")
-      ENV.append('CPPFLAGS', "-I#{java_home}/include/darwin")
-      ENV.append('CPPFLAGS', "-I/System/Library/Frameworks/JavaVM.framework/Versions/Current/Headers/")
+      ENV.append("CPPFLAGS", "-I#{java_home}/include")
+      ENV.append("CPPFLAGS", "-I#{java_home}/include/darwin")
+      ENV.append("CPPFLAGS", "-I/System/Library/Frameworks/JavaVM.framework/Versions/Current/Headers/")
 
       # This doesn't work at present.
       #ENV.O3
@@ -67,13 +65,13 @@ class BerkeleyDb53 < Formula
     end
 
     # BerkeleyDB requires you to build everything from the build_unix subdirectory
-    cd 'build_unix' do
+    cd "build_unix" do
       system "../dist/configure", *args
       system "make install"
 
       # use the standard docs location
       doc.parent.mkpath
-      mv prefix/'docs', doc
+      mv prefix/"docs", doc
     end
   end
 end

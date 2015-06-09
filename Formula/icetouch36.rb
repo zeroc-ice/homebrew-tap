@@ -1,18 +1,16 @@
-require 'formula'
-
 class Icetouch36 < Formula
-  homepage 'https://zeroc.com'
+  homepage "https://zeroc.com"
 
-  url 'https://github.com/zeroc-ice/icetouch/archive/v3.6.0.tar.gz'
-  sha1 ''
+  url "https://github.com/zeroc-ice/icetouch/archive/v3.6.0.tar.gz"
+  sha1 ""
 
-  depends_on 'mcpp'
+  depends_on "mcpp"
 
   def install
     # Unset ICE_HOME as it interferes with the build
-    ENV.delete('ICE_HOME')
-    ENV.delete('USE_BIN_DIST')
-    ENV.delete('CPPFLAGS')
+    ENV.delete("ICE_HOME")
+    ENV.delete("USE_BIN_DIST")
+    ENV.delete("CPPFLAGS")
     ENV.O2
 
     args = %W[

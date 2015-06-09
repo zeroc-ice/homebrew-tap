@@ -1,13 +1,10 @@
-require 'formula'
-
 class Ice36 < Formula
-  homepage 'https://zeroc.com'
+  homepage "https://zeroc.com"
+  url "https://github.com/zeroc-ice/ice/archive/v3.6.0.tar.gz"
+  sha1 ""
 
-  url 'https://github.com/zeroc-ice/ice/archive/v3.6.0.tar.gz'
-  sha1 ''
-
-  option 'with-java-8', 'Compile with Java 8 support.'
-  option 'without-java', 'Compile without Java support.'
+  option "with-java-8", "Compile with Java 8 support."
+  option "without-java", "Compile without Java support."
 
   if build.with? "java-8"
     depends_on :java => "1.8"
@@ -15,8 +12,8 @@ class Ice36 < Formula
     depends_on :java => "1.7"
   end
 
-  depends_on 'mcpp'
-  depends_on 'berkeley-db53'
+  depends_on "mcpp"
+  depends_on "berkeley-db53"
 
   def install
     inreplace "cpp/src/slice2js/Makefile" do |s|
@@ -33,9 +30,9 @@ class Ice36 < Formula
     end
 
     # Unset ICE_HOME as it interferes with the build
-    ENV.delete('ICE_HOME')
-    ENV.delete('USE_BIN_DIST')
-    ENV.delete('CPPFLAGS')
+    ENV.delete("ICE_HOME")
+    ENV.delete("USE_BIN_DIST")
+    ENV.delete("CPPFLAGS")
     ENV.O2
 
     args = %W[
@@ -75,7 +72,7 @@ class Ice36 < Formula
     <<-EOS.undent
       If you installed with Java support the IceGrid Admin application was installed.
 
-      Run `brew linkapps ice` to symlink it into /Applications.
+      Run `brew linkapps ice36` to symlink it into /Applications.
     EOS
   end
 
