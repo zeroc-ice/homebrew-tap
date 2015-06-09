@@ -1,4 +1,5 @@
 class Ice36 < Formula
+  desc "A comprehensive RPC framework with support for C++, .NET, Java, Python, JavaScript and more"
   homepage "https://zeroc.com"
   url "https://github.com/zeroc-ice/ice/archive/v3.6.0.tar.gz"
   sha1 ""
@@ -56,15 +57,15 @@ class Ice36 < Formula
     end
 
     if (build.with? "java" or build.with? "java-8")
-        cd "java" do
-          system "make", "install", *args
-        end
+      cd "java" do
+        system "make", "install", *args
+      end
     end
 
     cd "php" do
-        args << "install_phpdir=#{lib}/share/php"
-        args << "install_libdir=#{lib}/php/extensions"
-        system "make", "install", *args
+      args << "install_phpdir=#{share}/php"
+      args << "install_libdir=#{lib}/php/extensions"
+      system "make", "install", *args
     end
   end
 
