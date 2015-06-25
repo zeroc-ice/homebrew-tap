@@ -2,7 +2,12 @@ class Ice36 < Formula
   desc "A comprehensive RPC framework with support for C++, .NET, Java, Python, JavaScript and more"
   homepage "https://zeroc.com"
   url "https://github.com/zeroc-ice/ice/archive/v3.6.0.tar.gz"
-  sha1 ""
+  sha256 "77933580cdc7fade0ebfce517935819e9eef5fc6b9e3f4143b07404daf54e25e"
+
+  bottle do
+    root_url "https://zeroc.com/download/homebrew/bottles"
+    sha256 "7a7af9b0904c0513f9bc09b0fe045a0301825ec323c916551e78ebe50d515efe" => :yosemite
+  end
 
   option "with-java-8", "Compile with Java 8 support."
   option "without-java", "Compile without Java support."
