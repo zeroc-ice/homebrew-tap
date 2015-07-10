@@ -3,20 +3,18 @@ class IceHead < Formula
   homepage "https://zeroc.com"
   head "https://github.com/zeroc-ice/ice.git"
 
-  option "with-java", "Build Ice for Java and the IceGrid GUI application"
+  option "with-java", "Build Ice for Java and the IceGrid GUI app"
 
   depends_on "berkeley-db53"
   depends_on "mcpp"
-  depends_on :java  => ["1.7+", :optional]
+  depends_on :java  => :optional
+  depends_on :macos => :mavericks
 
   def install
      inreplace "cpp/src/slice2js/Makefile", /install:/, "dontinstall:"
 
     if build.with? "java"
       inreplace "java/src/IceGridGUI/build.gradle", "${DESTDIR}${binDir}/${appName}.app",  "${prefix}/${appName}.app"
-    else
-      inreplace "cpp/src/slice2java/Makefile", /install:/, "dontinstall:"
-      inreplace "cpp/src/slice2freezej/Makefile", /install:/, "dontinstall:"
     end
 
     # Unset ICE_HOME as it interferes with the build
