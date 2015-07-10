@@ -11,7 +11,7 @@ class Ice36 < Formula
     sha256 "97684eb35afae00b7c704d107a18959372090921113a4f4ef10bbe8698c2b35a" => :yosemite
   end
 
-  option "with-java", "Build Ice for Java and the IceGrid GUI application"
+  option "with-java", "Build Ice for Java and the IceGrid Admin application"
 
   depends_on "berkeley-db53"
   depends_on "mcpp"
