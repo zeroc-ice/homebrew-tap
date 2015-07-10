@@ -1,38 +1,30 @@
 class Ice36 < Formula
-  desc "A comprehensive RPC framework with support for C++, .NET, Java, Python, JavaScript and more"
+  desc "A comprehensive RPC framework"
   homepage "https://zeroc.com"
   url "https://github.com/zeroc-ice/ice/archive/v3.6.0.tar.gz"
   sha256 "77933580cdc7fade0ebfce517935819e9eef5fc6b9e3f4143b07404daf54e25e"
+  revision 1
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
-    sha256 "7a7af9b0904c0513f9bc09b0fe045a0301825ec323c916551e78ebe50d515efe" => :yosemite
+    cellar :any
+    sha256 "97684eb35afae00b7c704d107a18959372090921113a4f4ef10bbe8698c2b35a" => :yosemite
   end
 
-  option "with-java-8", "Compile with Java 8 support."
-  option "without-java", "Compile without Java support."
+  option "with-java", "Build Ice for Java and the IceGrid GUI application"
 
-  if build.with? "java-8"
-    depends_on :java => "1.8"
-  elsif build.with? "java"
-    depends_on :java => "1.7"
-  end
-
-  depends_on "mcpp"
   depends_on "berkeley-db53"
+  depends_on "mcpp"
+  depends_on :java  => ["1.7+", :optional]
 
   def install
-    inreplace "cpp/src/slice2js/Makefile" do |s|
-        s.sub! /install:/, "dontinstall:"
-    end
+     inreplace "cpp/src/slice2js/Makefile", /install:/, "dontinstall:"
 
-    if build.without? "java"
-      inreplace "cpp/src/slice2java/Makefile" do |s|
-          s.sub! /install:/, "dontinstall:"
-      end
-      inreplace "cpp/src/slice2freezej/Makefile" do |s|
-          s.sub! /install:/, "dontinstall:"
-      end
+    if build.with? "java"
+      inreplace "java/src/IceGridGUI/build.gradle", "${DESTDIR}${binDir}/${appName}.app",  "${prefix}/${appName}.app"
+    else
+      inreplace "cpp/src/slice2java/Makefile", /install:/, "dontinstall:"
+      inreplace "cpp/src/slice2freezej/Makefile", /install:/, "dontinstall:"
     end
 
     # Unset ICE_HOME as it interferes with the build
@@ -48,10 +40,6 @@ class Ice36 < Formula
       OPTIMIZE=yes
       DB_HOME=#{HOMEBREW_PREFIX}/opt/berkeley-db53
     ]
-    #
-    # Setting this gets rid of the optimization level and the arch flags.
-    #
-    # args << "CXXFLAGS=#{ENV.cflags}"
 
     cd "cpp" do
       system "make", "install", *args
@@ -61,7 +49,7 @@ class Ice36 < Formula
       system "make", "install", *args
     end
 
-    if (build.with? "java" or build.with? "java-8")
+    if build.with? "java"
       cd "java" do
         system "make", "install", *args
       end
@@ -73,13 +61,4 @@ class Ice36 < Formula
       system "make", "install", *args
     end
   end
-
-  def caveats
-    <<-EOS.undent
-      If you installed with Java support the IceGrid Admin application was installed.
-
-      Run `brew linkapps ice36` to symlink it into /Applications.
-    EOS
-  end
-
 end
