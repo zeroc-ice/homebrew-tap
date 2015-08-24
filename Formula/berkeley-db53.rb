@@ -1,25 +1,17 @@
 class BerkeleyDb53 < Formula
   homepage "http://www.oracle.com/technology/products/berkeley-db/index.html"
-  url "http://download.oracle.com/berkeley-db/db-5.3.28.NC.tar.gz"
-  sha1 "8e8971fb49fff9366cf34db2f04ffbb7ec295cc2"
+  url "https://zeroc.com/download/homebrew/db-5.3.28.NC.brew.tar.gz"
+  sha256 "8ac3014578ff9c80a823a7a8464a377281db0e12f7831f72cef1fd36cd506b94"
 
   keg_only "Conflicts with berkeley-db in main repository."
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
     cellar :any
-    sha256 "12d644ecddfec4c982bb9ba59dad9a6747a0f1dcb216d5803eb60669e474bb41" => :yosemite
+    sha256 "799ccfdf9548acfeeb3dd7f5f479be355b1bd24ba07985c5bee992e11ab85eca" => :yosemite
   end
 
-  depends_on :java => :recommended
-
-  # Fix build under Xcode 4.6
-  # Double-underscore names are reserved, and __atomic_compare_exchange is now
-  # a built-in, so rename this to something non-conflicting.
-  patch :p0 do
-    url "https://zeroc.com/download/berkeley-db/berkeley-db.5.3.28.patch"
-    sha1 "49b8c3321e881fed18533db22918f7b5f5d571aa"
-  end
+  depends_on :java => [ "1.7+", :recommended]
 
   def install
     # BerkeleyDB dislikes parallel builds
@@ -31,7 +23,10 @@ class BerkeleyDb53 < Formula
       --enable-cxx
     ]
 
-    args << "--enable-java" if build.with? "java"
+    if build.with? "java"
+      args << "--enable-java"
+      inreplace "dist/Makefile.in", "@JAVACFLAGS@",  "@JAVACFLAGS@ -source 1.7 -target 1.7"
+    end
 
     # BerkeleyDB requires you to build everything from the build_unix subdirectory
     cd "build_unix" do
