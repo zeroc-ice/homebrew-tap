@@ -7,7 +7,7 @@ class IceHead < Formula
 
   depends_on "berkeley-db53"
   depends_on "mcpp"
-  depends_on :java  => :optional
+  depends_on :java  => ["1.7+", :optional]
   depends_on :macos => :mavericks
 
   def install

@@ -1,23 +1,33 @@
 class Icetouch36 < Formula
   desc "Implementation of Ice for iOS and OS X targeting Xcode development"
   homepage "https://zeroc.com"
-  url "https://github.com/zeroc-ice/icetouch.git",
-    :tag => "v3.6.0", :revision => "c39885c589e3c8ecefcfe456ac5c83091b09f927"
+  url "https://github.com/zeroc-ice/icetouch.git", :tag => "v3.6.1"
+  version "3.6.1"
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
-    sha256 "a738beec0f989d505b4070a4a8e0a64d213fcfb33e139d0172a79cfb8fbd21ac" => :yosemite
+    sha256 "028311ab46c088e72d1e4bcc094488631639d7afa14608e2cef421bb6ae1b197" => :yosemite
   end
 
   depends_on "mcpp"
+
+  def pour_bottle?
+    MacOS.xcode_version < "7.0"
+  end
 
   def install
     # Unset ICE_HOME as it interferes with the build
     ENV.delete("ICE_HOME")
     ENV.delete("USE_BIN_DIST")
+    ENV.delete("CPPFLAGS")
     ENV.O2
 
-    system "make", "install", "OPTIMIZE=yes", "prefix=#{prefix}"
+    args = %W[
+      prefix=#{prefix}
+      OPTIMIZE=yes
+    ]
+
+    system "make", "install", *args
   end
 
   test do
