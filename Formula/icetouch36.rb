@@ -6,13 +6,15 @@ class Icetouch36 < Formula
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
-    sha256 "028311ab46c088e72d1e4bcc094488631639d7afa14608e2cef421bb6ae1b197" => :yosemite
+    revision 1
+    sha256 "4797034c3946dd917197352b5ce4f9d12f3fe7c809ea7d8c28f24a30339ccee7" => :yosemite
+    sha256 "171d2a8cfb67fe02c7a083db39c9711b9fd2772ce1938bbd249924b6f2c215cf" => :el_capitan
   end
 
   depends_on "mcpp"
 
   def pour_bottle?
-    MacOS.xcode_version < "7.0"
+    MacOS.xcode_version >= "7.0"
   end
 
   def install
