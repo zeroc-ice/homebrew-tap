@@ -3,11 +3,11 @@ class IceHead < Formula
   homepage "https://zeroc.com"
   head "https://github.com/zeroc-ice/ice.git"
 
-  option "with-java", "Build Ice for Java and the IceGrid GUI app"
+  option "with-java", "Build Ice for Java and the IceGrid Admin app"
 
-  depends_on "berkeley-db53"
+  depends_on "lmdb"
   depends_on "mcpp"
-  depends_on :java  => ["1.7+", :optional]
+  depends_on :java => ["1.7+", :optional]
   depends_on :macos => :mavericks
 
   def install
@@ -28,7 +28,7 @@ class IceHead < Formula
       embedded_runpath_prefix=#{prefix}
       USR_DIR_INSTALL=yes
       OPTIMIZE=yes
-      DB_HOME=#{HOMEBREW_PREFIX}/opt/berkeley-db53
+      MCPP_HOME=#{Formula["mcpp"].opt_prefix}
     ]
 
     cd "cpp" do
