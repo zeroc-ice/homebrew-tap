@@ -5,6 +5,7 @@ class IceHead < Formula
 
   option "with-java", "Build Ice for Java and the IceGrid Admin app"
 
+  depends_on "berkeley-db53"
   depends_on "lmdb"
   depends_on "mcpp"
   depends_on :java => ["1.7+", :optional]
@@ -29,6 +30,7 @@ class IceHead < Formula
       USR_DIR_INSTALL=yes
       OPTIMIZE=yes
       MCPP_HOME=#{Formula["mcpp"].opt_prefix}
+      DB_HOME=#{Formula["berkeley-db53"].opt_prefix}
     ]
 
     cd "cpp" do
