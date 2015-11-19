@@ -14,10 +14,6 @@ class IceHead < Formula
   def install
      inreplace "cpp/src/slice2js/Makefile", /install:/, "dontinstall:"
 
-    if build.with? "java"
-      inreplace "java/src/IceGridGUI/build.gradle", "${DESTDIR}${binDir}/${appName}.app",  "${prefix}/${appName}.app"
-    end
-
     # Unset ICE_HOME as it interferes with the build
     ENV.delete("ICE_HOME")
     ENV.delete("USE_BIN_DIST")
