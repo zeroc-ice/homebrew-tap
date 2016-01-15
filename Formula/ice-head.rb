@@ -29,6 +29,11 @@ class IceHead < Formula
       DB_HOME=#{Formula["berkeley-db53"].opt_prefix}
     ]
 
+    system "cp", "-r", "cpp", "cpp11"
+    cd "cpp11" do
+      system "make", "install", "CPP11_MAPPING=yes", *args
+    end
+
     cd "cpp" do
       system "make", "install", *args
     end
