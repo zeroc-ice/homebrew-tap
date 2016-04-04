@@ -1,15 +1,12 @@
 class Ice36 < Formula
-  desc "A comprehensive RPC framework"
+  desc "Comprehensive RPC framework"
   homepage "https://zeroc.com"
-  url "https://github.com/zeroc-ice/ice/archive/v3.6.1-el_capitan.tar.gz"
-  sha256 "4a348ba24daceb7694bc23ee91994e2653c5d869918e44b2b1f0d49a360e93fb"
-  version "3.6.1"
+  url "https://github.com/zeroc-ice/ice/archive/v3.6.2.tar.gz"
+  sha256 "5e9305a5eb6081c8f128d63a5546158594e9f115174fc91208f645dbe2fc02fe"
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
-    revision 1
-    sha256 "26c0f57915699dcf5d244a5bfc8566b6186fa44e7cfd293d5556b45c222fdb66" => :yosemite
-    sha256 "c1dd27ed5adbd4bd12794d56de6055e6a0bb1274a76a2631b7adde6ff1cd02a7" => :el_capitan
+    sha256 "d02db9cf15ba53d357d5e8c95098f9bdb078f46b7c89bfea1dab622cb08ad1ff" => :el_capitan
   end
 
   option "with-java", "Build Ice for Java and the IceGrid Admin app"
@@ -21,10 +18,6 @@ class Ice36 < Formula
 
   def install
     inreplace "cpp/src/slice2js/Makefile", /install:/, "dontinstall:"
-
-    if build.with? "java"
-      inreplace "java/src/IceGridGUI/build.gradle", "${DESTDIR}${binDir}/${appName}.app",  "${prefix}/${appName}.app"
-    end
 
     # Unset ICE_HOME as it interferes with the build
     ENV.delete("ICE_HOME")
@@ -43,8 +36,6 @@ class Ice36 < Formula
     cd "cpp" do
       system "make", "install", *args
     end
-
-    args << "embedded_runpath_prefix=#{prefix}"
 
     cd "objective-c" do
       system "make", "install", *args
@@ -74,10 +65,12 @@ class Ice36 < Formula
     (testpath/"Test.cpp").write <<-EOS.undent
       #include <Ice/Ice.h>
       #include <Hello.h>
+
       class HelloI : public Test::Hello {
       public:
         virtual void sayHello(const Ice::Current&) {}
       };
+
       int main(int argc, char* argv[]) {
         Ice::CommunicatorPtr communicator;
         communicator = Ice::initialize(argc, argv);

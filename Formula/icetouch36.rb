@@ -1,14 +1,12 @@
 class Icetouch36 < Formula
   desc "Implementation of Ice for iOS and OS X targeting Xcode development"
   homepage "https://zeroc.com"
-  url "https://github.com/zeroc-ice/icetouch.git", :tag => "v3.6.1"
-  version "3.6.1"
+  url "https://github.com/zeroc-ice/icetouch.git", :tag => "v3.6.2"
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
-    revision 1
-    sha256 "4797034c3946dd917197352b5ce4f9d12f3fe7c809ea7d8c28f24a30339ccee7" => :yosemite
-    sha256 "171d2a8cfb67fe02c7a083db39c9711b9fd2772ce1938bbd249924b6f2c215cf" => :el_capitan
+    cellar :any
+    sha256 "f80cf7be3a5b36c8f77a68d75e9becc18d727bcf1d5fb0ec75cc55607fd92c90" => :el_capitan
   end
 
   depends_on "mcpp"
@@ -27,6 +25,7 @@ class Icetouch36 < Formula
     args = %W[
       prefix=#{prefix}
       OPTIMIZE=yes
+      MCPP_HOME=#{Formula["mcpp"].opt_prefix}
     ]
 
     system "make", "install", *args
