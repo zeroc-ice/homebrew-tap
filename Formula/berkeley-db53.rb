@@ -9,6 +9,7 @@ class BerkeleyDb53 < Formula
     root_url "https://zeroc.com/download/homebrew/bottles"
     cellar :any
     sha256 "799ccfdf9548acfeeb3dd7f5f479be355b1bd24ba07985c5bee992e11ab85eca" => :yosemite
+    sha256 "ac370029c8a5160598f1d2171beb5a29637634827bf3b607821ef76963cdd532" => :el_capitan
   end
 
   depends_on :java => [ "1.7+", :recommended]
