@@ -4,6 +4,7 @@ class IceHead < Formula
   head "https://github.com/zeroc-ice/ice.git"
 
   option "with-java", "Build Ice for Java and the IceGrid Admin app"
+  option "with-xcode-sdk", "Build Xcode SDK for iOS development (includes static libs)."
 
   depends_on "mcpp"
   depends_on "lmdb"
@@ -26,7 +27,8 @@ class IceHead < Formula
       "OPTIMIZE=yes",
       "MCPP_HOME=#{Formula["mcpp"].opt_prefix}",
       "LMDB_HOME=#{Formula["lmdb"].opt_prefix}",
-      "CONFIGS=shared cpp11-shared",
+      "CONFIGS=shared cpp11-shared #{(build.with? 'xcode-sdk') ? 'xcodesdk cpp11-xcodesdk' : ''}",
+      "PLATFORMS=#{(build.with? 'xcode-sdk') ? 'all' : 'macos'}",
       "SKIP=slice2py slice2rb slice2js",
       "LANGUAGES=cpp objective-c php #{(build.with? 'java') ? 'java' : ''}"
     ]
