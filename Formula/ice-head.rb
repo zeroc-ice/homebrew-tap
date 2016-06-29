@@ -28,7 +28,7 @@ class IceHead < Formula
       "MCPP_HOME=#{Formula["mcpp"].opt_prefix}",
       "LMDB_HOME=#{Formula["lmdb"].opt_prefix}",
       "CONFIGS=shared cpp11-shared #{(build.with? 'xcode-sdk') ? 'xcodesdk cpp11-xcodesdk' : ''}",
-      "PLATFORMS=#{(build.with? 'xcode-sdk') ? 'all' : 'macos'}",
+      "PLATFORMS=#{(build.with? 'xcode-sdk') ? 'all' : 'macosx'}",
       "SKIP=slice2py slice2rb slice2js",
       "LANGUAGES=cpp objective-c php #{(build.with? 'java') ? 'java' : ''}"
     ]

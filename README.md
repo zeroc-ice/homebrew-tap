@@ -18,5 +18,4 @@ Available formulae are:
   - `ice36` - Ice v3.6.1
   - `ice-head` - Head-only formula for [ice](https://github.com/zeroc-ice/ice) `master` branch
   - `icetouch36` - Ice Touch v3.6.1
-  - `icetouch-head` - Head-only formula for [icetouch](https://github.com/zeroc-ice/icetouch) `master` branch
   - `berkeley-db53` - Berkeley DB 5.3
