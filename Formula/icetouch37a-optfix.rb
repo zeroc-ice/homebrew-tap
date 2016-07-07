@@ -7,7 +7,7 @@ class Icetouch37aOptfix < Formula
   depends_on "mcpp"
 
   bottle do
-    cellar :any
+    root_url "https://zeroc.com/download/homebrew/bottles"
     sha256 "69ae21020814140f9cfc12e61a022c8977371b721149fa7a04968c02d4f41cad" => :el_capitan
   end
 
