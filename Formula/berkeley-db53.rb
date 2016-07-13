@@ -11,7 +11,7 @@ class BerkeleyDb53 < Formula
     sha256 "ac370029c8a5160598f1d2171beb5a29637634827bf3b607821ef76963cdd532" => :el_capitan
   end
 
-  keg_only "Conflicts with berkeley-db in main repository."
+  keg_only "Conflicts with berkeley-db in core tap."
 
   depends_on :java => ["1.7+", :build]
 
