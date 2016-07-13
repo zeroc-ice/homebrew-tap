@@ -13,7 +13,7 @@ class BerkeleyDb53 < Formula
 
   keg_only "Conflicts with berkeley-db in main repository."
 
-  depends_on :java => ["1.7+", :recommended]
+  depends_on :java => ["1.7+", :build]
 
   def install
     # BerkeleyDB dislikes parallel builds
