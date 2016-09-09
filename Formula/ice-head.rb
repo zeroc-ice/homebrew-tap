@@ -30,7 +30,7 @@ class IceHead < Formula
       "CONFIGS=shared cpp11-shared #{(build.with? 'xcode-sdk') ? 'xcodesdk cpp11-xcodesdk' : ''}",
       "PLATFORMS=#{(build.with? 'xcode-sdk') ? 'all' : 'macosx'}",
       "SKIP=slice2py slice2rb slice2js",
-      "LANGUAGES=cpp objective-c php #{(build.with? 'java') ? 'java' : ''}"
+      "LANGUAGES=cpp objective-c php #{(build.with? 'java') ? 'java java-compat' : ''}"
     ]
     system "make", "install", *args
   end
