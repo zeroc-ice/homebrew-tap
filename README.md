@@ -15,7 +15,8 @@ To install a formula:
     % brew install <formula>
 
 Available formulae are:
-  - `ice36` - Ice v3.6.1
+  - `ice36` - Ice 3.6
   - `ice-head` - Head-only formula for [ice](https://github.com/zeroc-ice/ice) `master` branch
-  - `icetouch36` - Ice Touch v3.6.1
+  - `icetouch36` - Ice Touch 3.6
+  - `ice-builder-xcode` - Ice Builder for Xcode
   - `berkeley-db53` - Berkeley DB 5.3
