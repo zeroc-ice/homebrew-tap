@@ -1,12 +1,12 @@
 class Ice36 < Formula
   desc "Comprehensive RPC framework"
   homepage "https://zeroc.com"
-  url "https://github.com/zeroc-ice/ice/archive/v3.6.2.tar.gz"
-  sha256 "5e9305a5eb6081c8f128d63a5546158594e9f115174fc91208f645dbe2fc02fe"
+  url "https://github.com/zeroc-ice/ice/archive/v3.6.3.tar.gz"
+  sha256 "82ff74e6d24d9fa396dbb4d9697dc183b17bc9c3f6f076fecdc05632be80a2dc"
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
-    sha256 "d02db9cf15ba53d357d5e8c95098f9bdb078f46b7c89bfea1dab622cb08ad1ff" => :el_capitan
+    sha256 "728e9058b86c16a7131f77d7808c2f740485bfb7b7adb24210bfdb60502f260c" => :sierra
   end
 
   option "with-java", "Build Ice for Java and the IceGrid Admin app"
@@ -28,6 +28,7 @@ class Ice36 < Formula
     args = %W[
       prefix=#{prefix}
       USR_DIR_INSTALL=yes
+      SLICE_DIR_SYMLINK=yes
       OPTIMIZE=yes
       DB_HOME=#{Formula["berkeley-db53"].opt_prefix}
       MCPP_HOME=#{Formula["mcpp"].opt_prefix}
