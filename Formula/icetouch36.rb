@@ -12,10 +12,6 @@ class Icetouch36 < Formula
 
   depends_on "mcpp"
 
-  def pour_bottle?
-    MacOS.xcode_version >= "7.0"
-  end
-
   def install
     # Unset ICE_HOME as it interferes with the build
     ENV.delete("ICE_HOME")
