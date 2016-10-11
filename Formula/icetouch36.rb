@@ -6,6 +6,7 @@ class Icetouch36 < Formula
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
     cellar :any
+    sha256 "a0425ee66f358a3b1b17546ccc483f49eecce815fc7ec9c27657cbc65c595826" => :el_capitan
     sha256 "4caa668241d0398e34c08db89c4321a852f0ebacabecbf215aacddcec1afad99" => :sierra
   end
 

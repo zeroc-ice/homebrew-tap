@@ -6,6 +6,7 @@ class Ice36 < Formula
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
+    sha256 "07b6b684726a2db9fc237e67d106a649dd7bd7b047d9dec67a87d0b99bd6e31e" => :el_capitan
     sha256 "728e9058b86c16a7131f77d7808c2f740485bfb7b7adb24210bfdb60502f260c" => :sierra
   end
 
