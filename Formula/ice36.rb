@@ -3,11 +3,12 @@ class Ice36 < Formula
   homepage "https://zeroc.com"
   url "https://github.com/zeroc-ice/ice/archive/v3.6.3.tar.gz"
   sha256 "82ff74e6d24d9fa396dbb4d9697dc183b17bc9c3f6f076fecdc05632be80a2dc"
+  revision 1
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
-    sha256 "07b6b684726a2db9fc237e67d106a649dd7bd7b047d9dec67a87d0b99bd6e31e" => :el_capitan
-    sha256 "728e9058b86c16a7131f77d7808c2f740485bfb7b7adb24210bfdb60502f260c" => :sierra
+    sha256 "5c276ff101de5ab17e123221adec548b9ed01135141774268a07e1536891715e" => :el_capitan
+    sha256 "033ddb282cd4feb1e62c423904cffc886bc3a417a12465467274ea1d75fe1a2e" => :sierra
   end
 
   option "with-java", "Build Ice for Java and the IceGrid Admin app"
@@ -26,8 +27,12 @@ class Ice36 < Formula
     ENV.delete("CPPFLAGS")
     ENV.O2
 
+    # Ensure Gradle uses a writable directory even in sandbox mode
+    ENV["GRADLE_USER_HOME"] = buildpath/".gradle"
+
     args = %W[
       prefix=#{prefix}
+      embedded_runpath_prefix=#{prefix}
       USR_DIR_INSTALL=yes
       SLICE_DIR_SYMLINK=yes
       OPTIMIZE=yes
