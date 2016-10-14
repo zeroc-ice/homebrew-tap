@@ -94,5 +94,8 @@ class Ice36 < Formula
     system "xcrun", "clang++", "-c", "-I#{include}", "-I.", "Test.cpp"
     system "xcrun", "clang++", "-L#{lib}", "-o", "test", "Test.o", "Hello.o", "-lIce", "-lIceUtil"
     system "./test", "--Ice.InitPlugins=0"
+    system "/usr/bin/php", "-d", "extension_dir=#{lib}/php/extensions",
+                           "-d", "extension=IcePHP.dy",
+                           "-r", "extension_loaded('ice') ? exit(0) : exit(1);"
   end
 end
