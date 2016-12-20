@@ -3,12 +3,11 @@ class Ice36 < Formula
   homepage "https://zeroc.com"
   url "https://github.com/zeroc-ice/ice/archive/v3.6.3.tar.gz"
   sha256 "82ff74e6d24d9fa396dbb4d9697dc183b17bc9c3f6f076fecdc05632be80a2dc"
-  revision 1
+  revision 2
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
-    sha256 "5c276ff101de5ab17e123221adec548b9ed01135141774268a07e1536891715e" => :el_capitan
-    sha256 "033ddb282cd4feb1e62c423904cffc886bc3a417a12465467274ea1d75fe1a2e" => :sierra
+    sha256 "30467480f0fd786d2f32f32a2a8e5ba22186515bb994e0bbff457245879f479a" => :sierra
   end
 
   option "with-java", "Build Ice for Java and the IceGrid Admin app"
@@ -20,6 +19,11 @@ class Ice36 < Formula
 
   def install
     inreplace "cpp/src/slice2js/Makefile", /install:/, "dontinstall:"
+
+    # Fixes ICE-7473 and should be removed in the next release.
+    inreplace "cpp/src/Ice/Instance.cpp",
+              "else if(!dynamic_cast<IceUtil::UnicodeWstringConverter*>(_wstringConverter.get()))",
+              "else"
 
     # Unset ICE_HOME as it interferes with the build
     ENV.delete("ICE_HOME")
