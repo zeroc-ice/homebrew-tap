@@ -1,4 +1,4 @@
-class IceHead < Formula
+class Ice37a < Formula
   desc "A comprehensive RPC framework with support for C++, .NET, Java, Python, JavaScript and more"
   homepage "https://zeroc.com"
   url "https://github.com/zeroc-ice/ice.git", :branch => "master"
