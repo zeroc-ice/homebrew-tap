@@ -4,8 +4,9 @@ class Ice37a < Formula
   url "https://github.com/zeroc-ice/ice.git", :branch => "master"
   version "3.7a4"
 
+  option "with-additional-compilers", "Build additional Slice compilers (slice2py, slice2js, slice2rb)"
   option "with-java", "Build Ice for Java and the IceGrid Admin app"
-  option "with-xcode-sdk", "Build Xcode SDK for iOS development (includes static libs)."
+  option "with-xcode-sdk", "Build Xcode SDK for iOS development (includes static libs)"
 
   depends_on "lmdb"
   depends_on "mcpp"
@@ -31,6 +32,7 @@ class Ice37a < Formula
       "LMDB_HOME=#{Formula["lmdb"].opt_prefix}",
       "CONFIGS=shared cpp11-shared #{(build.with? 'xcode-sdk') ? 'xcodesdk cpp11-xcodesdk' : ''}",
       "PLATFORMS=all",
+      "SKIP=#{(build.without? 'additional-compilers') ? 'slice2py slice2rb slice2js' : ''}",
       "LANGUAGES=cpp objective-c #{(build.with? 'java') ? 'java java-compat' : ''}"
     ]
     system "make", "install", *args
