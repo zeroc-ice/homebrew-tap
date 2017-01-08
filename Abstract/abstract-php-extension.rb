@@ -16,5 +16,5 @@ if File.exists?(phpTapDirectory)
     require File.join(phpTapDirectory, "Abstract", "abstract-php-extension")
 else
     puts "php Homebrew tap missing. You need to install the hombrew-php tap. Please run 'brew tap homebrew/homebrew-php'"
-    exit(1)
+    exit(0)
 end
