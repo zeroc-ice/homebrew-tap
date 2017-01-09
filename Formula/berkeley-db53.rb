@@ -9,7 +9,7 @@ class BerkeleyDb53 < Formula
     cellar :any
     sha256 "799ccfdf9548acfeeb3dd7f5f479be355b1bd24ba07985c5bee992e11ab85eca" => :yosemite
     sha256 "ac370029c8a5160598f1d2171beb5a29637634827bf3b607821ef76963cdd532" => :el_capitan
-    sha256 "c34ced06984221c0ef3fb311a9e0ab7e1bdaad0d317673861e2aa31604df3c19" => :sierra
+    sha256 "ef495b2b83c7ee5664c121b781f8ecfde42360d96b22e631d0a01bbf1e9f8a99" => :sierra
   end
 
   keg_only "Conflicts with berkeley-db in core tap."
@@ -26,10 +26,10 @@ class BerkeleyDb53 < Formula
       --enable-cxx
     ]
 
-    if build.with? "java"
-      args << "--enable-java"
-      inreplace "dist/Makefile.in", "@JAVACFLAGS@", "@JAVACFLAGS@ -source 1.7 -target 1.7"
-    end
+    # This is optional in the homebrew-core ice libexec build. Leave it here for keep
+    # the two formulas in sync.
+    args << "--enable-java"
+    inreplace "dist/Makefile.in", "@JAVACFLAGS@", "@JAVACFLAGS@ -source 1.7 -target 1.7"
 
     # BerkeleyDB requires you to build everything from the build_unix subdirectory
     cd "build_unix" do
