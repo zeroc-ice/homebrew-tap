@@ -1,15 +1,26 @@
-class Ice37a < Formula
-  desc "A comprehensive RPC framework with support for C++, .NET, Java, Python, JavaScript and more"
+class Ice37b0 < Formula
+  desc "Comprehensive RPC framework"
   homepage "https://zeroc.com"
-  url "https://github.com/zeroc-ice/ice.git", :branch => "master"
-  version "3.7a4"
+  url "https://github.com/zeroc-ice/ice/archive/v3.7.0-beta0.tar.gz"
+  version "3.7b0"
+  sha256 "2ce1ee772e1f8424af867ba69796fcfdf1a67dc8816c192705e8363343a6575f"
+
+  bottle do
+    root_url "https://dev.zeroc.com/share/ice/v3.7.0-beta0/brew"
+    sha256 "25afbfc454b761090f95128403959c36f34bc8a6d8b532399116581631628d28" => :sierra
+  end
+
+  #
+  # NOTE: we don't build slice2py, slice2js, slice2rb by default to prevent clashes with
+  # the translators installed by the PyPI/GEM/NPM packages.
+  #
 
   option "with-additional-compilers", "Build additional Slice compilers (slice2py, slice2js, slice2rb)"
   option "with-java", "Build Ice for Java and the IceGrid Admin app"
   option "with-xcode-sdk", "Build Xcode SDK for iOS development (includes static libs)"
 
-  depends_on "lmdb"
   depends_on "mcpp"
+  depends_on "lmdb"
   depends_on :java => [ "1.8+", :optional]
   depends_on :macos => :mavericks
 
@@ -32,16 +43,10 @@ class Ice37a < Formula
       "LMDB_HOME=#{Formula["lmdb"].opt_prefix}",
       "CONFIGS=shared cpp11-shared #{(build.with? 'xcode-sdk') ? 'xcodesdk cpp11-xcodesdk' : ''}",
       "PLATFORMS=all",
-      "SKIP=#{(build.without? 'additional-compilers') ? 'slice2py slice2rb slice2js' : ''}",
+      "SKIP=slice2confluence #{(build.without? 'additional-compilers') ? 'slice2py slice2rb slice2js' : ''}",
       "LANGUAGES=cpp objective-c #{(build.with? 'java') ? 'java java-compat' : ''}"
     ]
     system "make", "install", *args
-  end
-
-  def caveats; <<-EOS.undent
-    Ice is built using the latest commit on the master branch on GitHub (https://github.com/zeroc-ice/ice/master).
-    To update to the latest commit you need to reinstall this package.
-    EOS
   end
 
   test do
