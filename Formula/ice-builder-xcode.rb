@@ -1,8 +1,8 @@
 class IceBuilderXcode < Formula
   desc "Command-line tool for compiling Slice files in Xcode"
   homepage "https://github.com/zeroc-ice/ice-builder-xcode"
-  url "https://github.com/zeroc-ice/ice-builder-xcode/archive/v3.0.1.tar.gz"
-  sha256 "d9206ef562473ef66ff4cc3a8a91687e982c165a9584ae4ce7ca786ca3daef89"
+  url "https://github.com/zeroc-ice/ice-builder-xcode/archive/v3.1.0.tar.gz"
+  sha256 "96be741976aabba0eecf88ff0867c7b09f9df4d40c03fc08ccb20928d3916a1b"
 
   def install
     bin.install "icebuilder"
