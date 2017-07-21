@@ -15,11 +15,11 @@ To install a formula:
     brew install <formula>
 
 Available formulae are:
+  - `ice` - Ice 3.7
   - `ice36` - Ice 3.6
-  - `ice37b0` - Ice 3.7b0 ([`v3.7.0-beta0`](https://github.com/zeroc-ice/ice) tag on GitHub)
-  - `php71-ice37b0` - Ice 3.7b0 for PHP 7.1 ([`v3.7.0-beta0`](https://github.com/zeroc-ice/ice) tag on GitHub)
-  - `php70-ice37b0` - Ice 3.7b0 for PHP 7.0 ([`v3.7.0-beta0`](https://github.com/zeroc-ice/ice) tag on GitHub)
-  - `php56-ice37b0` - Ice 3.7b0 for PHP 5.6 ([`v3.7.0-beta0`](https://github.com/zeroc-ice/ice) tag on GitHub)
+  - `php71-ice` - Ice 3.7 for PHP 7.1
+  - `php70-ice` - Ice 3.7 for PHP 7.0
+  - `php56-ice` - Ice 3.7 for PHP 5.6
   - `icetouch36` - Ice Touch 3.6
   - `ice-builder-xcode` - Ice Builder for Xcode
   - `berkeley-db53` - Berkeley DB 5.3
