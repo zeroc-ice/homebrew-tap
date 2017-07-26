@@ -8,6 +8,11 @@ class Php70Ice < AbstractPhp70Extension
   version "3.7.0"
   sha256 "a6bd6faffb29e308ef8f977e27a526ff05dd60d68a72f6377462f9546c1c544a"
 
+  bottle do
+    root_url "https://zeroc.com/download/homebrew/bottles"
+    sha256 "4e65fa1bcf9d232fded9138bfdc26026b6ddd7ab84f699ebf47d3e7712b62a3f" => :sierra
+  end
+
   depends_on "zeroc-ice/tap/ice"
 
   def config_file

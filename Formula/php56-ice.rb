@@ -8,6 +8,11 @@ class Php56Ice < AbstractPhp56Extension
   version "3.7.0"
   sha256 "a6bd6faffb29e308ef8f977e27a526ff05dd60d68a72f6377462f9546c1c544a"
 
+  bottle do
+    root_url "https://zeroc.com/download/homebrew/bottles"
+    sha256 "96048575b0af55fbff8246c302421dea98ceb21f63818eba32a409cedfdd12c7" => :sierra
+  end
+
   depends_on "zeroc-ice/tap/ice"
 
   def config_file
