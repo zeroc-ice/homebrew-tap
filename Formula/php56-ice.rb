@@ -11,15 +11,13 @@ class Php56Ice < AbstractPhp56Extension
   depends_on "zeroc-ice/tap/ice"
 
   def config_file
-    begin
-      <<-EOS.undent
+    <<-EOS.undent
       [#{extension}]
       #{extension_type}="#{module_path}"
       include_path="#{opt_prefix}"
       EOS
-    rescue Exception
-      nil
-    end
+  rescue StandardError
+    nil
   end
 
   def install
@@ -30,10 +28,10 @@ class Php56Ice < AbstractPhp56Extension
       "OPTIMIZE=yes",
       "ICE_HOME=#{Formula["ice"].opt_prefix}",
       "ICE_BIN_DIST=cpp",
-      "PHP_CONFIG=#{Formula[php_formula].opt_bin}/php-config"
+      "PHP_CONFIG=#{Formula[php_formula].opt_bin}/php-config",
     ]
 
-    Dir.chdir('php')
+    Dir.chdir("php")
     system "make", "install", *args
     write_config_file if build.with? "config-file"
   end

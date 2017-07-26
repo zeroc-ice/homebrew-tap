@@ -20,11 +20,10 @@ class Ice < Formula
 
   depends_on "mcpp"
   depends_on "lmdb"
-  depends_on :java => [ "1.8+", :optional]
+  depends_on :java => ["1.8+", :optional]
   depends_on :macos => :mavericks
 
   def install
-
     # Ensure Gradle uses a writable directory even in sandbox mode
     ENV["GRADLE_USER_HOME"] = "#{buildpath}/.gradle"
 
@@ -33,10 +32,10 @@ class Ice < Formula
       "V=1",
       "MCPP_HOME=#{Formula["mcpp"].opt_prefix}",
       "LMDB_HOME=#{Formula["lmdb"].opt_prefix}",
-      "CONFIGS=shared cpp11-shared #{(build.with? 'xcode-sdk') ? 'xcodesdk cpp11-xcodesdk' : ''}",
+      "CONFIGS=shared cpp11-shared #{build.with?("xcode-sdk") ? "xcodesdk cpp11-xcodesdk" : ""}",
       "PLATFORMS=all",
-      "SKIP=slice2confluence #{(build.without? 'additional-compilers') ? 'slice2py slice2rb slice2js' : ''}",
-      "LANGUAGES=cpp objective-c #{(build.with? 'java') ? 'java java-compat' : ''}"
+      "SKIP=slice2confluence #{build.without?("additional-compilers") ? "slice2py slice2rb slice2js" : ""}",
+      "LANGUAGES=cpp objective-c #{build.with?("java") ? "java java-compat" : ""}",
     ]
     system "make", "install", *args
   end
