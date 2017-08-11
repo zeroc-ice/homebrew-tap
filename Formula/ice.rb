@@ -70,17 +70,16 @@ class Ice < Formula
       }
     EOS
     system "#{bin}/slice2cpp", "Hello.ice"
-    system "xcrun", "clang++", "-DICE_CPP11_MAPPING", "-std=c++11", "-c", "-I#{include}", "-I.", "Hello.cpp"
-    system "xcrun", "clang++", "-DICE_CPP11_MAPPING", "-std=c++11", "-c", "-I#{include}", "-I.", "Test.cpp"
-    system "xcrun", "clang++", "-L#{lib}", "-o", "test", "Test.o", "Hello.o", "-lIce++11"
+    system ENV.cxx, "-DICE_CPP11_MAPPING", "-std=c++11", "-c", "-I#{include}", "-I.", "Hello.cpp"
+    system ENV.cxx, "-DICE_CPP11_MAPPING", "-std=c++11", "-c", "-I#{include}", "-I.", "Test.cpp"
+    system ENV.cxx, "-L#{lib}", "-o", "test", "Test.o", "Hello.o", "-lIce++11"
     system "./test"
-    if File.file?("#{lib}/IceSDK/bin/slice2cpp")
-      system "#{lib}/IceSDK/bin/slice2cpp", "Hello.ice"
-      system "xcrun", "--sdk", "macosx", "clang++", "-DICE_CPP11_MAPPING", "-std=c++11", "-c", \
-        "-I#{lib}/IceSDK/macosx.sdk/usr/include", "-I.", "Hello.cpp"
-      system "xcrun", "--sdk", "macosx", "clang++", "-DICE_CPP11_MAPPING", "-std=c++11", "-c", \
-        "-I#{lib}/IceSDK/macosx.sdk/usr/include", "-I.", "Test.cpp"
-      system "xcrun", "--sdk", "macosx", "clang++", "-L#{lib}/IceSDK/macosx.sdk/usr/lib", "-o", "test-sdk", "Test.o", \
+    if File.directory?("#{opt_prefix}/sdk")
+      system "xcrun", "--sdk", "macosx", ENV.cxx, "-DICE_CPP11_MAPPING", "-std=c++11", "-c", \
+        "-I#{opt_prefix}/sdk/macosx.sdk/usr/include", "-I.", "Hello.cpp"
+      system "xcrun", "--sdk", "macosx", ENV.cxx, "-DICE_CPP11_MAPPING", "-std=c++11", "-c", \
+        "-I#{opt_prefix}/sdk/macosx.sdk/usr/include", "-I.", "Test.cpp"
+      system "xcrun", "--sdk", "macosx", ENV.cxx, "-L#{opt_prefix}/sdk/macosx.sdk/usr/lib", "-o", "test-sdk", "Test.o", \
         "Hello.o", "-lIce++11", "-framework", "Security", "-framework", "Foundation", "-lbz2", "-liconv"
       system "./test-sdk"
     end

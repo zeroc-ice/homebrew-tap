@@ -1,8 +1,7 @@
 class Freeze < Formula
   desc "Persistent Storage for Ice Objects"
   homepage "https://zeroc.com"
-  url "https://github.com/zeroc-ice/freeze.git", :branch => "master"
-  version "3.7.0"
+  url "https://github.com/zeroc-ice/freeze.git", :tag => "v3.7.0"
 
   depends_on "zeroc-ice/tap/ice"
   depends_on "zeroc-ice/tap/berkeley-db53"
