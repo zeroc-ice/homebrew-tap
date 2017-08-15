@@ -5,21 +5,27 @@ This repository is a [Homebrew tap](https://github.com/Homebrew/brew/blob/master
 ## Install
 
 To add this tap to Homebrew:
-
-    brew tap zeroc-ice/tap
+```
+brew tap zeroc-ice/tap
+```
 
 ## Usage
 
 To install a formula:
+```
+brew install zero-ice/tap/<formula>
+```
 
-    brew install <formula>
+## Formulae
 
-Available formulae are:
-  - `ice` - Ice 3.7
-  - `ice36` - Ice 3.6
-  - `php71-ice` - Ice 3.7 for PHP 7.1
-  - `php70-ice` - Ice 3.7 for PHP 7.0
-  - `php56-ice` - Ice 3.7 for PHP 5.6
-  - `icetouch36` - Ice Touch 3.6
-  - `ice-builder-xcode` - Ice Builder for Xcode
-  - `berkeley-db53` - Berkeley DB 5.3
+| Name                                                | Description                                                                                    | Bottled |
+| --------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ------- |
+| [`ice`](Formula/ice.rb)                             | [Ice 3.7](https://doc.zeroc.com/display/Ice37/Using+the+macOS+Binary+Distribution)             | Y       |
+| [`php71-ice`](Formula/php71-ice.rb)                 | [Ice 3.7 for PHP 7.1](https://doc.zeroc.com/display/Ice37/Using+the+macOS+Binary+Distribution) | Y       |
+| [`php70-ice`](Formula/php71-ice.rb)                 | [Ice 3.7 for PHP 7.0](https://doc.zeroc.com/display/Ice37/Using+the+macOS+Binary+Distribution) | Y       |
+| [`php56-ice`](Formula/php71-ice.rb)                 | [Ice 3.7 for PHP 5.6](https://doc.zeroc.com/display/Ice37/Using+the+macOS+Binary+Distribution) | Y       |
+| [`ice-builder-xcode`](Formula/ice-builder-xcode.rb) | [Ice Builder for Xcode](https://github.com/zeroc-ice/ice-builder-xcode/)                       | N       |
+| [`freeze`](Formula/freeze.rb)                       | [Freeze 3.7](https://doc.zeroc.com/display/Freeze37/Using+the+macOS+Binary+Distribution)       | N       |
+| [`ice36`](Formula/ice36.rb)                         | [Ice 3.6](https://doc.zeroc.com/display/Ice36/Using+the+macOS+Binary+Distribution)             | Y       |
+| [`icetouch36`](Formula/icetouch36.rb)               | [Ice Touch 3.6](https://doc.zeroc.com/display/Ice36/Using+the+Ice+Touch+Binary+Distribution)   | Y       |
+| [`berkeley-db53`](Formula/berkeley-db53.rb)         | Berkeley DB 5.3, keg-only                                                                      | Y       |
