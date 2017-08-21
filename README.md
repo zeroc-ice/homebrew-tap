@@ -13,7 +13,7 @@ brew tap zeroc-ice/tap
 
 To install a formula:
 ```
-brew install zero-ice/tap/<formula>
+brew install zeroc-ice/tap/<formula>
 ```
 
 ## Formulae
