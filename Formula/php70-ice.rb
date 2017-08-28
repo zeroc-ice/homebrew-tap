@@ -13,7 +13,7 @@ class Php70Ice < AbstractPhp70Extension
     sha256 "4e65fa1bcf9d232fded9138bfdc26026b6ddd7ab84f699ebf47d3e7712b62a3f" => :sierra
   end
 
-  depends_on "zeroc-ice/tap/ice"
+  depends_on "ice"
 
   def config_file
     <<-EOS.undent

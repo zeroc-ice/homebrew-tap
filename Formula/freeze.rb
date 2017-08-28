@@ -5,11 +5,11 @@ class Freeze < Formula
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
-    sha256 "ef140edb1357f843bc1960eebc5cc2643f774e2f77c13fc421719ac77f291baa" => :sierra
+    sha256 "47d17ab634bfe70e5168378714526fe42fae0064bb420867df94c7372f779bd9" => :sierra
   end
 
-  depends_on "zeroc-ice/tap/ice"
-  depends_on "zeroc-ice/tap/berkeley-db53"
+  depends_on "ice"
+  depends_on "berkeley-db@5.3"
 
   def install
     args = [

@@ -13,7 +13,7 @@ class Php56Ice < AbstractPhp56Extension
     sha256 "96048575b0af55fbff8246c302421dea98ceb21f63818eba32a409cedfdd12c7" => :sierra
   end
 
-  depends_on "zeroc-ice/tap/ice"
+  depends_on "ice"
 
   def config_file
     <<-EOS.undent

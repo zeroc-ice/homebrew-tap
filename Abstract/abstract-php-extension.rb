@@ -22,7 +22,7 @@ phpTapDirectory = run_cmd("brew --repo homebrew/homebrew-php").strip
 if File.exists?(phpTapDirectory)
     require File.join(phpTapDirectory, "Abstract", "abstract-php-extension")
 else
-    puts "PHP Homebrew tap missing. This is required to install ZeroC Ice PHP based packages."
+    puts "PHP Homebrew tap missing. This is required to install PHP based formulae."
     puts "To install please run 'brew tap homebrew/homebrew-php'"
 
     class AbstractPhpExtension < Formula

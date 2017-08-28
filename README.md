@@ -1,6 +1,6 @@
 # Ice Homebrew Tap
 
-This repository is a [Homebrew tap](https://github.com/Homebrew/brew/blob/master/docs/brew-tap.md) for [ZeroC](https://zeroc.com/) packages.
+This repository is a [Homebrew tap](https://github.com/Homebrew/brew/blob/master/docs/brew-tap.md) which contains formulae for [ZeroC](https://zeroc.com/) software.
 
 ## Install
 
@@ -26,6 +26,6 @@ brew install zeroc-ice/tap/<formula>
 | [`php56-ice`](Formula/php71-ice.rb)                 | [Ice 3.7 for PHP 5.6](https://doc.zeroc.com/display/Ice37/Using+the+macOS+Binary+Distribution) | Y       |
 | [`ice-builder-xcode`](Formula/ice-builder-xcode.rb) | [Ice Builder for Xcode](https://github.com/zeroc-ice/ice-builder-xcode/)                       | N       |
 | [`freeze`](Formula/freeze.rb)                       | [Freeze 3.7](https://doc.zeroc.com/display/Freeze37/Using+the+macOS+Binary+Distribution)       | N       |
-| [`ice36`](Formula/ice36.rb)                         | [Ice 3.6](https://doc.zeroc.com/display/Ice36/Using+the+macOS+Binary+Distribution)             | Y       |
-| [`icetouch36`](Formula/icetouch36.rb)               | [Ice Touch 3.6](https://doc.zeroc.com/display/Ice36/Using+the+Ice+Touch+Binary+Distribution)   | Y       |
-| [`berkeley-db53`](Formula/berkeley-db53.rb)         | Berkeley DB 5.3, keg-only                                                                      | Y       |
+| [`ice@3.6`](Formula/ice@3.6.rb)                     | [Ice 3.6](https://doc.zeroc.com/display/Ice36/Using+the+macOS+Binary+Distribution)             | Y       |
+| [`icetouch@3.6`](Formula/icetouch@3.6.rb)           | [Ice Touch 3.6](https://doc.zeroc.com/display/Ice36/Using+the+Ice+Touch+Binary+Distribution)   | Y       |
+| [`berkeley-db@5.3`](Formula/berkeley-db@5.3.rb)     | Berkeley DB 5.3, keg-only                                                                      | Y       |
