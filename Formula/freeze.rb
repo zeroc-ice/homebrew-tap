@@ -17,7 +17,7 @@ class Freeze < Formula
       "V=1",
       "ICE_BIN_DIST=all",
       "ICE_HOME=#{Formula["ice"].opt_prefix}",
-      "DB_HOME=#{Formula["berkeley-db53"].opt_prefix}",
+      "DB_HOME=#{Formula["berkeley-db@5.3"].opt_prefix}",
       "LANGUAGES=cpp"
     ]
 
