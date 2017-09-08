@@ -1,13 +1,12 @@
 class IceAT36 < Formula
   desc "Comprehensive RPC framework"
   homepage "https://zeroc.com"
-  url "https://github.com/zeroc-ice/ice/archive/v3.6.3.tar.gz"
-  sha256 "82ff74e6d24d9fa396dbb4d9697dc183b17bc9c3f6f076fecdc05632be80a2dc"
-  revision 3
+  url "https://github.com/zeroc-ice/ice/archive/v3.6.4.tar.gz"
+  sha256 "4f5cc5e09586eab7de7745bbdc5fbf383c59f8fdc561264d4010bba19afdde2a"
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
-    sha256 "9a1c96a74eca2e9a1e33411984e6c2acd0ec8023a5a432a9fea3d2f6a062d602" => :sierra
+    sha256 "3c88b248701d2cff5e778ab235a08a5cb92aa1b729765078cd1515090710409d" => :sierra
   end
 
   option "with-java", "Build Ice for Java and the IceGrid Admin app"
@@ -19,11 +18,6 @@ class IceAT36 < Formula
 
   def install
     inreplace "cpp/src/slice2js/Makefile", /install:/, "dontinstall:"
-
-    # Fixes ICE-7473 and should be removed in the next release.
-    inreplace "cpp/src/Ice/Instance.cpp",
-              "else if(!dynamic_cast<IceUtil::UnicodeWstringConverter*>(_wstringConverter.get()))",
-              "else"
 
     # Unset ICE_HOME as it interferes with the build
     ENV.delete("ICE_HOME")
