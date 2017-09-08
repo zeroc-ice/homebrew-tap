@@ -1,12 +1,12 @@
 class IcetouchAT36 < Formula
   desc "Implementation of Ice for iOS and OS X targeting Xcode development"
   homepage "https://zeroc.com"
-  url "https://github.com/zeroc-ice/icetouch.git", :tag => "v3.6.3"
+  url "https://github.com/zeroc-ice/icetouch.git", :tag => "v3.6.4"
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
     cellar :any
-    sha256 "5e46afa3ae937f11777f0f5ce5502dc7a818275804656b3a026057dbfcfb8f95" => :sierra
+    sha256 "95d778a69a7c585b658864c9e7b0091fdf78e4b396e94d1023c81d9ad5295890" => :sierra
   end
 
   depends_on "mcpp"
