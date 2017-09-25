@@ -8,6 +8,7 @@
     root_url "https://zeroc.com/download/homebrew/bottles"
     cellar :any
     sha256 "9f8e7e30b280c470de8b7fdba5144d96e939a6511332da5150d2482f98e21111" => :sierra
+    sha256 "69361c93887378937c82c6dace2fb02f71c0ae49ddb78183984eb6fafdeb7f26" => :high_sierra
   end
 
   keg_only :versioned_formula

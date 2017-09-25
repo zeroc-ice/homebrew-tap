@@ -7,6 +7,7 @@ class Ice < Formula
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
     sha256 "4576f6d64813ef21db581192c10a5ca5cad559bb5719f1f955a3c8f163ff857b" => :sierra
+    sha256 "639b3164b90d95385e763c08d79c900748c7fc0f63ae8b7b466da01a648da836" => :high_sierra
   end
 
   #
