@@ -3,11 +3,18 @@ class Ice < Formula
   homepage "https://zeroc.com"
   url "https://github.com/zeroc-ice/ice/archive/v3.7.0.tar.gz"
   sha256 "809fff14a88a7de1364c846cec771d0d12c72572914e6cc4fb0b2c1861c4a1ee"
+  revision 1
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
-    sha256 "4576f6d64813ef21db581192c10a5ca5cad559bb5719f1f955a3c8f163ff857b" => :sierra
-    sha256 "639b3164b90d95385e763c08d79c900748c7fc0f63ae8b7b466da01a648da836" => :high_sierra
+    sha256 "4116fa6522b9c3f66c37df6ced5c1c11415b6fd5e28600c837535373a8708eb3" => :high_sierra
+    sha256 "0d165faabb2f06045c4ab97711c5fe1b82a30bdc1bf93e913e8277a5bc00ada5" => :sierra
+  end
+
+  # Xcode 9 support
+  patch do
+    url "https://github.com/zeroc-ice/ice/commit/3a55ebb51b8914b60d308a0535d9abf97567138d.patch?full_index=1"
+    sha256 "d95e76acebdae69edf3622f5141ea32bbbd5844be7c29d88e6e985d14a5d5dd4"
   end
 
   #

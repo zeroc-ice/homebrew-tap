@@ -3,10 +3,18 @@ class IceAT36 < Formula
   homepage "https://zeroc.com"
   url "https://github.com/zeroc-ice/ice/archive/v3.6.4.tar.gz"
   sha256 "4f5cc5e09586eab7de7745bbdc5fbf383c59f8fdc561264d4010bba19afdde2a"
+  revision 1
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
-    sha256 "3c88b248701d2cff5e778ab235a08a5cb92aa1b729765078cd1515090710409d" => :sierra
+    sha256 "26b37f8bd5b93a5017f32d285efce1834c93fec9de51edbf2b7b31e7296fbd16" => :high_sierra
+    sha256 "00121dac9f6ae65dea3038d679d347a3e8fa00174f21cd68a4ed3c6100b09144" => :sierra
+  end
+
+  # Xcode 9 support
+  patch do
+    url "https://github.com/zeroc-ice/ice/commit/62b1f9d4d8483e8637eb18a53922e889fa969e0a.patch?full_index=1"
+    sha256 "178754a2753a06b8000759c2b7705b4a58df36b9d62f018eb291cf94a656f0d7"
   end
 
   option "with-java", "Build Ice for Java and the IceGrid Admin app"
