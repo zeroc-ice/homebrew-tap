@@ -5,7 +5,6 @@ class Php56Ice < AbstractPhp56Extension
   desc "Ice for PHP"
   homepage "https://zeroc.com"
   url "https://github.com/zeroc-ice/ice/archive/v3.7.0.tar.gz"
-  version "3.7.0"
   sha256 "809fff14a88a7de1364c846cec771d0d12c72572914e6cc4fb0b2c1861c4a1ee"
 
   bottle do
