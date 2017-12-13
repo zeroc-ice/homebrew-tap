@@ -7,17 +7,9 @@
 #
 # **********************************************************************
 
-require 'formula_assertions'
-include ::Homebrew::Assertions
+require 'tap'
 
-# Modified shell_output which does not print the command
-def run_cmd(cmd, result = 0)
-  output = `#{cmd}`
-  assert_equal result, $?.exitstatus
-  output
-end
-
-phpTapDirectory = run_cmd("brew --repo homebrew/homebrew-php").strip
+phpTapDirectory = Tap.fetch("homebrew/homebrew-php").path
 
 if File.exists?(phpTapDirectory)
     require File.join(phpTapDirectory, "Abstract", "abstract-php-extension")
