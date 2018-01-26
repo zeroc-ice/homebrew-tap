@@ -3,12 +3,11 @@ class Ice < Formula
   homepage "https://zeroc.com"
   url "https://github.com/zeroc-ice/ice/archive/v3.7.0.tar.gz"
   sha256 "809fff14a88a7de1364c846cec771d0d12c72572914e6cc4fb0b2c1861c4a1ee"
-  revision 1
+  revision 2
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
-    sha256 "4116fa6522b9c3f66c37df6ced5c1c11415b6fd5e28600c837535373a8708eb3" => :high_sierra
-    sha256 "0d165faabb2f06045c4ab97711c5fe1b82a30bdc1bf93e913e8277a5bc00ada5" => :sierra
+    sha256 "b35a67c8d1e1589f217f3a7560488441124557b07493d8f6930300da38c908c3" => :high_sierra
   end
 
   # Xcode 9 support
@@ -32,6 +31,8 @@ class Ice < Formula
   depends_on :macos => :mavericks
 
   def install
+    ENV.O2 # Os causes performance issues
+
     # Ensure Gradle uses a writable directory even in sandbox mode
     ENV["GRADLE_USER_HOME"] = "#{buildpath}/.gradle"
 
