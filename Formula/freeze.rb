@@ -15,6 +15,8 @@ class Freeze < Formula
   def install
     args = [
       "prefix=#{prefix}",
+      "install_mandir=#{share}/man",
+      "install_docdir=#{share}/doc/freeze",
       "V=1",
       "ICE_BIN_DIST=all",
       "ICE_HOME=#{Formula["ice"].opt_prefix}",
