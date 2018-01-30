@@ -8,6 +8,7 @@ class Ice < Formula
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
     sha256 "b35a67c8d1e1589f217f3a7560488441124557b07493d8f6930300da38c908c3" => :high_sierra
+    sha256 "b07ebe1515249e2db05e42cba02a97250193fafc41d087d1145a0f88e82c2ebf" => :sierra
   end
 
   # Xcode 9 support
