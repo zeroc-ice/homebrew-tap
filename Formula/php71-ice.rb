@@ -15,7 +15,7 @@ class Php71Ice < AbstractPhp71Extension
   depends_on "ice"
 
   def config_file
-    <<-EOS.undent
+    <<~EOS
       [#{extension}]
       #{extension_type}="#{module_path}"
       include_path="#{opt_prefix}"

@@ -51,7 +51,7 @@ class Ice < Formula
   end
 
   test do
-    (testpath / "Hello.ice").write <<-EOS.undent
+    (testpath / "Hello.ice").write <<~EOS
       module Test
       {
           interface Hello
@@ -60,7 +60,7 @@ class Ice < Formula
           }
       }
     EOS
-    (testpath / "Test.cpp").write <<-EOS.undent
+    (testpath / "Test.cpp").write <<~EOS
       #include <Ice/Ice.h>
       #include <Hello.h>
 
