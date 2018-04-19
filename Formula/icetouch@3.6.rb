@@ -48,7 +48,7 @@ class IcetouchAT36 < Formula
         Ice::CommunicatorPtr communicator;
         communicator = Ice::initialize(argc, argv);
         Ice::ObjectAdapterPtr adapter =
-            communicator->createObjectAdapterWithEndpoints("Hello", "default -h localhost -p 10000");
+            communicator->createObjectAdapterWithEndpoints("Hello", "default -h localhost");
         adapter->add(new HelloI, communicator->stringToIdentity("hello"));
         adapter->activate();
         communicator->destroy();

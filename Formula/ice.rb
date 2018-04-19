@@ -73,7 +73,7 @@ class Ice < Formula
       int main(int argc, char* argv[])
       {
         Ice::CommunicatorHolder ich(argc, argv);
-        auto adapter = ich->createObjectAdapterWithEndpoints("Hello", "default -h localhost -p 10000");
+        auto adapter = ich->createObjectAdapterWithEndpoints("Hello", "default -h localhost");
         adapter->add(std::make_shared<HelloI>(), Ice::stringToIdentity("hello"));
         adapter->activate();
         return 0;
