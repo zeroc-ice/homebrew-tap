@@ -1,8 +1,8 @@
 class PhpIce < Formula
   desc "Ice for PHP"
   homepage "https://zeroc.com"
-  url "https://github.com/zeroc-ice/ice/archive/v3.7.0.tar.gz"
-  sha256 "809fff14a88a7de1364c846cec771d0d12c72572914e6cc4fb0b2c1861c4a1ee"
+  url "https://github.com/zeroc-ice/ice/archive/v3.7.1.tar.gz"
+  sha256 "b1526ab9ba80a3d5f314dacf22674dff005efb9866774903d0efca5a0fab326d"
 
   depends_on "ice"
   depends_on "php"

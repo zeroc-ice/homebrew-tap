@@ -1,20 +1,13 @@
 class Ice < Formula
   desc "Comprehensive RPC framework"
   homepage "https://zeroc.com"
-  url "https://github.com/zeroc-ice/ice/archive/v3.7.0.tar.gz"
-  sha256 "809fff14a88a7de1364c846cec771d0d12c72572914e6cc4fb0b2c1861c4a1ee"
-  revision 2
+  url "https://github.com/zeroc-ice/ice/archive/v3.7.1.tar.gz"
+  sha256 "b1526ab9ba80a3d5f314dacf22674dff005efb9866774903d0efca5a0fab326d"
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
-    sha256 "b35a67c8d1e1589f217f3a7560488441124557b07493d8f6930300da38c908c3" => :high_sierra
-    sha256 "b07ebe1515249e2db05e42cba02a97250193fafc41d087d1145a0f88e82c2ebf" => :sierra
-  end
-
-  # Xcode 9 support
-  patch do
-    url "https://github.com/zeroc-ice/ice/commit/3a55ebb51b8914b60d308a0535d9abf97567138d.patch?full_index=1"
-    sha256 "d95e76acebdae69edf3622f5141ea32bbbd5844be7c29d88e6e985d14a5d5dd4"
+    sha256 "8e57c23280c7e77ba92b5b91a78fab78b1e0f98058ec0e2890ae2cbe174291d7" => :high_sierra
+    sha256 "ee7dfb88da13e2cc8e92d3a44e70dfa205a0ae5650cdb65c055c88ca3b4e7a50" => :sierra
   end
 
   #
@@ -80,16 +73,17 @@ class Ice < Formula
       }
     EOS
     system "#{bin}/slice2cpp", "Hello.ice"
-    system ENV.cxx, "-DICE_CPP11_MAPPING", "-std=c++11", "-c", "-I#{include}", "-I.", "Hello.cpp"
-    system ENV.cxx, "-DICE_CPP11_MAPPING", "-std=c++11", "-c", "-I#{include}", "-I.", "Test.cpp"
-    system ENV.cxx, "-L#{lib}", "-o", "test", "Test.o", "Hello.o", "-lIce++11"
+    system "xcrun", "clang++", "-DICE_CPP11_MAPPING", "-std=c++11", "-c", "-I#{include}", "-I.", "Hello.cpp"
+    system "xcrun", "clang++", "-DICE_CPP11_MAPPING", "-std=c++11", "-c", "-I#{include}", "-I.", "Test.cpp"
+    system "xcrun", "clang++", "-L#{lib}", "-o", "test", "Test.o", "Hello.o", "-lIce++11"
     system "./test"
-    if File.directory?("#{opt_prefix}/sdk")
-      system "xcrun", "--sdk", "macosx", ENV.cxx, "-DICE_CPP11_MAPPING", "-std=c++11", "-c", \
-        "-I#{opt_prefix}/sdk/macosx.sdk/usr/include", "-I.", "Hello.cpp"
-      system "xcrun", "--sdk", "macosx", ENV.cxx, "-DICE_CPP11_MAPPING", "-std=c++11", "-c", \
-        "-I#{opt_prefix}/sdk/macosx.sdk/usr/include", "-I.", "Test.cpp"
-      system "xcrun", "--sdk", "macosx", ENV.cxx, "-L#{opt_prefix}/sdk/macosx.sdk/usr/lib", "-o", "test-sdk", "Test.o", \
+    if File.file?("#{lib}/IceSDK/bin/slice2cpp")
+      system "#{lib}/IceSDK/bin/slice2cpp", "Hello.ice"
+      system "xcrun", "--sdk", "macosx", "clang++", "-DICE_CPP11_MAPPING", "-std=c++11", "-c", \
+        "-I#{lib}/IceSDK/macosx.sdk/usr/include", "-I.", "Hello.cpp"
+      system "xcrun", "--sdk", "macosx", "clang++", "-DICE_CPP11_MAPPING", "-std=c++11", "-c", \
+        "-I#{lib}/IceSDK/macosx.sdk/usr/include", "-I.", "Test.cpp"
+      system "xcrun", "--sdk", "macosx", "clang++", "-L#{lib}/IceSDK/macosx.sdk/usr/lib", "-o", "test-sdk", "Test.o", \
         "Hello.o", "-lIce++11", "-framework", "Security", "-framework", "Foundation", "-lbz2", "-liconv"
       system "./test-sdk"
     end
