@@ -1,3 +1,20 @@
+module Language
+  module PHP
+    def self.versions
+      %w[php@5.6 php@7.0 php@7.1]
+    end
+
+    def self.formulae
+      %w[php] + self.versions
+    end
+
+    def self.get(build)
+      v = self.versions.find { |p| build.with? p }
+      v ? v : "php"
+    end
+  end
+end
+
 class PhpIce < Formula
   desc "Ice for PHP"
   homepage "https://zeroc.com"
@@ -6,22 +23,17 @@ class PhpIce < Formula
 
   depends_on "ice"
 
-  # Allow building against any one php version
-  php_versions = %w[php@5.6 php@7.0 php@7.1]
-  php_versions.each { |php| depends_on php => :optional }
-  depends_on "php" => :recommended unless php_versions.find { |php| build.with? php }
+  Language::PHP.versions.each { |php|
+    option "with-#{php}", "Build for #{php} "
+    depends_on php => :optional
+  }
+  depends_on "php" unless Language::PHP.versions.any? { |php| build.with? php }
 
-  if php_versions.count { |php| build.with?(php) } > 1
-    odie "Only one php formula option can be used."
-  end
-
-  def php_formulae
-    %w[php php@5.6 php@7.0 php@7.1]
+  if Language::PHP.versions.count { |php| build.with? php } > 1
+    odie "Please specify a single php version option or no option to use the latest"
   end
 
   def install
-    php = php_formulae.find { |p| build.with?(p) }
-
     args = [
       "V=1",
       "install_phpdir=#{prefix}",
@@ -29,7 +41,7 @@ class PhpIce < Formula
       "OPTIMIZE=yes",
       "ICE_HOME=#{Formula["ice"].opt_prefix}",
       "ICE_BIN_DIST=cpp",
-      "PHP_CONFIG=#{Formula[php].opt_bin}/php-config",
+      "PHP_CONFIG=#{Formula[Language::PHP.get(build)].opt_bin}/php-config",
     ]
 
     Dir.chdir("php")
@@ -41,7 +53,7 @@ class PhpIce < Formula
   end
 
   def post_install
-    php = php_formulae.find { |p| build.with?(p) }
+    php = Language::PHP.get(build)
     path = ext_config_path(php)
     if path.exist?
       inreplace path,
@@ -58,10 +70,10 @@ class PhpIce < Formula
   end
 
   def caveats
-    config_files = php_formulae.map { |p| ext_config_path(p) }.select { |p| p.exist? }
+    config_files = Language::PHP.formulae.map { |p| ext_config_path(p) }.select { |p| p.exist? }
     return unless config_files
     <<~EOS
-      The following configuration php extension configuration files exist:
+      The following php extension configuration files exist:
 
         #{config_files.join("\n  ")}
 
@@ -70,7 +82,7 @@ class PhpIce < Formula
   end
 
   test do
-    php = php_formulae.find { |p| build.with?(p) }
+    php = Language::PHP.get(build)
     assert_match "ice", shell_output("#{Formula[php].opt_bin}/php -m")
   end
 end
