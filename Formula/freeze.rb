@@ -9,7 +9,7 @@ class Freeze < Formula
     sha256 "1317fb9a27f25baecb83b94f2db1066289f284a528db697316a0b980a4f1cab5" => :sierra
   end
 
-  depends_on "zeroc-ice/tap/ice"
+  depends_on "ice"
   depends_on "berkeley-db@5.3"
 
   def install
