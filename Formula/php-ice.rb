@@ -5,9 +5,23 @@ class PhpIce < Formula
   sha256 "b1526ab9ba80a3d5f314dacf22674dff005efb9866774903d0efca5a0fab326d"
 
   depends_on "ice"
-  depends_on "php"
+
+  # Allow building against any one php version
+  php_versions = %w[php@5.6 php@7.0 php@7.1]
+  php_versions.each { |php| depends_on php => :optional }
+  depends_on "php" => :recommended unless php_versions.find { |php| build.with? php }
+
+  if php_versions.count { |php| build.with?(php) } > 1
+    odie "Only one php formula option can be used."
+  end
+
+  def php_formulae
+    %w[php php@5.6 php@7.0 php@7.1]
+  end
 
   def install
+    php = php_formulae.find { |p| build.with?(p) }
+
     args = [
       "V=1",
       "install_phpdir=#{prefix}",
@@ -15,35 +29,27 @@ class PhpIce < Formula
       "OPTIMIZE=yes",
       "ICE_HOME=#{Formula["ice"].opt_prefix}",
       "ICE_BIN_DIST=cpp",
-      "PHP_CONFIG=#{Formula["php"].opt_bin}/php-config",
+      "PHP_CONFIG=#{Formula[php].opt_bin}/php-config",
     ]
 
     Dir.chdir("php")
     system "make", "install", *args
   end
 
-  def ext_config_path
-    etc/"php/#{Formula["php"].php_version}/conf.d/ext-ice.ini"
-  end
-
-  def caveats
-    <<~EOS
-      The following configuration file was generated:
-
-          #{ext_config_path}
-
-      Do not forget to remove it upon package removal.
-    EOS
+  def ext_config_path(php)
+    etc/"php/#{Formula[php].php_version}/conf.d/ext-ice.ini"
   end
 
   def post_install
-    if ext_config_path.exist?
-      inreplace ext_config_path,
+    php = php_formulae.find { |p| build.with?(p) }
+    path = ext_config_path(php)
+    if path.exist?
+      inreplace path,
         /extension=.*$/, "extension=#{opt_prefix}/ice.so"
-      inreplace ext_config_path,
+      inreplace path,
         /include_path=.*$/, "include_path=#{opt_prefix}"
     else
-      ext_config_path.write <<~EOS
+      path.write <<~EOS
         [ice]
         extension="#{opt_prefix}/ice.so"
         include_path="#{opt_prefix}"
@@ -51,7 +57,20 @@ class PhpIce < Formula
     end
   end
 
+  def caveats
+    config_files = php_formulae.map { |p| ext_config_path(p) }.select { |p| p.exist? }
+    return unless config_files
+    <<~EOS
+      The following configuration php extension configuration files exist:
+
+        #{config_files.join("\n  ")}
+
+      Do not forget to remove them upon package removal.
+    EOS
+  end
+
   test do
-    assert_match "ice", shell_output("#{Formula["php"].opt_bin}/php -m")
+    php = php_formulae.find { |p| build.with?(p) }
+    assert_match "ice", shell_output("#{Formula[php].opt_bin}/php -m")
   end
 end
