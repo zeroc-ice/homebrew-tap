@@ -5,6 +5,7 @@ class Freeze < Formula
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
+    sha256 "b3ed4d69c4d90946189948d724afe0d9b8a81199abb144b2caf4233fb1282cf9" => :mojave
     sha256 "b12c972a070b963aca72a37609d646e5c3f29356e8b6debb254ec9457da1eb18" => :high_sierra
     sha256 "1317fb9a27f25baecb83b94f2db1066289f284a528db697316a0b980a4f1cab5" => :sierra
   end
