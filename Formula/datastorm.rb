@@ -1,5 +1,5 @@
 class Datastorm < Formula
-  desc "Data distribution service"
+  desc "Data centric publish subscribe"
   homepage "https://zeroc.com"
   url "https://github.com/zeroc-ice/datastorm/archive/v0.1.0.tar.gz"
   sha256 "e62cd1cc4c2f49294db80a6e8fa316e17ef1e64aa5d704e9f95fddc1e244eedc"
