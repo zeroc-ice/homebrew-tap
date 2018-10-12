@@ -3,11 +3,13 @@ class Ice < Formula
   homepage "https://zeroc.com"
   url "https://github.com/zeroc-ice/ice/archive/v3.7.1.tar.gz"
   sha256 "b1526ab9ba80a3d5f314dacf22674dff005efb9866774903d0efca5a0fab326d"
+  revision 1
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
-    sha256 "8e57c23280c7e77ba92b5b91a78fab78b1e0f98058ec0e2890ae2cbe174291d7" => :high_sierra
-    sha256 "ee7dfb88da13e2cc8e92d3a44e70dfa205a0ae5650cdb65c055c88ca3b4e7a50" => :sierra
+    sha256 "b41b082fb6f86b55590417546e28a1fe5960d1245679a6ff875aae842ac5adf5" => :mojave
+    # sha256 "8e57c23280c7e77ba92b5b91a78fab78b1e0f98058ec0e2890ae2cbe174291d7" => :high_sierra
+    # sha256 "ee7dfb88da13e2cc8e92d3a44e70dfa205a0ae5650cdb65c055c88ca3b4e7a50" => :sierra
   end
 
   #
@@ -23,6 +25,11 @@ class Ice < Formula
   depends_on :macos => :mavericks
   depends_on "mcpp"
   depends_on :java => ["1.8+", :optional]
+
+  patch do
+    url "https://github.com/zeroc-ice/ice/compare/v3.7.1..v3.7.1-xcode10.patch?full_index=1"
+    sha256 "28eff5dd6cb6065716a7664f3973213a2e5186ddbdccb1c1c1d832be25490f1b"
+  end
 
   def install
     ENV.O2 # Os causes performance issues
