@@ -1,4 +1,4 @@
- class BerkeleyDbAT53 < Formula
+class BerkeleyDbAT53 < Formula
   desc "High performance key/value database"
   homepage "http://www.oracle.com/technology/products/berkeley-db/index.html"
   url "https://zeroc.com/download/homebrew/db-5.3.28.NC.brew.tar.gz"
@@ -31,14 +31,14 @@
     inreplace "dist/Makefile.in", "@JAVACFLAGS@", "@JAVACFLAGS@ -source 1.7 -target 1.7"
 
     # Fix issue with Clang build
-    [ "src/dbinc/atomic.h",
-      "src/mp/mp_fget.c",
-      "src/mutex/mut_method.c",
-      "src/mutex/mut_tas.c",
-      "src/mp/mp_mvcc.c",
-      "src/mp/mp_region.c"].each { |f|
-        inreplace f, "atomic_init", "atomic_init_db"
-    }
+    ["src/dbinc/atomic.h",
+     "src/mp/mp_fget.c",
+     "src/mutex/mut_method.c",
+     "src/mutex/mut_tas.c",
+     "src/mp/mp_mvcc.c",
+     "src/mp/mp_region.c"].each do |f|
+      inreplace f, "atomic_init", "atomic_init_db"
+    end
 
     inreplace "dist/Makefile.in", "@JAVACFLAGS@", "@JAVACFLAGS@ -source 1.7 -target 1.7"
 
