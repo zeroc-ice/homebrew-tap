@@ -27,3 +27,9 @@ brew install zeroc-ice/tap/<formula>
 | [`ice@3.6`](Formula/ice@3.6.rb)                     | `ice36`         | [Ice 3.6](https://doc.zeroc.com/display/Ice36/Using+the+macOS+Binary+Distribution)             | Y       |
 | [`icetouch@3.6`](Formula/icetouch@3.6.rb)           | `icetouch36`    | [Ice Touch 3.6](https://doc.zeroc.com/display/Ice36/Using+the+Ice+Touch+Binary+Distribution)   | Y       |
 | [`berkeley-db@5.3`](Formula/berkeley-db@5.3.rb)     | `berkeley-db53` | Berkeley DB 5.3, keg-only                                                                      | Y       |
+
+## Casks
+
+| Name                                | Description                                                                            |
+| ----------------------------------- | ---------------------------------------------------------------------------------------|
+| [`icegridgui`](Casks/icegridgui.rb) | [IceGrid GUI 3.7](https://doc.zeroc.com/ice/3.7/ice-services/icegrid/icegrid-gui-tool) |
