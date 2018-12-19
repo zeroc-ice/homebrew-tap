@@ -30,9 +30,9 @@ brew install zeroc-ice/tap/<formula>
 
 ## Casks
 
-| Name               | Description           |
-| ------------------ | ----------------------|
-| [`icegridgui`][20] | [IceGrid GUI 3.7][21] |
+| Name               | Description           | License                    |
+| ------------------ | ----------------------| -------------------------- |
+| [`icegridgui`][20] | [IceGrid GUI 3.7][21] | [GPLv2 and Commercial][3]  |
 
 
 [1]: Formula/ice.rb
