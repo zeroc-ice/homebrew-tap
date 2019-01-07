@@ -34,7 +34,6 @@ brew install zeroc-ice/tap/<formula>
 | ------------------ | ----------------------| -------------------------- |
 | [`icegridgui`][20] | [IceGrid GUI 3.7][21] | [GPLv2 and Commercial][3]  |
 
-
 [1]: Formula/ice.rb
 [2]: https://doc.zeroc.com/display/Ice37/Using+the+macOS+Binary+Distribution
 [3]: https://github.com/zeroc-ice/ice#copyright-and-license
