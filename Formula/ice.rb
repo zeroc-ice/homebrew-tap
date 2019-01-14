@@ -24,7 +24,7 @@ class Ice < Formula
   depends_on "lmdb"
   depends_on :macos => :mavericks
   depends_on "mcpp"
-  depends_on :java => ["1.8+", :optional]
+  depends_on :java => ["1.8", :optional]
 
   patch do
     url "https://github.com/zeroc-ice/ice/compare/v3.7.1..v3.7.1-xcode10.patch?full_index=1"
