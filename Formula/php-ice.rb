@@ -1,37 +1,19 @@
-module Language
-  module PHP
-    def self.versions
-      %w[php@5.6 php@7.0 php@7.1]
-    end
-
-    def self.formulae
-      %w[php] + self.versions
-    end
-
-    def self.get(build)
-      v = self.versions.find { |p| build.with? p }
-      v ? v : "php"
-    end
-  end
-end
-
 class PhpIce < Formula
   desc "Ice for PHP"
   homepage "https://zeroc.com"
-  url "https://github.com/zeroc-ice/ice/archive/v3.7.1.tar.gz"
-  sha256 "b1526ab9ba80a3d5f314dacf22674dff005efb9866774903d0efca5a0fab326d"
+  url "https://github.com/zeroc-ice/ice/archive/v3.7.2.tar.gz"
+  sha256 "e329a24abf94a4772a58a0fe61af4e707743a272c854552eef3d7833099f40f9"
 
-  depends_on "ice"
-
-  Language::PHP.versions.each { |php|
-    option "with-#{php}", "Build for #{php} "
-    depends_on php => :optional
-  }
-  depends_on "php" unless Language::PHP.versions.any? { |php| build.with? php }
-
-  if Language::PHP.versions.count { |php| build.with? php } > 1
-    odie "Please specify a single php version option or no option to use the latest"
+  bottle do
+    root_url "https://zeroc.com/download/homebrew/bottles"
+    cellar :any_skip_relocation
+    sha256 "5b8f5a96019c11eabf2018570ca4254b3d16cc90612befb50ae7c4830cffdde1" => :mojave
+    sha256 "34e2ae545c2d6efeb6bbe8ef1b543f925444c476a2879428db91ef2504259479" => :high_sierra
+    sha256 "3f8f59ecd52817e96700d63199c45e473ef190bf63771cdf3f68f2158781b397" => :sierra
   end
+
+  depends_on "php"
+  depends_on "zeroc-ice/dist-utils/ice" # always test against a dist-utils build
 
   def install
     args = [
@@ -41,27 +23,25 @@ class PhpIce < Formula
       "OPTIMIZE=yes",
       "ICE_HOME=#{Formula["ice"].opt_prefix}",
       "ICE_BIN_DIST=cpp",
-      "PHP_CONFIG=#{Formula[Language::PHP.get(build)].opt_bin}/php-config",
+      "PHP_CONFIG=#{Formula["php"].opt_bin}/php-config",
     ]
 
     Dir.chdir("php")
     system "make", "install", *args
   end
 
-  def ext_config_path(php)
-    etc/"php/#{Formula[php].php_version}/conf.d/ext-ice.ini"
+  def ext_config_path
+    etc/"php/#{Formula["php"].php_version}/conf.d/ext-ice.ini"
   end
 
   def post_install
-    php = Language::PHP.get(build)
-    path = ext_config_path(php)
-    if path.exist?
-      inreplace path,
+    if ext_config_path.exist?
+      inreplace ext_config_path,
         /extension=.*$/, "extension=#{opt_prefix}/ice.so"
-      inreplace path,
+      inreplace ext_config_path,
         /include_path=.*$/, "include_path=#{opt_prefix}"
     else
-      path.write <<~EOS
+      ext_config_path.write <<~EOS
         [ice]
         extension="#{opt_prefix}/ice.so"
         include_path="#{opt_prefix}"
@@ -70,19 +50,16 @@ class PhpIce < Formula
   end
 
   def caveats
-    config_files = Language::PHP.formulae.map { |p| ext_config_path(p) }.select { |p| p.exist? }
-    return unless config_files
     <<~EOS
-      The following php extension configuration files exist:
+      The following configuration file was generated:
 
-        #{config_files.join("\n  ")}
+          #{ext_config_path}
 
-      Do not forget to remove them upon package removal.
+      Do not forget to remove it upon package removal.
     EOS
   end
 
   test do
-    php = Language::PHP.get(build)
-    assert_match "ice", shell_output("#{Formula[php].opt_bin}/php -m")
+    assert_match "ice", shell_output("#{Formula["php"].opt_bin}/php -m")
   end
 end
