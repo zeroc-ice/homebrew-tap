@@ -13,7 +13,7 @@ class PhpIce < Formula
   end
 
   depends_on "php"
-  depends_on "zeroc-ice/dist-utils/ice" # always test against a dist-utils build
+  depends_on "ice"
 
   def install
     args = [

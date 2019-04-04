@@ -16,7 +16,6 @@ class Ice < Formula
   option "without-xcode-sdk", "Build without the Xcode SDK for iOS development"
 
   depends_on "lmdb"
-  depends_on :macos => :mavericks
   depends_on "mcpp"
   depends_on :java => ["1.8+", :optional]
 
