@@ -2,7 +2,7 @@ class Slice2swift < Formula
     desc "slice2swift compiler for Ice for Swift"
     homepage "https://zeroc.com"
     url "https://github.com/zeroc-ice/ice.git", :tag => "swift"
-    version "3.7.2-swift"
+    version "3.7.2-beta1-swift"
 
     depends_on "mcpp"
 
@@ -18,6 +18,8 @@ class Slice2swift < Formula
       Dir.chdir("cpp")
       system "make", "slice2cpp_install", *args
       system "make", "slice2swift_install", *args
+
+      pkgshare.install "../slice"
 
       (libexec/"bin").mkpath
       %w[slice2cpp].each do |r|
