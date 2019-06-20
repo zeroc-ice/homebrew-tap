@@ -2,7 +2,7 @@ class Slice2swift < Formula
   desc "slice2swift compiler for Ice for Swift"
   homepage "https://zeroc.com"
   url "https://github.com/zeroc-ice/ice/archive/v3.7-beta1-swift.tar.gz"
-  sha256 "46f3532b3b602935fbfbd4ead51db2fdf5c26d0c052bf351d3bf17b62726764b"
+  sha256 "0cece36333df310895be5b2b921efb85a5b052bbcf31772e6001a0d08d40a0d5"
 
   depends_on "mcpp"
 
