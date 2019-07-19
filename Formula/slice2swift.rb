@@ -1,15 +1,15 @@
 class Slice2swift < Formula
   desc "slice2swift compiler for Ice for Swift"
   homepage "https://zeroc.com"
-  url "https://github.com/zeroc-ice/ice/archive/v3.7-beta1-swift.tar.gz"
-  sha256 "0cece36333df310895be5b2b921efb85a5b052bbcf31772e6001a0d08d40a0d5"
+  url "https://github.com/zeroc-ice/ice/archive/v3.7-beta2-swift.tar.gz"
+  sha256 "1c1a2d168b853878b8665ccb1a01f15216634297610d5287eed6cb913d9bdd3d"
 
   depends_on "mcpp"
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
     cellar :any
-    sha256 "1570e3bc17083e6e107e933eaf3269ea57c5af1ac2cb3e9298c62e045103b167" => :mojave
+    sha256 "6bc345be8f125aeeef5df9e6306114520f3cc8a61065fed0c24ca43919f36ab3" => :mojave
   end
 
   def install
