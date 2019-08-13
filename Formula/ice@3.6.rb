@@ -9,12 +9,9 @@ class IceAT36 < Formula
     sha256 "d2a081a02c342831dbac5f0368c41d8b93c8b468c93dfb8f89427d7322ee28fc" => :mojave
   end
 
-  option "with-java", "Build Ice for Java and the IceGrid Admin app"
-
   depends_on "berkeley-db@5.3"
   depends_on "mcpp"
   depends_on "php"
-  depends_on java: ["1.7+", :optional]
 
   def install
     inreplace "cpp/src/slice2js/Makefile", /install:/, "dontinstall:"
@@ -44,12 +41,6 @@ class IceAT36 < Formula
 
     cd "objective-c" do
       system "make", "install", *args
-    end
-
-    if build.with? "java"
-      cd "java" do
-        system "make", "install", *args
-      end
     end
 
     cd "php" do
