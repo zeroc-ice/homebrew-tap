@@ -1,28 +1,20 @@
 class IceAT36 < Formula
   desc "Comprehensive RPC framework"
   homepage "https://zeroc.com"
-  url "https://github.com/zeroc-ice/ice/archive/v3.6.4.tar.gz"
-  sha256 "4f5cc5e09586eab7de7745bbdc5fbf383c59f8fdc561264d4010bba19afdde2a"
-  revision 1
+  url "https://github.com/zeroc-ice/ice/archive/v3.6.5.tar.gz"
+  sha256 "5c308c24c9721dd614d28cf5a5fa9ac19736f7a8ab894f9fd05fe5b9ac0be4fe"
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
-    sha256 "26b37f8bd5b93a5017f32d285efce1834c93fec9de51edbf2b7b31e7296fbd16" => :high_sierra
-    sha256 "00121dac9f6ae65dea3038d679d347a3e8fa00174f21cd68a4ed3c6100b09144" => :sierra
-  end
-
-  # Xcode 9 support
-  patch do
-    url "https://github.com/zeroc-ice/ice/commit/62b1f9d4d8483e8637eb18a53922e889fa969e0a.patch?full_index=1"
-    sha256 "178754a2753a06b8000759c2b7705b4a58df36b9d62f018eb291cf94a656f0d7"
+    sha256 "d2a081a02c342831dbac5f0368c41d8b93c8b468c93dfb8f89427d7322ee28fc" => :mojave
   end
 
   option "with-java", "Build Ice for Java and the IceGrid Admin app"
 
   depends_on "berkeley-db@5.3"
   depends_on "mcpp"
-  depends_on :java => ["1.7+", :optional]
-  depends_on :macos => :mavericks
+  depends_on "php"
+  depends_on java: ["1.7+", :optional]
 
   def install
     inreplace "cpp/src/slice2js/Makefile", /install:/, "dontinstall:"
@@ -68,14 +60,14 @@ class IceAT36 < Formula
   end
 
   test do
-    (testpath/"Hello.ice").write <<~EOS
+    (testpath/"Hello.ice").write <<-EOS.undent
       module Test {
         interface Hello {
           void sayHello();
         };
       };
     EOS
-    (testpath/"Test.cpp").write <<~EOS
+    (testpath/"Test.cpp").write <<-EOS.undent
       #include <Ice/Ice.h>
       #include <Hello.h>
 
@@ -88,7 +80,7 @@ class IceAT36 < Formula
         Ice::CommunicatorPtr communicator;
         communicator = Ice::initialize(argc, argv);
         Ice::ObjectAdapterPtr adapter =
-            communicator->createObjectAdapterWithEndpoints("Hello", "default -h localhost");
+            communicator->createObjectAdapterWithEndpoints("Hello", "default -h localhost -p 10000");
         adapter->add(new HelloI, communicator->stringToIdentity("hello"));
         adapter->activate();
         communicator->destroy();
@@ -100,8 +92,5 @@ class IceAT36 < Formula
     system "xcrun", "clang++", "-c", "-I#{include}", "-I.", "Test.cpp"
     system "xcrun", "clang++", "-L#{lib}", "-o", "test", "Test.o", "Hello.o", "-lIce", "-lIceUtil"
     system "./test", "--Ice.InitPlugins=0"
-    system "/usr/bin/php", "-d", "extension_dir=#{lib}/php/extensions",
-                           "-d", "extension=IcePHP.dy",
-                           "-r", "extension_loaded('ice') ? exit(0) : exit(1);"
   end
 end
