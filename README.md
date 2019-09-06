@@ -16,6 +16,11 @@ To install a formula:
 brew install zeroc-ice/tap/<formula>
 ```
 
+To install a cask:
+```
+brew cask install zeroc-ice/tap/<cask>
+```
+
 ## Formulae
 
 | Name                   | Aliases           | Description                | Bottled | License                    |
@@ -30,9 +35,10 @@ brew install zeroc-ice/tap/<formula>
 
 ## Casks
 
-| Name               | Description           | License                    |
-| ------------------ | ----------------------| -------------------------- |
-| [`icegridgui`][20] | [IceGrid GUI 3.7][21] | [GPLv2 and Commercial][3]  |
+| Name                 | Description           | License                    |
+| -------------------- | ----------------------| -------------------------- |
+| [`icegridgui`][20]   | [IceGrid GUI 3.7][21] | [GPLv2 and Commercial][3]  |
+| [`icegridgui36`][22] | [IceGrid GUI 3.6][23] | [GPLv2 and Commercial][3]  |
 
 [1]: Formula/ice.rb
 [2]: https://doc.zeroc.com/display/Ice37/Using+the+macOS+Binary+Distribution
@@ -62,3 +68,6 @@ brew install zeroc-ice/tap/<formula>
 
 [20]: Casks/icegridgui.rb
 [21]: https://doc.zeroc.com/ice/3.7/ice-services/icegrid/icegrid-gui-tool
+
+[22]: Casks/icegridgui36.rb
+[23]: https://doc.zeroc.com/ice/3.6/ice-services/icegrid/icegrid-admin-graphical-tool
