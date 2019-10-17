@@ -1,6 +1,6 @@
 cask 'icegridgui36' do
     version '3.6.5'
-    sha256 '04a0a964ad027b8482e02f595af8ee2bcdeb8e51781953b77a622cf35ac8aa68'
+    sha256 'aecffd7cab6ae5474ac1e2e5ceb057e064a13105e45d17340508e5ccfd3108cb'
 
     url "https://zeroc.com/download/ice/3.6/IceGridAdmin-3.6.5.dmg"
     name 'IceGrid Admin'
