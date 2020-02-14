@@ -1,14 +1,13 @@
 class Datastorm < Formula
   desc "Data centric pub/sub framework based on Ice"
   homepage "https://zeroc.com"
-  url "https://github.com/zeroc-ice/datastorm/archive/v0.1.0.tar.gz"
-  sha256 "e62cd1cc4c2f49294db80a6e8fa316e17ef1e64aa5d704e9f95fddc1e244eedc"
+  url "https://github.com/zeroc-ice/datastorm/archive/v0.2.0.tar.gz"
+  sha256 "ae3e4e80b1a00c4fac7f8f2b23a16e485422601117fc71790bbe851a2db7b190"
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
     cellar :any_skip_relocation
-    sha256 "235a3e40cc7af0a48a0431bf6f0872fffa3139147cc57a1bebed4770918867a6" => :mojave
-    sha256 "336655ff5225da962724d592a70a3d829f20b99e3999f81c2cdfbc29efad55df" => :high_sierra
+    sha256 "aa25970c4903cea68548559018907ac41993e5aff1f728492bec9e751c0ba222" => :catalina
   end
 
   depends_on "ice"
