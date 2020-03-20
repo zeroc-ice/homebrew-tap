@@ -41,13 +41,14 @@ class Ice < Formula
     end
   end
 
-  def caveats; <<~EOS
-    slice2py, slice2js and slice2rb were installed in:
+  def caveats
+    <<~EOS
+      slice2py, slice2js and slice2rb were installed in:
 
-      #{opt_libexec}/bin
+        #{opt_libexec}/bin
 
-    You may wish to add this directory to your PATH.
-  EOS
+      You may wish to add this directory to your PATH.
+    EOS
   end
 
   test do
@@ -90,8 +91,8 @@ class Ice < Formula
         "-I#{lib}/IceSDK/macosx.sdk/usr/include", "-I.", "Hello.cpp"
       system "xcrun", "--sdk", "macosx", "clang++", "-DICE_CPP11_MAPPING", "-std=c++11", "-c", \
         "-I#{lib}/IceSDK/macosx.sdk/usr/include", "-I.", "Test.cpp"
-      system "xcrun", "--sdk", "macosx", "clang++", "-L#{lib}/IceSDK/macosx.sdk/usr/lib", "-o", "test-sdk", "Test.o", \
-        "Hello.o", "-lIce++11", "-framework", "Security", "-framework", "Foundation", "-lbz2", "-liconv"
+      system "xcrun", "--sdk", "macosx", "clang++", "-L#{lib}/IceSDK/macosx.sdk/usr/lib", "-o", "test-sdk", \
+        "Test.o", "Hello.o", "-lIce++11", "-framework", "Security", "-framework", "Foundation", "-lbz2", "-liconv"
       system "./test-sdk"
     end
   end
