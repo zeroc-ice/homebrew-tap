@@ -3,11 +3,12 @@ class Ice < Formula
   homepage "https://zeroc.com"
   url "https://github.com/zeroc-ice/ice/archive/v3.7.3.tar.gz"
   sha256 "7cbfac83684a7434499f165e784a7a7bb5b89140717537067d7b969eccc111eb"
+  revision 1
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
-    cellar :any_skip_relocation
-    sha256 "6607681985aae4ab3bb02ac3007cd9abf2809235b74c930bd50b76c773ec65d9" => :catalina
+    cellar :any
+    sha256 "cb257ae6deb585e358ea2c995e7cd2848a4053c30e2075645601df76a03f7124" => :catalina
   end
 
   option "with-java", "Build the Ice for Java jar files"
@@ -16,6 +17,11 @@ class Ice < Formula
   depends_on "lmdb"
   depends_on "mcpp"
   depends_on :java => ["1.8+", :optional]
+
+  patch do
+    url "https://github.com/zeroc-ice/ice/commit/c6306e50ce3e5d48c3a0b0e3aab4129c3f430eeb.patch?full_index=1"
+    sha256 "09178ee9792587411df6592a4c2a6d01ea7b706cf68d0d5501c0e91d398e0c38"
+  end
 
   def install
     ENV.O2 # Os causes performance issues
