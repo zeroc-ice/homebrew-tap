@@ -41,7 +41,8 @@ class Datastorm < Formula
       }
     EOS
     system "xcrun", "clang++", "-std=c++11", "-c", "-I#{include}", "Test.cpp"
-    system "xcrun", "clang++", "-L#{lib}", "-L#{Formula["ice"].lib}", "-o", "test", "Test.o", "-lDataStorm", "-lIce++11"
+    system "xcrun", "clang++", "-L#{lib}", "-L#{Formula["ice"].lib}", "-o", "test", "Test.o", "-lDataStorm",
+      "-lIce++11"
     system "./test"
   end
 end
