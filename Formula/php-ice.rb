@@ -1,17 +1,17 @@
 class PhpIce < Formula
   desc "Ice for PHP"
   homepage "https://zeroc.com"
-  url "https://github.com/zeroc-ice/ice/archive/v3.7.3.tar.gz"
-  sha256 "7cbfac83684a7434499f165e784a7a7bb5b89140717537067d7b969eccc111eb"
+  url "https://github.com/zeroc-ice/ice/archive/v3.7.4.tar.gz"
+  sha256 "57f200bd2916799bce12960e579d9f9e5b6a9801addaf93d97bb4ce15c760a44"
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
     cellar :any_skip_relocation
-    sha256 "e4013bbf89519ea25e592ac37f779fbdd827b724ebc551f508fe7884d6f6783a" => :catalina
+    sha256 "0a6e84e94c33eca14624b46441d93b0a73f5976e114d98c411ca6cfc0a7d26a4" => :catalina
   end
 
   depends_on "php"
-  depends_on "ice"
+  depends_on "zeroc-ice/tap/ice"
 
   def install
     args = [
