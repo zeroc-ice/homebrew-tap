@@ -1,14 +1,12 @@
 class Freeze < Formula
   desc "Persistent Storage for Ice Objects"
   homepage "https://zeroc.com"
-  url "https://github.com/zeroc-ice/freeze.git", :tag => "v3.7.2"
+  url "https://github.com/zeroc-ice/freeze.git", :tag => "v3.7.4"
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
     cellar :any_skip_relocation
-    sha256 "59c893dd8aa6d339a9fee5dd117d9c90d4e8c9cb535687a2ce006fb42ad244cf" => :mojave
-    sha256 "2df5be2cf5da1cefdac3bd0760bc60ce287c1028aa528e5a6bde541a5f72881d" => :high_sierra
-    sha256 "2523ee1e82261ef310297214629992547c643f8c1c33ca5aae4fc5c46775c63e" => :sierra
+    sha256 "5f3992cdf3fd49088580bed60627b0c51cbdee44953a84a3f2047e1ff1e352dc" => :catalina
   end
 
   depends_on "zeroc-ice/tap/ice"
