@@ -1,8 +1,8 @@
 cask 'icegridgui' do
-  version '3.7.3'
-  sha256 'd246e1eafedfa990ae88c4084fa87ea1de1410fd795aeab3c9595483364d27a0'
+  version '3.7.4'
+  sha256 '8c8738ff15a72f19f59690846db70db989a2081e2f08557b122d11d6ea08b17d'
 
-  url "https://zeroc.com/download/ice/3.7/IceGridGUI-3.7.3.dmg"
+  url "https://zeroc.com/download/ice/3.7/IceGridGUI-3.7.4.dmg"
   name 'IceGrid GUI'
   homepage 'https://zeroc.com'
 
