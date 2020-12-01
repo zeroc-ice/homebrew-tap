@@ -14,7 +14,7 @@ class BerkeleyDbAT53 < Formula
 
   keg_only :versioned_formula
 
-  depends_on :java => ["1.8", :build]
+  depends_on "openjdk@8" => :build
 
   def install
     # BerkeleyDB dislikes parallel builds
