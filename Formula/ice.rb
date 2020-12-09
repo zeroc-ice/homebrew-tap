@@ -15,7 +15,7 @@ class Ice < Formula
 
   depends_on "lmdb"
   depends_on "mcpp"
-  depends_on :java => ["1.8+", :optional]
+  depends_on "openjdk@11" => :optional
 
   def install
     ENV.O2 # Os causes performance issues
