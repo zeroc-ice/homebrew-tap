@@ -16,6 +16,7 @@ class PhpIce < Formula
   def install
     args = [
       "V=1",
+      "USR_DIR_INSTALL=yes",
       "install_phpdir=#{prefix}",
       "install_phplibdir=#{prefix}",
       "OPTIMIZE=yes",
