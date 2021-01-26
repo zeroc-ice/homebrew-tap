@@ -1,13 +1,13 @@
 class PhpIce < Formula
   desc "Ice for PHP"
   homepage "https://zeroc.com"
-  url "https://github.com/zeroc-ice/ice/archive/v3.7.4.tar.gz"
-  sha256 "57f200bd2916799bce12960e579d9f9e5b6a9801addaf93d97bb4ce15c760a44"
+  url "https://github.com/zeroc-ice/ice/archive/v3.7.5.tar.gz"
+  sha256 "36bf45591a95e6ee7216153d45d8eca05ff00c1da35608f0c400e6ddc8049da9"
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
     cellar :any_skip_relocation
-    sha256 "0a6e84e94c33eca14624b46441d93b0a73f5976e114d98c411ca6cfc0a7d26a4" => :catalina
+    sha256 "d89c053522516fe6cf191838bf1ea9a5f9bca4860703dc6bc4f48b51e3216eb8" => :big_sur
   end
 
   depends_on "php"
@@ -29,7 +29,7 @@ class PhpIce < Formula
   end
 
   def ext_config_path
-    etc/"php/#{Formula["php"].php_version}/conf.d/ext-ice.ini"
+    etc/"php/#{Formula["php"].version.major_minor}/conf.d/ext-ice.ini"
   end
 
   def post_install

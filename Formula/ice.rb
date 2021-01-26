@@ -1,13 +1,13 @@
 class Ice < Formula
   desc "Comprehensive RPC framework"
   homepage "https://zeroc.com"
-  url "https://github.com/zeroc-ice/ice/archive/v3.7.4.tar.gz"
-  sha256 "57f200bd2916799bce12960e579d9f9e5b6a9801addaf93d97bb4ce15c760a44"
+  url "https://github.com/zeroc-ice/ice/archive/v3.7.5.tar.gz"
+  sha256 "36bf45591a95e6ee7216153d45d8eca05ff00c1da35608f0c400e6ddc8049da9"
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
     cellar :any
-    sha256 "00f2b2e6a492b3321c5fa987ba9ca5ca13bce180ccf6124eda2f2d656ee59ad2" => :catalina
+    sha256 "801ca445509d3677d1df60bcbbd49f10a19d2355fbb8f27264e3523974579354" => :big_sur
   end
 
   option "with-java", "Build the Ice for Java jar files"
@@ -18,8 +18,6 @@ class Ice < Formula
   depends_on "openjdk@11" => :optional
 
   def install
-    ENV.O2 # Os causes performance issues
-
     # Ensure Gradle uses a writable directory even in sandbox mode
     ENV["GRADLE_USER_HOME"] = "#{buildpath}/.gradle"
 
