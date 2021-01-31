@@ -16,12 +16,6 @@ class IceAT36 < Formula
   def install
     inreplace "cpp/src/slice2js/Makefile", /install:/, "dontinstall:"
 
-    # Unset ICE_HOME as it interferes with the build
-    ENV.delete("ICE_HOME")
-    ENV.delete("USE_BIN_DIST")
-    ENV.delete("CPPFLAGS")
-    ENV.O2
-
     # Ensure Gradle uses a writable directory even in sandbox mode
     ENV["GRADLE_USER_HOME"] = buildpath/".gradle"
 

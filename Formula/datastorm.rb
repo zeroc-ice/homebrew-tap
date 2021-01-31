@@ -13,7 +13,6 @@ class Datastorm < Formula
   depends_on "ice"
 
   def install
-    ENV.O2 # Os causes performance issues
     args = [
       "prefix=#{prefix}",
       "V=1",
