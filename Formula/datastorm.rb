@@ -6,8 +6,7 @@ class Datastorm < Formula
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
-    cellar :any_skip_relocation
-    sha256 "aa25970c4903cea68548559018907ac41993e5aff1f728492bec9e751c0ba222" => :catalina
+    sha256 cellar: :any_skip_relocation, catalina: "aa25970c4903cea68548559018907ac41993e5aff1f728492bec9e751c0ba222"
   end
 
   depends_on "ice"

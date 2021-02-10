@@ -6,10 +6,9 @@ class BerkeleyDbAT53 < Formula
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
-    cellar :any
-    sha256 "a404ddc506a8bfc68951c22773a04da62fd6daf5c60a82a736994fe4046b1044" => :mojave
-    sha256 "69361c93887378937c82c6dace2fb02f71c0ae49ddb78183984eb6fafdeb7f26" => :high_sierra
-    sha256 "9f8e7e30b280c470de8b7fdba5144d96e939a6511332da5150d2482f98e21111" => :sierra
+    sha256 cellar: :any, mojave:      "a404ddc506a8bfc68951c22773a04da62fd6daf5c60a82a736994fe4046b1044"
+    sha256 cellar: :any, high_sierra: "69361c93887378937c82c6dace2fb02f71c0ae49ddb78183984eb6fafdeb7f26"
+    sha256 cellar: :any, sierra:      "9f8e7e30b280c470de8b7fdba5144d96e939a6511332da5150d2482f98e21111"
   end
 
   keg_only :versioned_formula

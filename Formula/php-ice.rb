@@ -6,8 +6,7 @@ class PhpIce < Formula
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
-    cellar :any_skip_relocation
-    sha256 "d89c053522516fe6cf191838bf1ea9a5f9bca4860703dc6bc4f48b51e3216eb8" => :big_sur
+    sha256 cellar: :any_skip_relocation, big_sur: "d89c053522516fe6cf191838bf1ea9a5f9bca4860703dc6bc4f48b51e3216eb8"
   end
 
   depends_on "php"

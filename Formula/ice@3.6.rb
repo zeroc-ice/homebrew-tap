@@ -6,7 +6,7 @@ class IceAT36 < Formula
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
-    sha256 "d2a081a02c342831dbac5f0368c41d8b93c8b468c93dfb8f89427d7322ee28fc" => :mojave
+    sha256 mojave: "d2a081a02c342831dbac5f0368c41d8b93c8b468c93dfb8f89427d7322ee28fc"
   end
 
   depends_on "berkeley-db@5.3"
