@@ -1,12 +1,12 @@
 class PhpIce < Formula
   desc "Ice for PHP"
   homepage "https://zeroc.com"
-  url "https://github.com/zeroc-ice/ice/archive/v3.7.5.tar.gz"
-  sha256 "36bf45591a95e6ee7216153d45d8eca05ff00c1da35608f0c400e6ddc8049da9"
+  url "https://github.com/zeroc-ice/ice/archive/v3.7.6.tar.gz"
+  sha256 "75b18697c0c74f363bd0b85943f15638736e859c26778337cbfe72d31f5cfb47"
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
-    sha256 cellar: :any_skip_relocation, big_sur: "d89c053522516fe6cf191838bf1ea9a5f9bca4860703dc6bc4f48b51e3216eb8"
+    sha256 big_sur: "46b2145edb092fd6bafa5c38454c79d418e4052c51164cb212988c1fd5453147"
   end
 
   depends_on "php"
@@ -14,18 +14,19 @@ class PhpIce < Formula
 
   def install
     args = [
-      "V=1",
-      "USR_DIR_INSTALL=yes",
+      "ICE_BIN_DIST=cpp",
+      "ICE_HOME=#{Formula["ice"].opt_prefix}",
       "install_phpdir=#{prefix}",
       "install_phplibdir=#{prefix}",
+      "LMDB_HOME=#{Formula["lmdb"].opt_prefix}",
+      "MCPP_HOME=#{Formula["mcpp"].opt_prefix}",
       "OPTIMIZE=yes",
-      "ICE_HOME=#{Formula["ice"].opt_prefix}",
-      "ICE_BIN_DIST=cpp",
       "PHP_CONFIG=#{Formula["php"].opt_bin}/php-config",
+      "USR_DIR_INSTALL=yes",
+      "V=1",
     ]
 
-    Dir.chdir("php")
-    system "make", "install", *args
+    system "make", "-C", "php", "install", *args
   end
 
   def ext_config_path

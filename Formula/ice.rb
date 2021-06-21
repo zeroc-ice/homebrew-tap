@@ -1,12 +1,12 @@
 class Ice < Formula
   desc "Comprehensive RPC framework"
   homepage "https://zeroc.com"
-  url "https://github.com/zeroc-ice/ice/archive/v3.7.5.tar.gz"
-  sha256 "36bf45591a95e6ee7216153d45d8eca05ff00c1da35608f0c400e6ddc8049da9"
+  url "https://github.com/zeroc-ice/ice/archive/v3.7.6.tar.gz"
+  sha256 "75b18697c0c74f363bd0b85943f15638736e859c26778337cbfe72d31f5cfb47"
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
-    sha256 cellar: :any, big_sur: "801ca445509d3677d1df60bcbbd49f10a19d2355fbb8f27264e3523974579354"
+    sha256 big_sur: "c80558db5505497405053c0142671776872af38389071bd833e84aa16ddf04a5"
   end
 
   option "with-java", "Build the Ice for Java jar files"
