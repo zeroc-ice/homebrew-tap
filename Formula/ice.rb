@@ -6,7 +6,7 @@ class Ice < Formula
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
-    sha256 big_sur: "c80558db5505497405053c0142671776872af38389071bd833e84aa16ddf04a5"
+    sha256 cellar: :any, big_sur: "c80558db5505497405053c0142671776872af38389071bd833e84aa16ddf04a5"
   end
 
   option "with-java", "Build the Ice for Java jar files"
