@@ -14,6 +14,7 @@ class Ice < Formula
   option "without-xcode-sdk", "Build without the Xcode SDK for iOS development"
 
   depends_on "lmdb"
+  depends_on macos: :catalina
   depends_on "mcpp"
   depends_on "openjdk@11" => :optional
 
@@ -32,6 +33,7 @@ class Ice < Formula
       "SKIP=slice2confluence",
       "LANGUAGES=cpp objective-c #{build.with?("java") ? "java java-compat" : ""}",
     ]
+    inreplace "cpp/include/Ice/Object.h", /^#.+"-Wdeprecated-copy-dtor"+/, ""
     system "make", "install", *args
 
     (libexec/"bin").mkpath

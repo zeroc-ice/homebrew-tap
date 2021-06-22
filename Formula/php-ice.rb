@@ -10,6 +10,7 @@ class PhpIce < Formula
     sha256 cellar: :any, big_sur: "46b2145edb092fd6bafa5c38454c79d418e4052c51164cb212988c1fd5453147"
   end
 
+  depends_on macos: :catalina
   depends_on "php"
   depends_on "zeroc-ice/tap/ice"
 
