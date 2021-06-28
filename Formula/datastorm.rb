@@ -6,6 +6,7 @@ class Datastorm < Formula
 
   bottle do
     root_url "https://zeroc.com/download/homebrew/bottles"
+    sha256 arm64_big_sur: "15b46cf08e0dadf6b0bfe37bc1bc4789119438f793b52bbbc64adec719f3ea9a"
     sha256 big_sur: "5787ae0e9290c5e972c0335c87f5a68f1ab9ef36fd3ba2d15cbd91a26f15a93f"
   end
 
