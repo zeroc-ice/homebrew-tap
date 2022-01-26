@@ -1,13 +1,12 @@
 class Ice < Formula
   desc "Comprehensive RPC framework"
   homepage "https://zeroc.com"
-  url "https://github.com/zeroc-ice/ice/archive/v3.7.6.tar.gz"
-  sha256 "75b18697c0c74f363bd0b85943f15638736e859c26778337cbfe72d31f5cfb47"
+  url "https://github.com/zeroc-ice/ice/archive/v3.7.7.tar.gz"
+  sha256 "3aef143a44a664f3101cfe02fd13356c739c922e353ef0c186895b5843a312ae"
 
   bottle do
-    root_url "https://zeroc.com/download/homebrew/bottles"
-    sha256 cellar: :any, arm64_big_sur: "44dce47c2d617b5e75941e14c1af7dac18039298dc1ad1e2ec6e823b1ac74992"
-    sha256 cellar: :any, big_sur: "c80558db5505497405053c0142671776872af38389071bd833e84aa16ddf04a5"
+    root_url "https://download.zeroc.com/homebrew/bottles"
+    sha256 cellar: :any, arm64_monterey: "78fdeb402dc50bf414e78293594236f5d9be1c94c13715a17736ac85eace3d26"
   end
 
   option "with-java", "Build the Ice for Java jar files"
@@ -33,7 +32,7 @@ class Ice < Formula
       "SKIP=slice2confluence",
       "LANGUAGES=cpp objective-c #{build.with?("java") ? "java java-compat" : ""}",
     ]
-    inreplace "cpp/include/Ice/Object.h", /^#.+"-Wdeprecated-copy-dtor"+/, ""
+
     system "make", "install", *args
 
     (libexec/"bin").mkpath
