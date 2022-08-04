@@ -1,11 +1,12 @@
 class PhpIce < Formula
   desc "Ice for PHP"
   homepage "https://zeroc.com"
-  url "https://github.com/zeroc-ice/ice/archive/v3.7.7.tar.gz"
-  sha256 "3aef143a44a664f3101cfe02fd13356c739c922e353ef0c186895b5843a312ae"
+  url "https://github.com/zeroc-ice/ice/archive/v3.7.8.tar.gz"
+  sha256 "f2ab6b151ab0418fab30bafc2524d9ba4c767a1014f102df88d735fc775f9824"
 
   bottle do
     root_url "https://download.zeroc.com/homebrew/bottles"
+    sha256 cellar: :any, arm64_monterey: "536ed8bf982587d354569538d58e9e97e6cb7f8fadb5cc66b1683e26119c7775"
   end
 
   depends_on macos: :catalina
