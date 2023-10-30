@@ -71,16 +71,26 @@ class Ice < Formula
         return 0;
       }
     EOS
+
+    # Homebrew sets several env variables related to C++ compilation.
+    # Some of these (specifically CPATH) break compilation against the iOS SDK.
+    ENV.delete("CPATH")
+    ENV.delete("CXXFLAGS")
+    ENV.delete("CPPFLAGS")
+    ENV.delete("CFLAGS")
+    ENV.delete("LDFLAGS")
+    ENV.delete("SDKROOT")
+
     system "#{bin}/slice2cpp", "Hello.ice"
-    system "xcrun", "clang++", "-DICE_CPP11_MAPPING", "-std=c++11", "-c", "-I#{include}", "-I.", "Hello.cpp"
-    system "xcrun", "clang++", "-DICE_CPP11_MAPPING", "-std=c++11", "-c", "-I#{include}", "-I.", "Test.cpp"
-    system "xcrun", "clang++", "-L#{lib}", "-o", "test", "Test.o", "Hello.o", "-lIce++11"
+    system "xcrun", "clang++", "-DICE_CPP11_MAPPING", "-std=c++17", "-c", "-I#{include}", "-I.", "Hello.cpp"
+    system "xcrun", "clang++", "-DICE_CPP11_MAPPING", "-std=c++17", "-c", "-I#{include}", "-I.", "Test.cpp"
+    system "xcrun", "clang++", "-L#{lib}", "-o", "test", "Test.o", "Hello.o", "-lIce++11", "-lpthread"
     system "./test"
     # Test the iOS SDK
     system "#{bin}/slice2cpp", "Hello.ice"
-    system "xcrun", "--sdk", "macosx", "clang++", "-DICE_CPP11_MAPPING", "-std=c++11", "-c", \
+    system "xcrun", "--sdk", "macosx", "clang++", "-DICE_CPP11_MAPPING", "-std=c++17", "-c", \
             "-I#{prefix}/sdk/macosx.sdk/usr/include", "-I.", "Hello.cpp"
-    system "xcrun", "--sdk", "macosx", "clang++", "-DICE_CPP11_MAPPING", "-std=c++11", "-c", \
+    system "xcrun", "--sdk", "macosx", "clang++", "-DICE_CPP11_MAPPING", "-std=c++17", "-c", \
             "-I#{prefix}/sdk/macosx.sdk/usr/include", "-I.", "Test.cpp"
     system "xcrun", "--sdk", "macosx", "clang++", "-L#{prefix}/sdk/macosx.sdk/usr/lib", "-o", "test-sdk", \
             "Test.o", "Hello.o", "-lIce++11", "-framework", "Security", "-framework", "Foundation", \
