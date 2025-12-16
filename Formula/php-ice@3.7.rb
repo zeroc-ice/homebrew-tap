@@ -1,4 +1,4 @@
-class PhpIce < Formula
+class PhpIceAT37 < Formula
   desc "Ice for PHP"
   homepage "https://zeroc.com"
   url "https://github.com/zeroc-ice/ice/archive/v3.7.10.tar.gz"

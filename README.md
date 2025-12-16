@@ -5,69 +5,77 @@ This repository is a [Homebrew tap](https://github.com/Homebrew/brew/blob/master
 ## Install
 
 To add this tap to Homebrew:
-```
+
+```shell
 brew tap zeroc-ice/tap
 ```
 
 ## Usage
 
 To install a formula:
-```
+
+```shell
 brew install zeroc-ice/tap/<formula>
 ```
 
 To install a cask:
-```
+
+```shell
 brew cask install zeroc-ice/tap/<cask>
 ```
 
 ## Formulae
 
-| Name                   | Aliases           | Description                | Bottled | License                    |
-| ------------------------ | --------------- | -------------------------- | ------- | ---------------------------|
-| [`ice`][1]               | `ice@3.7`       | [Ice 3.7][2]               | Y       | [GPLv2 and Commercial][3]  |
-| [`php-ice`][4]           | `php-ice@3.7`   | [Ice 3.7 for PHP][5]       | N       | [GPLv2 and Commercial][3]  |
-| [`ice-builder-xcode`][6] |                 | [Ice Builder for Xcode][7] | N       | [BSD 3][8]                 |
-| [`freeze`][9]            | `freeze@3.7`    | [Freeze 3.7][10]           | Y       | [GPLv2 and Commercial][11] |
-| [`ice@3.6`][12]          | `ice36`         | [Ice 3.6][13]              | Y       | [GPLv2 and Commercial][14] |
-| [`icetouch@3.6`][15]     | `icetouch36`    | [Ice Touch 3.6][16]        | Y       | [GPLv2 and Commercial][17] |
-| [`berkeley-db@5.3`][18]  | `berkeley-db53` | Berkeley DB 5.3, keg-only  | Y       | [Custom Open Source][19]   |
+| Name                                             | Aliases         | Description                                     | Bottled | License                                     |
+| ------------------------------------------------ | --------------- | ----------------------------------------------- | ------- | ------------------------------------------- |
+| [`ice`][ice-formula]                             | `ice@3.8`       | Ice 3.8                                         | Y       | [GPLv2 and Commercial][ice-license]         |
+| [`ice@3.7`][ice-37-formula]                      |                 | [Ice 3.7][ice-37-doc]                           | Y       | [GPLv2 and Commercial][ice-license]         |
+| [`php-ice@3.7`][php-ice37-formula]               |                 | [Ice 3.7 for PHP][ice-37-doc]                   | N       | [GPLv2 and Commercial][ice-license]         |
+| [`ice-builder-xcode`][ice-builder-xcode-formula] |                 | [Ice Builder for Xcode][ice-builder-xcode-repo] | N       | [BSD 3][ice-builder-xcode-license]          |
+| [`freeze`][freeze-formula]                       | `freeze@3.7`    | [Freeze 3.7][freeze-docs]                       | Y       | [GPLv2 and Commercial][freeze-license]      |
+| [`ice@3.6`][ice-36-formula]                      | `ice36`         | [Ice 3.6][ice-36-doc]                           | Y       | [GPLv2 and Commercial][ice-36-license]      |
+| [`icetouch@3.6`][icetouch-36-formula]            | `icetouch36`    | [Ice Touch 3.6][icetouch-36-doc]                | Y       | [GPLv2 and Commercial][icetouch-36-license] |
+| [`berkeley-db@5.3`][db-formula]                  | `berkeley-db53` | Berkeley DB 5.3, keg-only                       | Y       | [Custom Open Source][db-license]            |
 
 ## Casks
 
-| Name                 | Description           | License                    |
-| -------------------- | ----------------------| -------------------------- |
-| [`icegridgui`][20]   | [IceGrid GUI 3.7][21] | [GPLv2 and Commercial][3]  |
-| [`icegridgui36`][22] | [IceGrid GUI 3.6][23] | [GPLv2 and Commercial][3]  |
+| Name                            | Description                   | License                             |
+| ------------------------------- | ----------------------------- | ----------------------------------- |
+| [`icegridgui`][gui-cask]        | IceGrid GUI 3.8               | [GPLv2 and Commercial][ice-license] |
+| [`icegridgui@3.7`][gui-37-cask] | [IceGrid GUI 3.7][gui-37-doc] | [GPLv2 and Commercial][ice-license] |
+| [`icegridgui36`][gui-36-cask]   | [IceGrid GUI 3.6][gui-36-doc] | [GPLv2 and Commercial][ice-license] |
 
-[1]: Formula/ice.rb
-[2]: https://doc.zeroc.com/display/Ice37/Using+the+macOS+Binary+Distribution
-[3]: https://github.com/zeroc-ice/ice#copyright-and-license
+[ice-license]: https://github.com/zeroc-ice/ice#copyright-and-license
+[ice-formula]: Formula/ice.rb
 
-[4]: Formula/php-ice.rb
-[5]: https://doc.zeroc.com/display/Ice37/Using+the+macOS+Binary+Distribution
+[ice-37-doc]: https://doc.zeroc.com/display/Ice37/Using+the+macOS+Binary+Distribution
+[ice-37-formula]: Formula/ice@3.7.rb
 
-[6]: Formula/ice-builder-xcode.rb
-[7]: https://github.com/zeroc-ice/ice-builder-xcode/
-[8]: https://github.com/zeroc-ice/ice-builder-xcode/blob/master/LICENSE
+[php-ice37-formula]: Formula/php-ice@3.7.rb
 
-[9]: Formula/freeze.rb
-[10]: https://doc.zeroc.com/display/Freeze37/Using+the+macOS+Binary+Distribution
-[11]: https://github.com/zeroc-ice/freeze#copyright-and-license
+[ice-builder-xcode-formula]: Formula/ice-builder-xcode.rb
+[ice-builder-xcode-repo]: https://github.com/zeroc-ice/ice-builder-xcode/
+[ice-builder-xcode-license]: https://github.com/zeroc-ice/ice-builder-xcode/blob/master/LICENSE
 
-[12]: Formula/ice@3.6.rb
-[13]: https://doc.zeroc.com/display/Ice36/Using+the+macOS+Binary+Distribution
-[14]: https://github.com/zeroc-ice/ice/tree/3.6#copyright-and-license
+[freeze-formula]: Formula/freeze.rb
+[freeze-docs]: https://doc.zeroc.com/display/Freeze37/Using+the+macOS+Binary+Distribution
+[freeze-license]: https://github.com/zeroc-ice/freeze#copyright-and-license
 
-[15]: Formula/icetouch@3.6.rb
-[16]: https://doc.zeroc.com/display/Ice36/Using+the+macOS+Binary+Distribution
-[17]: https://github.com/zeroc-ice/icetouch#copyright-and-license
+[ice-36-formula]: Formula/ice@3.6.rb
+[ice-36-doc]: https://doc.zeroc.com/display/Ice36/Using+the+macOS+Binary+Distribution
+[ice-36-license]: https://github.com/zeroc-ice/ice/tree/3.6#copyright-and-license
 
-[18]: Formula/berkeley-db@5.3.rb
-[19]: https://download.zeroc.com/berkeley-db/LICENSE
+[icetouch-36-formula]: Formula/icetouch@3.6.rb
+[icetouch-36-doc]: https://doc.zeroc.com/display/Ice36/Using+the+macOS+Binary+Distribution
+[icetouch-36-license]: https://github.com/zeroc-ice/icetouch#copyright-and-license
 
-[20]: Casks/icegridgui.rb
-[21]: https://doc.zeroc.com/ice/3.7/ice-services/icegrid/icegrid-gui-tool
+[db-formula]: FFormula/berkeley-db@5.3.rb
+[db-license]: https://download.zeroc.com/berkeley-db/LICENSE
 
-[22]: Casks/icegridgui36.rb
-[23]: https://doc.zeroc.com/ice/3.6/ice-services/icegrid/icegrid-admin-graphical-tool
+[gui-cask]: Casks/icegridgui.rb
+
+[gui-37-cask]: Casks/icegridgui@3.7.rb
+[gui-37-doc]: https://doc.zeroc.com/ice/3.7/ice-services/icegrid/icegrid-gui-tool
+
+[gui-36-cask]: Casks/icegridgui36.rb
+[gui-36-doc]: https://doc.zeroc.com/ice/3.6/ice-services/icegrid/icegrid-admin-graphical-tool
