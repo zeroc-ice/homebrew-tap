@@ -1,4 +1,4 @@
-class PhpIce < Formula
+class PhpIceAT37 < Formula
   desc "Ice for PHP"
   homepage "https://zeroc.com"
   url "https://github.com/zeroc-ice/ice/archive/v3.7.10.tar.gz"
@@ -10,12 +10,12 @@ class PhpIce < Formula
   end
 
   depends_on "php"
-  depends_on "zeroc-ice/tap/ice"
+  depends_on "zeroc-ice/tap/ice@3.7"
 
   def install
     args = [
       "ICE_BIN_DIST=cpp",
-      "ICE_HOME=#{Formula["ice"].opt_prefix}",
+      "ICE_HOME=#{Formula["ice@3.7"].opt_prefix}",
       "install_phpdir=#{prefix}",
       "install_phplibdir=#{prefix}",
       "LMDB_HOME=#{Formula["lmdb"].opt_prefix}",
