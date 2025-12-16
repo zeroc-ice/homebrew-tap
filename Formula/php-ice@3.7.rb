@@ -10,12 +10,12 @@ class PhpIceAT37 < Formula
   end
 
   depends_on "php"
-  depends_on "zeroc-ice/tap/ice"
+  depends_on "zeroc-ice/tap/ice@3.7"
 
   def install
     args = [
       "ICE_BIN_DIST=cpp",
-      "ICE_HOME=#{Formula["ice"].opt_prefix}",
+      "ICE_HOME=#{Formula["ice@3.7"].opt_prefix}",
       "install_phpdir=#{prefix}",
       "install_phplibdir=#{prefix}",
       "LMDB_HOME=#{Formula["lmdb"].opt_prefix}",
