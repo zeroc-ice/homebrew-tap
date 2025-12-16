@@ -69,7 +69,7 @@ brew cask install zeroc-ice/tap/<cask>
 [icetouch-36-doc]: https://doc.zeroc.com/display/Ice36/Using+the+macOS+Binary+Distribution
 [icetouch-36-license]: https://github.com/zeroc-ice/icetouch#copyright-and-license
 
-[db-formula]: FFormula/berkeley-db@5.3.rb
+[db-formula]: Formula/berkeley-db@5.3.rb
 [db-license]: https://download.zeroc.com/berkeley-db/LICENSE
 
 [gui-cask]: Casks/icegridgui.rb
