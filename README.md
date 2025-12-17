@@ -1,6 +1,6 @@
 # ZeroC Ice Homebrew Tap
 
-This repository is a [Homebrew tap](https://github.com/Homebrew/brew/blob/master/docs/brew-tap.md) which contains formulae for [ZeroC](https://zeroc.com/) software.
+This repository is a [Homebrew tap](https://docs.brew.sh/Taps) which contains formulae for [ZeroC](https://zeroc.com/) software.
 
 ## Install
 
