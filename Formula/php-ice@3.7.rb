@@ -6,7 +6,7 @@ class PhpIceAT37 < Formula
 
   bottle do
     root_url "https://download.zeroc.com/homebrew/bottles"
-    sha256 cellar: :any, arm64_sonoma: "7a75ab716956d58d99d85773684c80191eed42275d84758232b2a7c6f7f6dbd7"
+    sha256 cellar: :any, arm64_tahoe: "8a3bb54e83f45b4735e9d6ec55fbe5275fd456fb8ee955eaf7e5ea3536f6c400"
   end
 
   depends_on "php"
