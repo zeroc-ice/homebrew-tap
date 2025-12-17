@@ -6,14 +6,35 @@ class IceAT37 < Formula
 
   bottle do
     root_url "https://download.zeroc.com/homebrew/bottles"
-    sha256 cellar: :any, arm64_sonoma: "ad4108e999e023d4001a433e8595902c13d3ad19140d514a5340a78f4dd772a0"
-    sha256 cellar: :any, sonoma: "e2b3e920ad794d1b8e82324fbb8a01c3e1cb2e5f52a0efb9af2d2d7e62a7f88e"
+    sha256 cellar: :any, arm64_tahoe: "80706fe6c7149401c4d93a4a0b2313a8fb7c0740518e8cfa66aa6796dd819c81"
   end
 
   depends_on "lmdb"
   depends_on "mcpp"
 
+    patch :DATA
+
   def install
+    extra_cxxflags = []
+
+    # Workaround for Xcode 16 (LLVM 17) Clang bug that causes:
+    # include/Ice/OutgoingAsync.h: error: declaration shadows a local variable [-Werror,-Wshadow-uncaptured-local]
+    # Ref: https://github.com/llvm/llvm-project/issues/81307
+    # Ref: https://github.com/llvm/llvm-project/issues/71976
+    extra_cxxflags << "-Wno-shadow-uncaptured-local" if DevelopmentTools.clang_build_version >= 1600
+
+    # Workaround for macOS 26 SDK
+    extra_cxxflags << "-Wno-deprecated-declarations" if DevelopmentTools.clang_build_version >= 1700
+
+    # Workaround for Xcode 26 (Clang 17)
+    extra_cxxflags << "-Wno-reserved-user-defined-literal" if DevelopmentTools.clang_build_version >= 1700
+    extra_cxxflags << "-Wno-deprecated-dynamic-exception-spec" if DevelopmentTools.clang_build_version >= 1700
+    extra_cxxflags << "-Wno-deprecated-copy-with-user-provided-dtor" if DevelopmentTools.clang_build_version >= 1700
+
+    unless extra_cxxflags.empty?
+      inreplace "config/Make.rules.Darwin", "-Wdocumentation ", "\\0#{extra_cxxflags.join(" ")} "
+    end
+
     args = [
       "prefix=#{prefix}",
       "V=1",
@@ -99,3 +120,18 @@ class IceAT37 < Formula
     system "./test-sdk"
   end
 end
+
+__END__
+diff --git a/objective-c/src/Ice/Object.mm b/objective-c/src/Ice/Object.mm
+index 21c8368802..a4b3471d2d 100644
+--- a/objective-c/src/Ice/Object.mm
++++ b/objective-c/src/Ice/Object.mm
+@@ -330,7 +330,7 @@ static NSString* ICEObject_ids[1] =
+ -(BOOL) ice_isA:(NSString*)__unused typeId current:(ICECurrent*)__unused current
+ {
+     NSAssert(NO, @"ice_isA requires override");
+-    return nil;
++    return NO;
+ }
+ -(void) ice_ping:(ICECurrent*)__unused current
+ {
