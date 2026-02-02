@@ -34,21 +34,20 @@ brew cask install zeroc-ice/tap/<cask>
 | [`ice-builder-xcode`][ice-builder-xcode-formula] |                 | [Ice Builder for Xcode][ice-builder-xcode-repo] | N       | [BSD 3][ice-builder-xcode-license]          |
 | [`freeze`][freeze-formula]                       | `freeze@3.7`    | [Freeze 3.7][freeze-docs]                       | Y       | [GPLv2 and Commercial][freeze-license]      |
 | [`ice@3.6`][ice-36-formula]                      | `ice36`         | [Ice 3.6][ice-36-doc]                           | Y       | [GPLv2 and Commercial][ice-36-license]      |
-| [`icetouch@3.6`][icetouch-36-formula]            | `icetouch36`    | [Ice Touch 3.6][icetouch-36-doc]                | Y       | [GPLv2 and Commercial][icetouch-36-license] |
 | [`berkeley-db@5.3`][db-formula]                  | `berkeley-db53` | Berkeley DB 5.3, keg-only                       | Y       | [Custom Open Source][db-license]            |
 
 ## Casks
 
 | Name                            | Description                   | License                             |
 | ------------------------------- | ----------------------------- | ----------------------------------- |
-| [`icegridgui`][gui-cask]        | IceGrid GUI 3.8               | [GPLv2 and Commercial][ice-license] |
+| [`icegridgui`][gui-cask]        | [IceGrid GUI 3.8][gui-doc]    | [GPLv2 and Commercial][ice-license] |
 | [`icegridgui@3.7`][gui-37-cask] | [IceGrid GUI 3.7][gui-37-doc] | [GPLv2 and Commercial][ice-license] |
 | [`icegridgui36`][gui-36-cask]   | [IceGrid GUI 3.6][gui-36-doc] | [GPLv2 and Commercial][ice-license] |
 
 [ice-license]: https://github.com/zeroc-ice/ice#copyright-and-license
 [ice-formula]: Formula/ice.rb
 
-[ice-37-doc]: https://doc.zeroc.com/display/Ice37/Using+the+macOS+Binary+Distribution
+[ice-37-doc]: https://archive.zeroc.com/ice/3.7/release-notes/using-the-macos-binary-distribution
 [ice-37-formula]: Formula/ice@3.7.rb
 
 [php-ice37-formula]: Formula/php-ice@3.7.rb
@@ -58,24 +57,21 @@ brew cask install zeroc-ice/tap/<cask>
 [ice-builder-xcode-license]: https://github.com/zeroc-ice/ice-builder-xcode/blob/master/LICENSE
 
 [freeze-formula]: Formula/freeze.rb
-[freeze-docs]: https://doc.zeroc.com/display/Freeze37/Using+the+macOS+Binary+Distribution
+[freeze-docs]: https://archive.zeroc.com/freeze/latest/release-notes/using-the-macos-binary-distribution
 [freeze-license]: https://github.com/zeroc-ice/freeze#copyright-and-license
 
 [ice-36-formula]: Formula/ice@3.6.rb
-[ice-36-doc]: https://doc.zeroc.com/display/Ice36/Using+the+macOS+Binary+Distribution
+[ice-36-doc]: https://archive.zeroc.com/ice/3.6/ice-release-notes/using-the-macos-binary-distribution
 [ice-36-license]: https://github.com/zeroc-ice/ice/tree/3.6#copyright-and-license
-
-[icetouch-36-formula]: Formula/icetouch@3.6.rb
-[icetouch-36-doc]: https://doc.zeroc.com/display/Ice36/Using+the+macOS+Binary+Distribution
-[icetouch-36-license]: https://github.com/zeroc-ice/icetouch#copyright-and-license
 
 [db-formula]: Formula/berkeley-db@5.3.rb
 [db-license]: https://download.zeroc.com/berkeley-db/LICENSE
 
 [gui-cask]: Casks/icegridgui.rb
+[gui-doc]: https://docs.zeroc.com/ice/3.8/cpp/icegrid-gui-tool
 
 [gui-37-cask]: Casks/icegridgui@3.7.rb
-[gui-37-doc]: https://doc.zeroc.com/ice/3.7/ice-services/icegrid/icegrid-gui-tool
+[gui-37-doc]: https://archive.zeroc.com/ice/3.7/ice-services/icegrid/icegrid-gui-tool
 
 [gui-36-cask]: Casks/icegridgui36.rb
-[gui-36-doc]: https://doc.zeroc.com/ice/3.6/ice-services/icegrid/icegrid-admin-graphical-tool
+[gui-36-doc]: https://archive.zeroc.com/ice/3.6/ice-services/icegrid/icegrid-admin-graphical-tool
