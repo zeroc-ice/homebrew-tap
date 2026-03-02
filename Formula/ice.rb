@@ -63,9 +63,9 @@ class Ice < Formula
     CPP
 
     system "#{bin}/slice2cpp", "Hello.ice"
-    system ENV.cxx, "clang++", "-std=c++20", "-c", "-I#{include}", "Hello.cpp"
-    system ENV.cxx, "clang++", "-std=c++20", "-c", "-I#{include}", "Test.cpp"
-    system ENV.cxx, "clang++", "-L#{lib}", "-o", "test", "Test.o", "Hello.o", "-lIce", "-lpthread"
+    system ENV.cxx, "-std=c++20", "-c", "-I#{include}", "Hello.cpp"
+    system ENV.cxx, "-std=c++20", "-c", "-I#{include}", "Test.cpp"
+    system ENV.cxx, "-L#{lib}", "-o", "test", "Test.o", "Hello.o", "-lIce", "-lpthread"
     system "./test"
   end
 end
