@@ -1,12 +1,12 @@
 class Ice < Formula
   desc "Comprehensive RPC framework"
   homepage "https://zeroc.com"
-  url "https://github.com/zeroc-ice/ice/archive/v3.8.0.tar.gz"
-  sha256 "ec03e18b1bb0e83547744f3d0d0b73b60e5b497bed10de6f933b54525802a3cb"
+  url "https://github.com/zeroc-ice/ice/archive/v3.8.1.tar.gz"
+  sha256 "87aa0381f2347715467686547bccf253fa208948bf2a462584872d2d0f8b1720"
 
   bottle do
-    root_url "https://download.zeroc.com/homebrew/bottles"
-    sha256 cellar: :any, arm64_tahoe: "6122efd4c487d675ae4560ec50642d104e5cd617dc7f7e94bd222a6a1da7e384"
+    root_url "https://download.zeroc.com/ice/3.8"
+    sha256 cellar: :any, arm64_tahoe: "c8ca096b86cc3658b57da43658d0c1aae4406ac713b421d7fa6dc4aff1891cb5"
   end
 
   depends_on "lmdb"
@@ -39,7 +39,10 @@ class Ice < Formula
           }
       }
     EOS
-    (testpath / "Test.cpp").write <<~EOS
+
+    port = free_port
+
+    (testpath / "Test.cpp").write <<~CPP
       #include "Hello.h"
       #include <Ice/Ice.h>
 
@@ -52,17 +55,17 @@ class Ice < Formula
       int main(int argc, char* argv[])
       {
         Ice::CommunicatorHolder ich(argc, argv);
-        auto adapter = ich->createObjectAdapterWithEndpoints("Hello", "default -h localhost");
+        auto adapter = ich->createObjectAdapterWithEndpoints("Hello", "default -h 127.0.0.1 -p #{port}");
         adapter->add(std::make_shared<HelloI>(), Ice::stringToIdentity("hello"));
         adapter->activate();
         return 0;
       }
-    EOS
+    CPP
 
     system "#{bin}/slice2cpp", "Hello.ice"
-    system "xcrun", "clang++", "-std=c++20", "-c", "-I#{include}", "Hello.cpp"
-    system "xcrun", "clang++", "-std=c++20", "-c", "-I#{include}", "Test.cpp"
-    system "xcrun", "clang++", "-L#{lib}", "-o", "test", "Test.o", "Hello.o", "-lIce", "-lpthread"
+    system ENV.cxx, "-std=c++20", "-c", "-I#{include}", "Hello.cpp"
+    system ENV.cxx, "-std=c++20", "-c", "-I#{include}", "Test.cpp"
+    system ENV.cxx, "-L#{lib}", "-o", "test", "Test.o", "Hello.o", "-lIce", "-lpthread"
     system "./test"
   end
 end
