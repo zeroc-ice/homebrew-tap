@@ -21,15 +21,15 @@ brew install zeroc-ice/tap/<formula>
 To install a cask:
 
 ```shell
-brew cask install zeroc-ice/tap/<cask>
+brew install --cask zeroc-ice/tap/<cask>
 ```
 
 ## Formulae
 
-| Name                        | Aliases   | Description           | Bottled | License                             |
-| --------------------------- | --------- | --------------------- | ------- | ----------------------------------- |
-| [`ice`][ice-formula]        | `ice@3.8` | Ice 3.8               | Y       | [GPLv2 and Commercial][ice-license] |
-| [`ice@3.7`][ice-37-formula] |           | [Ice 3.7][ice-37-doc] | Y       | [GPLv2 and Commercial][ice-license] |
+| Name                        | Aliases   | Description           | License                             |
+| --------------------------- | --------- | --------------------- | ----------------------------------- |
+| [`ice`][ice-formula]        | `ice@3.8` | Ice 3.8               | [GPLv2 and Commercial][ice-license] |
+| [`ice@3.7`][ice-37-formula] |           | [Ice 3.7][ice-37-doc] | [GPLv2 and Commercial][ice-license] |
 
 ## Casks
 
