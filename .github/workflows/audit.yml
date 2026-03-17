@@ -19,6 +19,5 @@ jobs:
       - name: Audit formulae
         run: brew audit --formula --tap zeroc-ice/tap --online --strict --git
 
-
       - name: Audit casks
         run: brew audit --cask --tap zeroc-ice/tap --online --strict --git
