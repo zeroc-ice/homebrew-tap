@@ -1,0 +1,24 @@
+name: brew audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  audit:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup tap
+        uses: ./.github/actions/setup-tap
+
+      - name: Audit formulae
+        run: brew audit --formula --tap zeroc-ice/tap --online --strict --fix --git
+
+
+      - name: Audit casks
+        run: brew audit --cask --tap zeroc-ice/tap --online --strict --fix --git
