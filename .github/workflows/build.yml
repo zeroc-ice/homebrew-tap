@@ -3,8 +3,6 @@ name: build
 on:
   push:
     branches: [main]
-    paths:
-      - "Formula/*.rb"
   pull_request:
     branches: [main]
     paths:

@@ -9,7 +9,7 @@ class Datastorm < Formula
     sha256 cellar: :any, arm64_monterey: "57961c25d4d3f74233d697e75e72114f8c05cb10745a6f0eb2dc8723c38e35e4"
   end
 
-  depends_on "ice"
+  depends_on "zeroc-ice/tap/ice@3.7"
 
   def install
     args = [
@@ -17,14 +17,14 @@ class Datastorm < Formula
       "V=1",
       "USR_DIR_INSTALL=yes",
       "ICE_BIN_DIST=all",
-      "ICE_HOME=#{Formula["ice"].opt_prefix}",
+      "ICE_HOME=#{Formula["zeroc-ice/tap/ice@3.7"].opt_prefix}",
       "LANGUAGES=cpp",
     ]
 
     system "make", "install", *args
   end
 
-  # NOTE: the -L#{Formula["ice"].lib} is necessary for Mojave where the linker apparently
+  # NOTE: the -L#{Formula["zeroc-ice/tap/ice@3.7"].lib} is necessary for Mojave where the linker apparently
   # doesn't search /usr/local/lib when SDKROOT is set.
   test do
     (testpath / "Test.cpp").write <<~EOS
@@ -40,7 +40,7 @@ class Datastorm < Formula
       }
     EOS
     system "xcrun", "clang++", "-std=c++11", "-c", "-I#{include}", "Test.cpp"
-    system "xcrun", "clang++", "-L#{lib}", "-L#{Formula["ice"].lib}", "-o", "test", "Test.o", "-lDataStorm",
+    system "xcrun", "clang++", "-L#{lib}", "-L#{Formula["zeroc-ice/tap/ice@3.7"].lib}", "-o", "test", "Test.o", "-lDataStorm",
       "-lIce++11"
     system "./test"
   end
