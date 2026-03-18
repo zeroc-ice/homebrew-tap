@@ -3,8 +3,6 @@ name: build
 on:
   push:
     branches: [main]
-    paths:
-      - "Formula/*.rb"
   pull_request:
     branches: [main]
     paths:
@@ -62,7 +60,7 @@ jobs:
         uses: ./.github/actions/setup-tap
 
       - name: Install ${{ matrix.formula }}
-        run: brew install --build-from-source zeroc-ice/tap/${{ matrix.formula }}
+        run: brew install --verbose --build-from-source zeroc-ice/tap/${{ matrix.formula }}
 
       - name: Test ${{ matrix.formula }}
         run: brew test zeroc-ice/tap/${{ matrix.formula }}
