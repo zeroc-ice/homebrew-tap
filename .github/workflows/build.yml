@@ -1,0 +1,68 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "Formula/*.rb"
+  pull_request:
+    branches: [main]
+    paths:
+      - "Formula/*.rb"
+
+# Cancel in-progress runs when a new commit is pushed to the same PR
+concurrency:
+  group: ${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  detect:
+    runs-on: ubuntu-latest
+    outputs:
+      formulae: ${{ steps.changed.outputs.formulae }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      # On PRs, only build formulae that were modified.
+      # On push to main, build all formulae.
+      - name: Detect formulae
+        id: changed
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            # Only build formulae modified in the PR
+            formulae=$(gh pr diff "${{ github.event.pull_request.number }}" --name-only \
+              | grep '^Formula/' \
+              | sed 's|Formula/||; s|\.rb$||' \
+              | jq -R -s -c 'split("\n") | map(select(length > 0))')
+          else
+            # Build all formulae on push
+            formulae=$(ls Formula/*.rb \
+              | sed 's|Formula/||; s|\.rb$||' \
+              | jq -R -s -c 'split("\n") | map(select(length > 0))')
+          fi
+          echo "formulae=$formulae" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+  build:
+    needs: detect
+    if: needs.detect.outputs.formulae != '[]'
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        formula: ${{ fromJson(needs.detect.outputs.formulae) }}
+        os: [macos-15, macos-26]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup tap
+        uses: ./.github/actions/setup-tap
+
+      - name: Install ${{ matrix.formula }}
+        run: brew install --build-from-source zeroc-ice/tap/${{ matrix.formula }}
+
+      - name: Test ${{ matrix.formula }}
+        run: brew test zeroc-ice/tap/${{ matrix.formula }}

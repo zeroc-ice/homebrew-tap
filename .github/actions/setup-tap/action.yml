@@ -1,0 +1,11 @@
+name: Setup Tap
+description: Register this repository as a Homebrew tap
+
+runs:
+  using: composite
+  steps:
+    - name: Tap this repository
+      shell: bash
+      run: |
+        mkdir -p "$(brew --repository)/Library/Taps/zeroc-ice"
+        ln -s "$GITHUB_WORKSPACE" "$(brew --repository)/Library/Taps/zeroc-ice/homebrew-tap"
