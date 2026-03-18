@@ -6,6 +6,7 @@ class IceAT37 < Formula
 
   bottle do
     root_url "https://download.zeroc.com/homebrew/bottles"
+    sha256 cellar: :any, arm64_sequoia: "043da921405ea91dd5f3a509da5951078db28817d57838421ba3ad04555835c3"
     sha256 cellar: :any, arm64_tahoe: "ea779edc4a7e8a5b18123ebbf4d0fb844b9e2832ed5d82fb135dcfee35b3a942"
   end
 
