@@ -8,6 +8,7 @@ To add this tap to Homebrew:
 
 ```shell
 brew tap zeroc-ice/tap
+brew trust zeroc-ice/tap
 ```
 
 ## Usage
