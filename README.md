@@ -7,8 +7,8 @@ This repository is a [Homebrew tap](https://docs.brew.sh/Taps) which contains fo
 To add this tap to Homebrew:
 
 ```shell
-brew trust zeroc-ice/tap
 brew tap zeroc-ice/tap
+brew trust zeroc-ice/tap
 ```
 
 ## Usage
