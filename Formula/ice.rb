@@ -7,6 +7,7 @@ class Ice < Formula
   bottle do
     root_url "https://download.zeroc.com/ice/3.8"
     sha256 cellar: :any, arm64_tahoe: "01103d6b9219e76b6276aab1c7541bdb259928aaeefa41ca82e8d6e315acc0f0"
+    sha256 cellar: :any, arm64_sequoia: "240aef8fa07f3eec7bad82741b6a297092bdde2ceeeae665242e9b7ea01bcadb"
   end
 
   depends_on "lmdb"
