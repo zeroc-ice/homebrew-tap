@@ -20,7 +20,7 @@ jobs:
       formulae: ${{ steps.changed.outputs.formulae }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
 
       # On PRs, only build formulae that were modified.
       # On push to main, build all formulae.
@@ -54,7 +54,7 @@ jobs:
         os: [macos-15, macos-26]
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
 
       - name: Setup tap
         uses: ./.github/actions/setup-tap
