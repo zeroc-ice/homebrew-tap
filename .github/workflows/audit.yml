@@ -5,6 +5,13 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  # Weekly run to catch upstream URL breakage and Homebrew behavior changes
+  # between pushes, since the audit checks online resources.
+  schedule:
+    - cron: "23 14 * * 1"
+
+permissions:
+  contents: read
 
 jobs:
   audit:
