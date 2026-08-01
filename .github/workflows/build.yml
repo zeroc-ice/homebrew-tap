@@ -8,6 +8,9 @@ on:
     paths:
       - "Formula/*.rb"
 
+permissions:
+  contents: read
+
 # Cancel in-progress runs when a new commit is pushed to the same PR
 concurrency:
   group: ${{ github.head_ref || github.run_id }}
@@ -16,6 +19,9 @@ concurrency:
 jobs:
   detect:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read # for gh pr diff
     outputs:
       formulae: ${{ steps.changed.outputs.formulae }}
     steps:
