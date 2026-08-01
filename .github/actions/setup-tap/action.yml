@@ -9,3 +9,10 @@ runs:
       run: |
         mkdir -p "$(brew --repository)/Library/Taps/zeroc-ice"
         ln -s "$GITHUB_WORKSPACE" "$(brew --repository)/Library/Taps/zeroc-ice/homebrew-tap"
+
+    # Homebrew 6.0 requires non-official taps to be trusted before their
+    # formulae can be loaded (e.g. as dependencies of other formulae).
+    # See https://docs.brew.sh/Tap-Trust
+    - name: Trust this tap
+      shell: bash
+      run: brew trust zeroc-ice/tap
