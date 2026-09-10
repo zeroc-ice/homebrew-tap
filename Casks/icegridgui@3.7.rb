@@ -11,5 +11,7 @@ cask "icegridgui@3.7" do
     skip "Versions are managed manually"
   end
 
+  depends_on :macos
+
   app "IceGrid GUI.app"
 end

@@ -41,7 +41,7 @@ jobs:
               | jq -R -s -c 'split("\n") | map(select(length > 0))')
           else
             # Build all formulae on push
-            formulae=$(ls Formula/*.rb \
+            formulae=$(printf '%s\n' Formula/*.rb \
               | sed 's|Formula/||; s|\.rb$||' \
               | jq -R -s -c 'split("\n") | map(select(length > 0))')
           fi

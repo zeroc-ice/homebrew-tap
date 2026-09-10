@@ -11,9 +11,11 @@ cask "icegridgui36" do
     skip "Versions are managed manually"
   end
 
+  depends_on :macos
+
+  app "IceGrid Admin.app"
+
   caveats do
     requires_rosetta
   end
-
-  app "IceGrid Admin.app"
 end

@@ -1,12 +1,12 @@
 class Ice < Formula
   desc "Comprehensive RPC framework"
   homepage "https://zeroc.com"
-  url "https://github.com/zeroc-ice/ice/archive/v3.8.3.tar.gz"
+  url "https://github.com/zeroc-ice/ice/archive/refs/tags/v3.8.3.tar.gz"
   sha256 "62240ed349317f72269ebf1b26e8b3629a09ad9a915031e942e83f75e9fb6971"
 
   bottle do
     root_url "https://download.zeroc.com/ice/3.8"
-    sha256 cellar: :any, arm64_tahoe: "973633278ed4040e12f00d427355836002622214ccb5d4252e98fafc5a1c7716"
+    sha256 cellar: :any, arm64_tahoe:   "973633278ed4040e12f00d427355836002622214ccb5d4252e98fafc5a1c7716"
     sha256 cellar: :any, arm64_sequoia: "ae09f381a30a570d82cc31a6f7fdfb432d1284b7036ed87ea68186c1e26ac3b3"
   end
 
@@ -18,8 +18,8 @@ class Ice < Formula
       "prefix=#{prefix}",
       "V=1",
       "USR_DIR_INSTALL=yes", # ensure slice and man files are installed to share
-      "MCPP_HOME=#{Formula["mcpp"].opt_prefix}",
-      "LMDB_HOME=#{Formula["lmdb"].opt_prefix}",
+      "MCPP_HOME=#{formula_opt_prefix("mcpp")}",
+      "LMDB_HOME=#{formula_opt_prefix("lmdb")}",
       "CONFIGS=all",
       "PLATFORMS=all",
       "LANGUAGES=cpp",
