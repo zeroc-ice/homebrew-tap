@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
   pull_request:
+    # `labeled` so adding the bottle label starts a run rather than waiting
+    # for the next push.
+    types: [opened, synchronize, reopened, labeled]
     branches: [main]
     paths:
       - "Formula/*.rb"
@@ -73,11 +76,12 @@ jobs:
       - name: Test ${{ matrix.formula }}
         run: brew test zeroc-ice/tap/${{ matrix.formula }}
 
-      # A formula that ships bottles declares where they are hosted; the rest
-      # are source-only and are skipped here.
+      # Bottling is opt-in per pull request: a formula that ships bottles
+      # declares where they are hosted, and the label says this is the PR that
+      # should produce them.
       - name: Bottle ${{ matrix.formula }}
         id: bottle
-        if: github.event_name == 'pull_request'
+        if: contains(github.event.pull_request.labels.*.name, 'bottle')
         env:
           FORMULA: ${{ matrix.formula }}
         run: |
