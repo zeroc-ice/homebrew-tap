@@ -1,26 +1,25 @@
 class IceAT37 < Formula
   desc "Comprehensive RPC framework"
   homepage "https://zeroc.com"
-  url "https://github.com/zeroc-ice/ice/archive/v3.7.11.tar.gz"
+  url "https://github.com/zeroc-ice/ice/archive/refs/tags/v3.7.11.tar.gz"
   sha256 "78eb58f8e34562f1e62056a1c209bd7c0c7b774c15c6277498c652c871f729fa"
 
   bottle do
     root_url "https://download.zeroc.com/homebrew/bottles"
     sha256 cellar: :any, arm64_sequoia: "043da921405ea91dd5f3a509da5951078db28817d57838421ba3ad04555835c3"
-    sha256 cellar: :any, arm64_tahoe: "ea779edc4a7e8a5b18123ebbf4d0fb844b9e2832ed5d82fb135dcfee35b3a942"
+    sha256 cellar: :any, arm64_tahoe:   "ea779edc4a7e8a5b18123ebbf4d0fb844b9e2832ed5d82fb135dcfee35b3a942"
   end
 
   depends_on "lmdb"
   depends_on "mcpp"
 
   def install
-
     args = [
       "prefix=#{prefix}",
       "V=1",
       "USR_DIR_INSTALL=yes", # ensure slice and man files are installed to share
-      "MCPP_HOME=#{Formula["mcpp"].opt_prefix}",
-      "LMDB_HOME=#{Formula["lmdb"].opt_prefix}",
+      "MCPP_HOME=#{formula_opt_prefix("mcpp")}",
+      "LMDB_HOME=#{formula_opt_prefix("lmdb")}",
       "CONFIGS=all",
       "PLATFORMS=all",
       "SKIP=slice2confluence",
@@ -90,12 +89,12 @@ class IceAT37 < Formula
     system "./test"
     # Test the iOS SDK
     system "#{bin}/slice2cpp", "Hello.ice"
-    system "xcrun", "--sdk", "macosx", "clang++", "-DICE_CPP11_MAPPING", "-std=c++17", "-c", \
+    system "xcrun", "--sdk", "macosx", "clang++", "-DICE_CPP11_MAPPING", "-std=c++17", "-c",
             "-I#{prefix}/sdk/macosx.sdk/usr/include", "-I.", "Hello.cpp"
-    system "xcrun", "--sdk", "macosx", "clang++", "-DICE_CPP11_MAPPING", "-std=c++17", "-c", \
+    system "xcrun", "--sdk", "macosx", "clang++", "-DICE_CPP11_MAPPING", "-std=c++17", "-c",
             "-I#{prefix}/sdk/macosx.sdk/usr/include", "-I.", "Test.cpp"
-    system "xcrun", "--sdk", "macosx", "clang++", "-L#{prefix}/sdk/macosx.sdk/usr/lib", "-o", "test-sdk", \
-            "Test.o", "Hello.o", "-lIce++11", "-framework", "Security", "-framework", "Foundation", \
+    system "xcrun", "--sdk", "macosx", "clang++", "-L#{prefix}/sdk/macosx.sdk/usr/lib", "-o", "test-sdk",
+            "Test.o", "Hello.o", "-lIce++11", "-framework", "Security", "-framework", "Foundation",
             "-lbz2", "-liconv"
     system "./test-sdk"
   end

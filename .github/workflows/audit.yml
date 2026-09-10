@@ -23,6 +23,10 @@ jobs:
       - name: Setup tap
         uses: ./.github/actions/setup-tap
 
+      # brew audit does not cover style; brew style also lints the workflows.
+      - name: Check style
+        run: brew style zeroc-ice/tap
+
       - name: Audit formulae
         run: brew audit --formula --tap zeroc-ice/tap --online --strict --git
 

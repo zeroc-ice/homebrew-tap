@@ -1,7 +1,7 @@
 class Datastorm < Formula
   desc "Data centric pub/sub framework based on Ice"
   homepage "https://zeroc.com"
-  url "https://github.com/zeroc-ice/datastorm/archive/v1.1.0.tar.gz"
+  url "https://github.com/zeroc-ice/datastorm/archive/refs/tags/v1.1.0.tar.gz"
   sha256 "66d167749c49dfcc5dcb1d8a3fa34e826db313e69b792d19ae7a3f1a29b415df"
 
   bottle do
@@ -17,7 +17,7 @@ class Datastorm < Formula
       "V=1",
       "USR_DIR_INSTALL=yes",
       "ICE_BIN_DIST=all",
-      "ICE_HOME=#{Formula["zeroc-ice/tap/ice@3.7"].opt_prefix}",
+      "ICE_HOME=#{formula_opt_prefix("zeroc-ice/tap/ice@3.7")}",
       "LANGUAGES=cpp",
     ]
 
@@ -40,8 +40,8 @@ class Datastorm < Formula
       }
     EOS
     system "xcrun", "clang++", "-std=c++11", "-c", "-I#{include}", "Test.cpp"
-    system "xcrun", "clang++", "-L#{lib}", "-L#{Formula["zeroc-ice/tap/ice@3.7"].lib}", "-o", "test", "Test.o", "-lDataStorm",
-      "-lIce++11"
+    system "xcrun", "clang++", "-L#{lib}", "-L#{Formula["zeroc-ice/tap/ice@3.7"].lib}",
+      "-o", "test", "Test.o", "-lDataStorm", "-lIce++11"
     system "./test"
   end
 end
