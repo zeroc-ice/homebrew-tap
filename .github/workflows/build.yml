@@ -65,8 +65,45 @@ jobs:
       - name: Setup tap
         uses: ./.github/actions/setup-tap
 
+      # --build-bottle keeps the install relocatable so the same build can be
+      # bottled below; it is otherwise a source build.
       - name: Install ${{ matrix.formula }}
-        run: brew install --verbose --build-from-source zeroc-ice/tap/${{ matrix.formula }}
+        run: brew install --verbose --build-bottle zeroc-ice/tap/${{ matrix.formula }}
 
       - name: Test ${{ matrix.formula }}
         run: brew test zeroc-ice/tap/${{ matrix.formula }}
+
+      # A formula that ships bottles declares where they are hosted; the rest
+      # are source-only and are skipped here.
+      - name: Bottle ${{ matrix.formula }}
+        id: bottle
+        if: github.event_name == 'pull_request'
+        env:
+          FORMULA: ${{ matrix.formula }}
+        run: |
+          root_url=$(sed -n 's/.*root_url "\(.*\)".*/\1/p' "Formula/${FORMULA}.rb")
+          if [ -z "$root_url" ]; then
+            echo "Formula/${FORMULA}.rb declares no root_url; not bottling."
+            exit 0
+          fi
+
+          brew bottle --json --root-url="$root_url" "zeroc-ice/tap/${FORMULA}"
+
+          # Homebrew names the file `formula--version`; the hosted layout uses a
+          # single dash. See https://github.com/orgs/Homebrew/discussions/4541
+          for file in *--*.bottle*.tar.gz; do
+            mv "$file" "${file/--/-}"
+          done
+
+          shasum -a 256 ./*.bottle.tar.gz
+          echo "bottled=true" >> "$GITHUB_OUTPUT"
+
+      - name: Upload bottle
+        if: steps.bottle.outputs.bottled == 'true'
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: bottle-${{ matrix.formula }}-${{ matrix.os }}
+          path: |
+            *.bottle.tar.gz
+            *.bottle.json
+          if-no-files-found: error
