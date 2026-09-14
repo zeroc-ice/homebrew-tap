@@ -1,9 +1,14 @@
 name: Setup Tap
-description: Register this repository as a Homebrew tap
+description: Update Homebrew and register this repository as a tap
 
 runs:
   using: composite
   steps:
+    # Before tapping, or `brew update` would also update this checkout.
+    - name: Update Homebrew
+      shell: bash
+      run: brew update
+
     - name: Tap this repository
       shell: bash
       run: |
