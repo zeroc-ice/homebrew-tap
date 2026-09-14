@@ -56,6 +56,10 @@ jobs:
     needs: detect
     if: needs.detect.outputs.formulae != '[]'
     runs-on: ${{ matrix.os }}
+    permissions:
+      contents: read
+      id-token: write # for actions/attest
+      attestations: write # for actions/attest
     strategy:
       fail-fast: false
       matrix:
@@ -92,15 +96,26 @@ jobs:
           fi
 
           brew bottle --json --root-url="$root_url" "zeroc-ice/tap/${FORMULA}"
+          echo "bottled=true" >> "$GITHUB_OUTPUT"
 
-          # Homebrew names the file `formula--version`; the hosted layout uses a
-          # single dash. See https://github.com/orgs/Homebrew/discussions/4541
+      # Homebrew verifies the attestation against the `formula--version` file
+      # name, so this runs before the rename.
+      - name: Attest bottle
+        if: steps.bottle.outputs.bottled == 'true'
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4.2.2
+        with:
+          subject-path: "*.bottle*.tar.gz"
+
+      # Homebrew names the file `formula--version`; the hosted layout uses a
+      # single dash. See https://github.com/orgs/Homebrew/discussions/4541
+      - name: Rename bottle
+        if: steps.bottle.outputs.bottled == 'true'
+        run: |
           for file in *--*.bottle*.tar.gz; do
             mv "$file" "${file/--/-}"
           done
 
           shasum -a 256 ./*.bottle.tar.gz
-          echo "bottled=true" >> "$GITHUB_OUTPUT"
 
       - name: Upload bottle
         if: steps.bottle.outputs.bottled == 'true'
